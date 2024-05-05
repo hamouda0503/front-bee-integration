@@ -1,0 +1,113 @@
+<app-breadcrumb [title]="'Single Blog'" [items]="['Apps', 'Blog']" [active_item]="'Single Blog'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="blog-single">
+        <div class="card" >
+          <div class="blog-box blog-list row">
+            <div class="col-sm-8">
+              <div class="blog-details">
+                <div class="blog-date digits">
+
+                  <div> <div class="blog-mydate">{{ publication?.createdAt }}
+                    <div class="blog-sujet"> {{ publication?.sujet }}</div>
+                  </div>
+                  </div>
+                  <h5 (click)="navigateToSocialApp(publication?.user.id)">
+
+                   {{ publication?.user.firstname}} {{ publication?.user.lastname}}
+                  </h5>
+
+                  <div class="single-blog-content-top">
+                    <h4> {{ publication?.content }}</h4>
+                  </div>
+
+                </div>
+                <ul class="blog-social">
+                  <i class="icofont icofont-thumbs-up" (click)="toggleLike(publication.id)"></i>{{ publication?.likes?.length || 0  }} Likes       |&nbsp;
+                  <i class="icofont icofont-ui-chat"></i>{{ publication?.comments?.length || 0 }} Comments
+<div class="Speech">
+                  <button class="btn btn-primary" (click)="speak(publication.content)">
+                    <i class="fas fa-volume-up"></i> Read aloud
+                  </button>
+</div>
+
+                    <div class="blog-mybuttons" *ngIf="publication?.user?.id === currentUser?.id">
+                      <button class="btn btn-secondary" (click)="deletePublication(publication.id)">
+                        <i class="fa fa-trash"></i> Delete</button>
+                      <button class="btn btn-primary" (click)="editPublication(publication.id)">
+                        <i class="icofont icofont-edit"></i> Edit
+                      </button>
+                      <button class="btn btn-secondary" (click)="shareOnFacebook()"><i class="fab fa-facebook"></i></button>
+
+
+
+
+                    </div>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ... other parts of your template ... -->
+        <section class="comment-box">
+          <h4>Comments</h4>
+          <hr>
+          <ul *ngIf="publication && publication.comments">
+            <li *ngFor="let comment of publication.comments; let i = index">
+              <div class="media align-self-center">
+                <img class="align-self-center" [src]="'assets/images/user/'+ comment.user.firstname + '.png'" alt="User image">
+                <div class="media-body">
+                  <div class="row">
+                    <div >
+                      <div class="comment-mydate"> {{ comment?.createdAt }} </div>
+                      <h6 class="mt-0" (click)="navigateToSocialApp(comment.user.id)">
+                        {{ comment.user?.firstname }} {{ comment.user?.lastname }}
+                      </h6>
+
+
+                      <div class="blog-comment-content">
+                        <h7> {{ comment?.content }}</h7>
+                      </div>
+                    </div>
+                    <div class="button-position">
+                      <li class="digits">
+                        <i class="icofont icofont-thumbs-up" (click)="toggleLikeCom(comment.id)"></i>{{ comment?.likes?.length || 0 }} Likes
+                      </li>
+                      <div *ngIf="comment.user?.id === currentUser?.id">
+                        <ul class="comment-social float-start float-md-end">
+                          <li>
+                            <button class="btn btn-danger btn-sm" (click)="deleteComment(comment.id)">
+                              <i class="fa fa-trash"></i> Delete
+                            </button>
+                          </li>
+                          <li>
+                            <button class="btn btn-primary btn-sm" *ngIf="!comment.isEditing" (click)="enableEditing(comment, i)">
+                              <i class="icofont icofont-edit"></i> Edit
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div *ngIf="comment.isEditing" class="edit-comment-form">
+                    <textarea [(ngModel)]="comment.editableContent" rows="3" class="form-control mb-2"></textarea>
+                    <button class="btn btn-success btn-sm" (click)="updateComment(comment, i)">Save</button>
+                    <button class="btn btn-secondary btn-sm" (click)="cancelEditing(comment, i)">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p *ngIf="!(publication && publication.comments?.length)">No comments to display.</p>
+          <div class="new-comment-form">
+            <textarea [(ngModel)]="newCommentContent" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+            <button class="btn btn-primary mt-2" (click)="addComment()">Publish</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

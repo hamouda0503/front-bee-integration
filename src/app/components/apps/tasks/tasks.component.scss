@@ -1,0 +1,14 @@
+.rating {
+  display: flex;
+  justify-content: center;
+}
+
+.star {
+  cursor: pointer;
+  width: 30px; /* Ajustez la taille des étoiles selon vos besoins */
+  height: 30px; /* Ajustez la taille des étoiles selon vos besoins */
+  //background-image: url('chemin/vers/votre/image/etoile.png'); /* Remplacez le chemin par celui de votre image d'étoile */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+

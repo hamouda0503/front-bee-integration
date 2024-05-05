@@ -1,0 +1,20 @@
+<div class="chat-container">
+  <div class="chat-window">
+    <ul class="chat-messages">
+      <li *ngFor="let message of messages">
+        <div class="message-container" [ngClass]="{ 'user-message': message.user === 'User', 'bot-message': message.user === 'Bot' }">
+          <span class="chat-user">{{ message.user }}</span>
+          <span class="chat-message">{{ message.message }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="chat-input">
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+      <input type="text" class="chat-input-field" formControlName="message" placeholder="Type your message...">
+      <button type="submit" class="chat-send-button">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="boardName">Board Name:</label>
+          <input type="text" class="form-control" id="boardName" name="boardName" [(ngModel)]="board.name">
+        </div>
+        <div class="form-group mb-3">
+          <label for="assigned-to">User Name</label>
+          <select class="form-control" id="assigned-to" name="assignedTo" required [(ngModel)]="assignedTo">
+            <option value="Choose Your Name">Choose Your Name</option>
+            <option *ngFor="let user of usersWithFullName" [value]="user">{{ user }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Create Board</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

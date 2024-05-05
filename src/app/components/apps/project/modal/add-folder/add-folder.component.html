@@ -1,0 +1,18 @@
+<ng-template #addFolder let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Add Folder</h5>
+      <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form class="form-bookmark needs-validation" id="bookmark-form" [formGroup]="folderForm" novalidate="">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="task-title">Folder Name {{ projectId }}</label>
+            <input class="form-control" id="task-title" type="text" formControlName="name" required="" autocomplete="off">
+          </div>
+        </div>
+        <button class="btn btn-secondary me-1" id="Bookmark" (click)="submit()" (click)="modal.dismiss('added')" type="submit">Save</button>
+        <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+      </form>
+    </div>
+</ng-template>

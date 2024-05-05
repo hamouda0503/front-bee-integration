@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Create Blog Event</h5>
+        </div>
+        <div class="card-body add-post">
+          <form class="row needs-validation" (ngSubmit)="onSubmit(eventForm)" #eventForm="ngForm" novalidate>
+            <div class="col-sm-12">
+              <!-- Title Input -->
+              <div class="mb-3">
+                <label for="titleInput">Title:</label>
+                <input type="text" class="form-control" id="titleInput" [(ngModel)]="eventModel.title" name="title" required>
+                <div class="invalid-feedback">Please enter a title for the event.</div>
+              </div>
+              <!-- Description Text Area -->
+              <div class="mb-3">
+                <label for="descriptionTextArea">Description:</label>
+                <textarea class="form-control" id="descriptionTextArea" [(ngModel)]="eventModel.description" name="description" rows="5" required></textarea>
+                <div class="invalid-feedback">Please enter a description.</div>
+              </div>
+              <!-- Event Type Selector -->
+              <div class="mb-3">
+                <label for="eventTypeSelect">Event Type:</label>
+                <select class="form-select" id="eventTypeSelect" [(ngModel)]="eventModel.eventType" name="eventType" required>
+                  <option selected disabled value="">Select an event type...</option>
+                  <option *ngFor="let type of subjects" [value]="type">{{ type }}</option>
+                </select>
+                <div class="invalid-feedback">Please select an event type.</div>
+              </div>
+              <!-- Start Date Picker -->
+              <div class="mb-3">
+                <label for="startDate">Start Date:</label>
+                <input type="datetime-local" class="form-control" id="startDate" [(ngModel)]="eventModel.startDate" name="startDate" required>
+                <div class="invalid-feedback">Please select a start date and time.</div>
+              </div>
+              <!-- End Date Picker -->
+              <div class="mb-3">
+                <label for="endDate">End Date:</label>
+                <input type="datetime-local" class="form-control" id="endDate" [(ngModel)]="eventModel.endDate" name="endDate" required>
+                <div class="invalid-feedback">Please select an end date and time.</div>
+              </div>
+            </div>
+            <div class="btn-showcase text-end">
+              <button class="btn btn-primary mt-3" type="submit">Create Event</button>
+              <button class="btn btn-light mt-3" type="button" (click)="eventForm.reset()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

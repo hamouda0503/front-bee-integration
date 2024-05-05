@@ -1,0 +1,154 @@
+<app-breadcrumb [title]="'Social App'" [items]="['Apps', 'Social App']" [active_item]="'Social App'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="user-profile social-app-profile">
+    <div class="row">
+      <!-- user profile first-style start-->
+      <div class="col-sm-12 box-col-12">
+        <div class="card hovercard text-center">
+          <div class="cardheader socialheader"></div>
+          <div class="user-image">
+            <div class="avatar"><img alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" /></div>
+            <div class="icon-wrapper">
+              <i class="icofont icofont-pencil-alt-5"></i>
+            </div>
+            <ul class="share-icons">
+              <li>
+
+                <a class="social-icon bg-primary" href="javascript:void(0)"><i class="fa fa-smile-o"></i></a>
+              </li>
+              <li>
+                <a class="social-icon bg-secondary" href="javascript:void(0)"><i class="fa fa-wechat"></i></a>
+              </li>
+              <li>
+                <a class="social-icon bg-warning" href="javascript:void(0)"><i class="fa fa-share-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="info market-tabs p-0">
+            <ul class="nav nav-tabs border-tab tabs-scoial" id="top-tab" role="tablist">
+
+              <li class="nav-item">
+                <div class="user-designation"></div>
+                <div class="title"><a target="_blank" href="">{{currentUser?.firstname}} {{currentUser?.lastname}}</a></div>
+                <div class="desc mt-2">general manager</div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="profile-content">
+      <div class="row">
+        <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
+          <div class="default-according style-1 faq-accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link btn-block text-start" type="button" (click)="isProfile = !isProfile" [attr.aria-expanded]="!isProfile" aria-controls="collapse">My Profile</button>
+                </h2>
+              </div>
+              <div class="collapse show" [ngbCollapse]="isProfile">
+                <div class="card-body socialprofile filter-cards-view">
+
+
+                  <div class="likes-profile text-center">
+                    <div *ngIf="mostLikedPublication">
+                      <div class="social-btngroup d-flex">
+                        <button class="btn btn-primary text-center" type="button">Likes</button>
+                        <button class="btn btn-light text-center ms-2" type="button" (click)="navigateToSingle(mostLikedPublication.id)">View</button>
+                      </div>
+                      <p>{{ mostLikedPublication.content }}</p>
+
+                    <h5>
+                      <span> <i class="fa fa-heart font-danger"></i>228</span>
+                    </h5>
+                  </div>
+                  <div class="text-center">Most Liked Post</div>
+                  <div class="customers text-center social-group">
+
+                  </div>
+                  </div>
+
+                  <ks-carousel class="img-fluid" [id]="101" [images]="imagesRect"> </ks-carousel>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card" *ngFor="let publication of publications">
+                <div class="card-body">
+                  <div class="new-users-social">
+                    <div class="media">
+                      <img class="img-50 rounded-circle m-r-15" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" alt="" />
+                      <div class="media-body">
+                        <h6 class="mb-0 f-w-700">{{ publication?.user?.firstname }} {{ publication?.user?.lastname }}</h6>
+                        <p>{{ publication?.createdAt | date: 'medium' }}</p>
+                      </div>
+                      <span class="pull-right mt-0"><app-feather-icons [icon]="'more-vertical'"></app-feather-icons></span>
+                    </div>
+                  </div>
+
+                  <div class="timeline-content">
+                    <p> {{ publication?.content }} </p>
+                    <div class="like-content">
+                        <span><i class="fa fa-heart font-danger"></i></span
+                        ><span class="pull-right comment-number"
+                    ><span>{{ publication?.comments?.length || 0 }} </span><span><i class="fa fa-comments-o"></i></span></span
+                    ><span class="pull-right comment-number"
+                    ><span>{{ publication?.likes?.length || 0 }} </span><span><i class="fa fa-share-alt me-0"></i></span
+                    ></span>
+                    </div>
+                    <div class="social-chat" *ngFor="let comment of publication.comments">
+                      <div class="your-msg">
+                        <div class="media">
+                          <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ comment.user.firstname + '.png'" />
+                          <div class="media-body">
+                              <span class="f-w-600"
+                              >{{ comment.user.firstname }} {{ comment.user.lastname }} <span>{{ comment.user.createdAt }}  <i class="fa fa-reply font-primary"></i></span
+                              ></span>
+                            <p>{{ comment.content }}</p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="comments-box">
+                      <div class="media">
+                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" />
+                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" />
+                        <div class="media-body">
+                          <div class="input-group text-box">
+                            <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post Your commnets" />
+                            <div class="input-group-append">
+                              <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="card">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Additional profile content omitted for brevity -->
+  </div>
+</div>

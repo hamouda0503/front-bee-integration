@@ -1,0 +1,20 @@
+.suggestions {
+  position: absolute;
+  width: calc(100% - 20px); /* Adjust width as needed */
+  max-height: 200px; /* Adjust max height as needed */
+  overflow-y: auto;
+  background-color: #fff; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 4px; /* Border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+  z-index: 999; /* Ensure it appears above other elements */
+}
+
+.suggestion {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0; /* Hover background color */
+}

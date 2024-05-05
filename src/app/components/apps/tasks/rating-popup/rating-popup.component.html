@@ -1,0 +1,32 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="rating-popup">
+        <h4>Evaluate Task "{{ task.title }}"</h4>
+        <div class="stars">
+          <span class="star" (click)="rateTask(1)" [class.checked]="rating >= 1">&#9733;</span>
+          <span class="star" (click)="rateTask(2)" [class.checked]="rating >= 2">&#9733;</span>
+          <span class="star" (click)="rateTask(3)" [class.checked]="rating >= 3">&#9733;</span>
+          <span class="star" (click)="rateTask(4)" [class.checked]="rating >= 4">&#9733;</span>
+          <span class="star" (click)="rateTask(5)" [class.checked]="rating >= 5">&#9733;</span>
+        </div>
+        <!-- Champ de commentaires -->
+        <div class="form-group">
+          <label for="comment">Commentaires:</label>
+          <textarea class="form-control" id="comment" name="comment" [(ngModel)]="comment"></textarea>
+        </div>
+        <!-- Ajout d'un espacement -->
+        <div class="spacer"></div>
+        <button class="btn btn-primary" (click)="saveRating()">Register</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- Boutons de footer (facultatif) -->
+    </div>
+  </div>
+</div>

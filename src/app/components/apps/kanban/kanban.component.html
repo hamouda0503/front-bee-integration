@@ -1,0 +1,121 @@
+<!--<div class="container-fluid">-->
+<!--  &lt;!&ndash; Formulaire d'ajout de tâche &ndash;&gt;-->
+<!--  <div class="row mb-3">-->
+<!--    <div class="col">-->
+<!--      <div class="card">-->
+<!--        <div class="card-header">-->
+<!--          <h5>Ajouter une tâche</h5>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <form (submit)="addTask()">-->
+<!--            <div class="mb-3">-->
+<!--              <label for="newTaskDescription" class="form-label">Description de la tâche</label>-->
+<!--              <input type="text" class="form-control" id="newTaskDescription" [(ngModel)]="newTaskDescription" name="newTaskDescription">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-primary">Ajouter</button>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Tableau Kanban &ndash;&gt;-->
+<!--  <div class="row">-->
+<!--    &lt;!&ndash; Colonne "To Do" &ndash;&gt;-->
+<!--    <div class="col-sm-4">-->
+<!--      <div class="card">-->
+<!--        <div class="card-header">-->
+<!--          <h5>To Do</h5>-->
+<!--        </div>-->
+<!--        <div class="card-body"-->
+<!--             (drop)="onDrop($event, 'todo')"-->
+<!--             (dragover)="onDragOver($event)">-->
+<!--          <div class="task"-->
+<!--               *ngFor="let task of todoTasks"-->
+<!--               draggable="true"-->
+<!--               (dragstart)="onDragStart($event, task)">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <span>{{ task.title }}</span>-->
+<!--                <span class="delete-task"-->
+<!--                      (click)="deleteTask(task, 'To Do')">X</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Colonne "In Progress" &ndash;&gt;-->
+<!--    <div class="col-sm-4">-->
+<!--      <div class="card">-->
+<!--        <div class="card-header">-->
+<!--          <h5>In Progress</h5>-->
+<!--        </div>-->
+<!--        <div class="card-body"-->
+<!--             (drop)="onDrop($event, 'inProgress')"-->
+<!--             (dragover)="onDragOver($event)">-->
+<!--          <div class="task"-->
+<!--               *ngFor="let task of inProgressTasks"-->
+<!--               draggable="true"-->
+<!--               (dragstart)="onDragStart($event, task)">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <span>{{ task.title }}</span>-->
+<!--                <span class="delete-task"-->
+<!--                      (click)="deleteTask(task, 'In Progress')">X</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Colonne "Done" &ndash;&gt;-->
+<!--    <div class="col-sm-4">-->
+<!--      <div class="card">-->
+<!--        <div class="card-header">-->
+<!--          <h5>Done</h5>-->
+<!--        </div>-->
+<!--        <div class="card-body"-->
+<!--             (drop)="onDrop($event, 'done')"-->
+<!--             (dragover)="onDragOver($event)">-->
+<!--          <div class="task"-->
+<!--               *ngFor="let task of doneTasks"-->
+<!--               draggable="true"-->
+<!--               (dragstart)="onDragStart($event, task)">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <span>{{ task.title }}</span>-->
+<!--                <span class="delete-task"-->
+<!--                      (click)="deleteTask(task, 'Done')">X</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="page-title">
+  <h1>Boards</h1>
+</div>
+<div class="main-card">
+  <button class="create-board-button" (click)="openDialogForNewKanban()">+ Create Board</button>
+  <div class="board-list">
+    <mat-nav-list>
+      <ng-container *ngFor="let kanban of kanbanList">
+<!--        <div class="board-card" [routerLink]="['kanbans',kanban.id,kanban.name]">-->
+          <div class="board-card"  (click)="routeToBoard(kanban.id,kanban.name)">
+          <p class="kanban-title">{{kanban.name}}</p>
+        </div>
+
+
+
+
+
+      </ng-container>
+    </mat-nav-list>
+  </div>
+</div>
+

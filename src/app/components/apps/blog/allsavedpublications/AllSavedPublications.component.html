@@ -1,0 +1,49 @@
+<app-breadcrumb [title]="'Blog Details'" [items]="['Apps', 'Blog']" [active_item]="'Blog Details'"></app-breadcrumb>
+<div class="barre-recherche-blog"><input class="form-control" type="text" name="search" placeholder="Search.."><i class="search-icon" data-feather="search"></i>
+</div>
+<div class="container-fluid">
+
+  <div class="row">
+
+
+
+    <div class="container-fluid"> <!-- This should allow for a full-width layout -->
+      <div class="row">
+        <div class="col-12"> <!-- This column takes full width -->
+    <!-- ****************************************************************************************** -->
+    <div class="col-xl-6 set-col-12 box-col-12">
+      <div class="card" *ngFor="let publication of publications">
+        <div class="blog-box blog-list row" (click)="navigateToSingle(publication.id)">
+          <div class="col-sm-8">
+            <div class="blog-details">
+              <div class="blog-date digits">
+                <div> {{ publication.createdAt }}
+                  <div class="blog-sujet"> {{ publication.sujet }}</div>
+                </div>
+                <h5><i class="icofont icofont-user"></i>{{ publication.user.firstname}} {{ publication.user.lastname}}</h5>
+                <h6>{{ publication.content }}</h6>
+              </div>
+              <ul class="blog-social">
+                <i class="icofont icofont-thumbs-up"></i>{{ publication.likeCount }} Likes |&nbsp;
+                <i class="icofont icofont-ui-chat"></i>{{ publication.comments?.length || 0 }} Comments
+              </ul>
+
+              <div class="blog-bottom-content">
+                <hr />
+                <p class="mt-0">{{ publication.content}}</p>
+
+              </div>
+              <button class="btn btn-secondary" (click)="deletePublication($event,publication.id,publication.user.id)">
+                <i class="fa fa-trash"></i>Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+  </div>
+</div>

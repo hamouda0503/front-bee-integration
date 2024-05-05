@@ -1,0 +1,99 @@
+.card {
+  width: 100%; /* or any specific size */
+  padding: 20px; /* or as needed */
+  /* Add other styles such as box-shadow or borders as needed */
+}
+
+.card .blog-details {
+  font-size: 1rem; /* Increase the font size as needed */
+}
+
+/* Adjust the spacing between cards */
+.card + .card {
+  margin-top: 20px; /* or as needed */
+}
+.blog-mybuttons {
+  position: absolute; /* This positions the container absolutely within its relative parent */
+  top: 0; /* Adjust this value to move the buttons up */
+  right: 0; /* Positions the container to the right */
+  margin-top: 1px; /* Adjust this value to move the buttons up relative to the top edge of the parent */
+  margin-right: -250px; /* Adjust this value to move the buttons right relative to the right edge of the parent */
+}
+.Speech{
+  position:relative;
+  left:700px;
+}
+
+.Myprofilepic{
+  position:relative;
+  width:20%;
+  height:20%;
+  right:20px;
+}
+.blog-mybuttons button {
+  margin-left: 10px; /* Space between buttons */
+  padding: 10px 20px; /* Padding inside buttons */
+}
+
+/* If the buttons are wrapped inside other elements, target them specifically */
+.blog-mybuttons > a,
+.blog-mybuttons > button {
+  margin-left: 10px; /* Adds space between buttons */
+}
+
+/* Adding space at the bottom of the buttons if needed */
+.blog-mybuttons {
+  margin-bottom: 20px; /* Space below the buttons */
+}
+.media-body .row .col-md-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns children (h6 and .blog-comment-content) to the start of the column */
+}
+
+.button-position {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-social {
+  display: flex;
+  gap: 2px; /* Adjust the gap between buttons */
+  margin-bottom: 0; /* Remove default margin of ul */
+}
+.comment-social button i {
+  font-size: 1rem; /* Size of the icon, adjust as needed */
+}
+.comment-mydate
+{
+  font-size: 12px; /* Size of the icon, adjust as needed */
+}
+.comment-social li {
+  list-style: none;
+  padding: 0; /* Remove bullet points */
+}
+
+/* Align the like count to the top right corner */
+.button-position .digits {
+  margin-bottom: 0; /* Remove default margin of li */
+  display: flex;
+  align-items: center;
+}
+
+/* Style the buttons */
+.comment-social button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem; /* Smaller font size for text inside buttons */
+}
+
+/* Additional styling for the like icon and count */
+.button-position .digits i {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.button-position .digits {
+  align-self: start; /* Align the likes count to the top */
+}
+
+

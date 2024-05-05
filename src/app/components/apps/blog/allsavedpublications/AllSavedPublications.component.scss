@@ -1,0 +1,62 @@
+.card {
+  width: 100%; /* or any specific size */
+  padding: 20px; /* or as needed */
+  /* Add other styles such as box-shadow or borders as needed */
+}
+.barre-recherche-blog{
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.card .blog-details {
+  font-size: 1rem; /* Increase the font size as needed */
+}
+
+/* Adjust the spacing between cards */
+.card + .card {
+  margin-top: 20px; /* or as needed */
+}
+.blog-mydate {
+  font-family: 'Arial', sans-serif; /* Choose a font-family that fits your design */
+  color: #555; /* This is a softer color than pure black */
+  font-size: 0.85em; /* Slightly smaller text for the date */
+  margin-bottom: 0.5em; /* Adds some space below the date */
+  text-align: left; /* Aligns the text to the left */
+  display: block; /* Makes sure the date is on its own line */
+  opacity: 0.7; /* Makes the date less prominent */
+  letter-spacing: 0.05em; /* Adds spacing between characters */
+}
+
+.blog-sujet {
+  color: #FFC107; /* Sets the text color to yellow */
+  position: absolute; /* Positions the element in relation to its nearest positioned ancestor */
+  top: 0; /* Aligns to the top of the card */
+  right: 0; /* Aligns to the right of the card */
+  padding: 0.5em; /* Adds some space inside the borders of the element */
+  font-size: 0.85em; /* Optionally, adjust the font size as needed */
+  font-weight: bold; /* Makes the font bold */
+  margin-right: -160px;
+}
+
+/* Ensure the parent of .blog-sujet has a position other than static for absolute positioning to work */
+.blog-date {
+  position: relative; /* This makes the .blog-sujet position relative to this container */
+}
+
+.blog-social {
+  display: flex; /* Use flexbox to align children in a row */
+
+  padding: 0; /* Removes default padding */
+
+  justify-content: start; /* Aligns items to the start of the flex container */
+
+}
+
+
+
+
+
+
+/* Apply a class or specific CSS selector as needed to target the text content */
+
+

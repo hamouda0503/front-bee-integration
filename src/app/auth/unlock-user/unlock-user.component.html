@@ -1,0 +1,37 @@
+<div class="page-wrapper">
+  <div class="container-fluid p-0">
+    <!-- Unlock page start-->
+    <div class="authentication-main mt-0">
+      <div class="row">
+        <div class="col-12">
+          <div class="login-card">
+            <div>
+              <div>
+                <a class="logo"  routerLink='/'>
+                  <img class="img-fluid for-light" src="assets/images/logo/logo.png" alt="looginpage">
+                  <img class="img-fluid for-dark" src="assets/images/logo/logo_dark.png" alt="looginpage">
+                </a>
+              </div>
+              <div class="login-main">
+                <form class="theme-form" [formGroup]="verifyForm" >
+                  <h4>Unlock Your Account</h4>
+                  <div class="form-group" >
+                    <label class="col-form-label">Enter your Code</label>
+                    <input class="form-control" type="text"  formControlName="OTP">
+                   
+                  </div>
+                  <div class="form-group mb-0">
+                    
+                    <button class="btn btn-primary d-block w-100" [disabled]="!verifyForm.valid" (click)="onSubmit()">Unlock</button>
+                  </div>
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Unlock page end-->
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<ng-template #addTask let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+    <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form class="form-bookmark needs-validation" id="bookmark-form" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="task-title">Task Title</label>
+        <input class="form-control" id="task-title" type="text" [(ngModel)]="task.title" name="title" required>
+      </div>
+      <div class="form-group">
+        <label for="assigned-to">Assign To</label>
+        <select class="form-control" id="assigned-to" [(ngModel)]="assignedTo" name="assignedTo" required>
+          <option *ngFor="let user of usersWithFullName" [value]="user">{{ user }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="task-due-date">Due Date</label>
+        <input class="form-control" id="task-due-date" type="date" [(ngModel)]="task.dueDate" name="dueDate" required>
+      </div>
+      <div class="form-group">
+        <label for="task-priority">Priority</label>
+        <select class="form-control" id="task-priority" [(ngModel)]="task.priority" name="priority" required>
+          <option value="1">very urgent</option>
+          <option value="2">urgent</option>
+          <option value="3">Normal</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="task-tags">Tag</label>
+        <input class="form-control" id="task-tags" type="text" [(ngModel)]="tagsAsString" name="tags" placeholder="Separate tags with commas">
+      </div>
+      <div class="form-group">
+        <label for="task-description">Description</label>
+        <textarea class="form-control" id="task-description" rows="4" [(ngModel)]="task.description" name="description" required></textarea>
+      </div>
+      <!-- Champ caché pour l'ID de la tâche -->
+      <input type="hidden" name="taskId" [value]="task.id">
+      <button class="btn btn-secondary me-1" id="Bookmark" type="submit">Save</button>
+      <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+    </form>
+  </div>
+</ng-template>

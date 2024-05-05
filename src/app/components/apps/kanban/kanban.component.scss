@@ -1,0 +1,100 @@
+//.new-task-container {
+//  margin-bottom: 20px;
+//}
+//
+//.kanban-column {
+//  margin-bottom: 20px;
+//}
+//
+//.kanban-body {
+//  min-height: 200px;
+//  overflow-y: auto;
+//}
+//
+//.task {
+//  margin-bottom: 10px;
+//}
+//
+//.task .card-body {
+//  display: flex;
+//  justify-content: space-between;
+//  align-items: center;
+//}
+//
+/* kanban.component.scss */
+
+.page-container {
+  margin: 20px;
+}
+
+.page-title {
+  margin-bottom: 20px;
+}
+
+.main-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.kanban-item:hover {
+  background-color: #f0f0f0;
+}
+/* kanban.component.scss */
+
+.custom-button {
+  background-color: #007bff; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  padding: 10px 20px; /* Espacement intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 5px; /* Bordure arrondie */
+  cursor: pointer; /* Curseur pointeur */
+  transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.custom-button:hover {
+  background-color: #ffe391; /* Couleur de fond du bouton au survol */
+}
+
+/* Bouton "Create Board" */
+.create-board-button {
+  background-color: #ffc412;
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-board-button:hover {
+  background-color: #ffe391;
+}
+
+/* Espacement entre le bouton et la liste des boards */
+.board-list {
+  margin-top: 20px;
+}
+.board-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.board-card:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}

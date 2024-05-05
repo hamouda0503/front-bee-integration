@@ -1,0 +1,123 @@
+<app-breadcrumb [title]="'Project List'" [items]="['Apps', 'Project']" [active_item]="'Project List'"></app-breadcrumb>
+ <!-- Container-fluid starts-->
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 project-list">
+      <div class="card">
+        <div class="row">
+          <div class="col-sm-6">
+            <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
+              <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="top-home" aria-selected="true"><app-feather-icons [icon]="'target'"></app-feather-icons>All</a></li>
+              <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="top-profile" aria-selected="false"><app-feather-icons [icon]="'info'"></app-feather-icons>Doing</a></li>
+              <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="top-contact" aria-selected="false"><app-feather-icons [icon]="'check-circle'"></app-feather-icons>Done</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <div class="text-end">
+              <div class="form-group mb-0 me-0"></div><a class="btn btn-primary" [routerLink]="['/project/create']"> <app-feather-icons [icon]="'plus-square'"> </app-feather-icons>Create New Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="tab-content" id="top-tabContent">
+            <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+              <div class="row">
+               <!-- <div class="col-xl-4 col-lg-6">
+                  <div class="project-box"><span class="badge badge-primary">Doing</span>
+                    <h6>Endless admin Design</h6>
+                    <div class="media"><img class="img-20 me-1 rounded-circle" src="assets/images/user/3.jpg" alt="" data-original-title="" title="">
+                      <div class="media-body">
+                        <p>Themeforest, australia</p>
+                      </div>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <div class="row details">
+                      <div class="col-6"><span>Issues </span></div>
+                      <div class="col-6 font-primary">12 </div>
+                      <div class="col-6"> <span>Resolved</span></div>
+                      <div class="col-6 font-primary">5</div>
+                      <div class="col-6"> <span>Comment</span></div>
+                      <div class="col-6 font-primary">7</div>
+                    </div>
+                    <div class="customers">
+                      <ul>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/3.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/5.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/1.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block ms-2">
+                          <p class="f-12">+10 More</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="project-status mt-4">
+                      <div class="media mb-0">
+                        <p>70% </p>
+                        <div class="media-body text-end"><span>Done</span></div>
+                      </div>
+                      <div class="progress" style="height: 5px">
+                        <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                <div *ngFor="let project of projects" class="col-xl-4 col-lg-6">
+                  <div class="project-box"><span [ngClass]="getBadgeClass(project.status)">{{ project.status }}</span>
+                    <h6>{{ project.name }}</h6>
+                    <div class="media"><img class="img-20 me-1 rounded-circle" [src]="project.ownerID.imageUrl" alt="" data-original-title="" title="">
+                      <div class="media-body">
+                        <p>{{ project.ownerID.firstname }} {{ project.ownerID.lastname }}</p>
+                      </div>
+                    </div>
+                    <p>{{ project.description }}</p>
+                    <div class="row details">
+                      <div class="col-6"><span>Start Date:  </span></div>
+                      <div [ngClass]="getFontClass(project.status)">{{ project.startDate | date}} </div>
+                      <div class="col-6"><span>Tasks: </span></div>
+                      <div [ngClass]="getFontClass(project.status)">12 </div>
+                      <div class="col-6"> <span>Completed: </span></div>
+                      <div [ngClass]="getFontClass(project.status)">5</div>
+                    </div>
+                    <div class="customers">
+                      <ul>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/3.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/5.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/1.jpg" alt="" data-original-title="" title=""></li>
+                        <li class="d-inline-block ms-2">
+                          <p class="f-12">+10 More</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="project-status mt-4">
+                      <div class="media mb-0">
+                        <p>70% </p>
+                        <div class="media-body text-end"><span>Done</span></div>
+                      </div>
+                      <div class="progress" style="height: 5px">
+                        <div [ngClass]="getBarClass(project.status)" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      
+                      <div class="project-actions mt-2">
+                        <div class="d-flex justify-content-end" >
+                          <button *ngIf="currentUserRole === 'ROLE_INVESTOR'" class="btn btn-sm btn-success me-2" (click)="investInProject(project.id)">Invest</button>
+                          <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-success me-2" (click)="manageFiles(project.id)">Mange Files</button>
+                        <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-primary me-2" (click)="updateProject(project.id)">Edit</button>
+                        <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-danger" (click)="deleteProject(project)">Delete</button>
+                        </div>
+                    </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

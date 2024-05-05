@@ -1,0 +1,138 @@
+<app-breadcrumb [title]="'Create New'" [items]="['Apps', 'Project']" [active_item]="'Create New'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="form theme-form" [formGroup]="projectForm">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Project Name</label>
+                  <input class="form-control" type="text" formControlName="name" placeholder="Project Name" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Location</label>
+                  <input class="form-control" type="text" formControlName="location" placeholder="Location" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Industry</label>
+                  <input class="form-control" type="text" formControlName="industry" placeholder="Industry" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Technology Stack</label>
+                  <input class="form-control" type="text" formControlName="technologyStack" placeholder="Technologies" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Project Status</label>
+                  <select class="form-control digits" formControlName="status" status="firstName">
+                    <option value="PLANNING">PLANNING</option>
+                    <option value="IN_PROGRESS">IN PROGRESS</option>
+                    <option value="COMPLETED">COMPLETED</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Starting date</label>
+                  <input class="datepicker-here form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="startDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Ending date</label>
+                  <input class="datepicker-here form-control" placeholder="yyyy-mm-dd" name="dp2" formControlName="endDate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Budget</label>
+                  <input class="form-control" type="number" formControlName="budget" placeholder="Budget" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Funding Goal</label>
+                  <input class="form-control" type="number" formControlName="fundingGoal" placeholder="Funding" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Estimated ROI</label>
+                  <input class="form-control" type="number" formControlName="estimatedROI" placeholder="Estimated ROI" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label>Risk Level</label>
+                  <input class="form-control" type="number" formControlName="riskLevel" placeholder="Risk Level" />
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Description: </label>
+                  <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea4" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label>Compliance Status: </label>
+                  <textarea class="form-control" formControlName="complianceStatus" id="exampleFormControlTextarea4" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label>Upload project file</label>
+                  <ngx-dropzone (change)="onSelect($event)" [multiple]="true">
+                    <ngx-dropzone-label>
+                      <div class="dz-message needsclick">
+                        <i class="icon-cloud-up"></i>
+                        <h6>Drop files here or click to upload.</h6>
+                        <span>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                      </div>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                  </ngx-dropzone>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="text-end"><button class="btn btn-success me-3" (click)="submitProject()" type="button" >Add</button><a class="btn btn-danger" href="#">Cancel</a></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

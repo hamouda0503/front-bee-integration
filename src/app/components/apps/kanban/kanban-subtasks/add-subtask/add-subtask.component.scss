@@ -1,0 +1,59 @@
+.modal-dialog {
+  max-width: 1000px; /* Ajustez la largeur maximale selon vos besoins */
+}
+
+.rating-popup {
+  text-align: center;
+  padding: 20px;
+}
+
+.stars {
+  font-size: 36px;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.star.checked {
+  color: gold; /* Couleur jaune pour les étoiles sélectionnées */
+}
+
+/* Modal styles */
+
+
+.modal-content {
+  border: none;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 10px 20px;
+}
+
+/* Close button styles */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  color: #000;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.close:hover {
+  color: #000;
+  opacity: 1;
+}

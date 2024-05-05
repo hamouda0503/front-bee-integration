@@ -1,0 +1,130 @@
+<div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12">
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo"  routerLink='/'>
+                <img class="img-fluid for-light" src="assets/images/logo/logo.png" alt="looginpage">
+                <img class="img-fluid for-dark" src="assets/images/logo/logo_dark.png" alt="looginpage">
+              </a>
+            </div>
+            <div class="login-main" *ngIf="!authResponse.mfaEnabled">
+
+              <form class="theme-form" [formGroup]="registrationForm">
+                <h4>Create your account</h4>
+                <p>Enter your personal details to create account</p>
+                <div class="form-group " >
+
+                      <div class="avatars ">
+                        <div class="avatars d-flex justify-content-center">
+                          <div class="avatar"><img class="img-100 rounded-circle" [src]="avatarUrl ? avatarUrl: defaultUrl" alt="#" /></div>
+                        </div>
+
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Your Name</label>
+                  <div class="row">
+                    <div class="col-6">
+                      <input class="form-control" type="text" required="" formControlName="firstname"  placeholder="First name">
+                    </div>
+                    <div class="col-6">
+                      <input class="form-control" type="text" required="" formControlName="lastname" placeholder="Last name">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label">Email Address</label>
+                    <input class="form-control" type="email" required="" formControlName="email" placeholder="app@yourmail.com" (input)="generateAvatar($event.target.value)">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Password</label>
+                    <input class="form-control" [type]="show ? 'text' : 'password'" name="login[password]" formControlName="password" required="" placeholder="*********">
+                    <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                    <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Phone Number</label>
+                    <input class="form-control" type="number" required="" formControlName="phone" placeholder="phone number">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Role</label>
+                    <select class="btn  form-control" formControlName="role">
+                      <option value="">Select Role</option>
+                      <option value="ADMIN">Admin</option>
+                      <option value="USER">User</option>
+                      </select>
+                  </div>
+                  
+                    <label class="btn btn-default p-0">
+                      <input type="file" (change)="selectFile($event)" />
+                    </label>
+
+                    <div class="form-group">
+                      <input
+                        id="rememberMe"
+                        name="rememberMe"
+                        type="checkbox"
+                        formControlName="mfaEnabled"
+                      >
+                      <label for="rememberMe">Enable 2FA (Two Factors Authentication)</label>
+                    </div>
+                  
+                <div class="form-group mb-0">
+                  <!-- <div class="checkbox p-0">
+                    <input id="checkbox1" type="checkbox">
+                    <label class="text-muted" for="checkbox1">Activate Two-Factory Authentication</label>
+                  </div> -->
+                  <button class="btn btn-primary d-block w-100"  [disabled]="!registrationForm.valid" (click)="onSubmit()" type="button">Create Account</button>
+
+                </div>
+                <h6 class="text-muted mt-4 or">Or signup with</h6>
+                <div class="social mt-4">
+                  <div class="btn-showcase">
+                    <a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank">
+                      <app-feather-icons [icon]="'linkedin'" class="txt-linkedin"></app-feather-icons> LinkedIn
+                    </a>
+                    <a class="btn btn-light" href="https://twitter.com/login?lang=en" target="_blank">
+                     <app-feather-icons [icon]="'twitter'" class="txt-twitter"></app-feather-icons>twitter
+                    </a>
+                    <a class="btn btn-light" href="https://www.facebook.com/" target="_blank">
+                      <app-feather-icons [icon]="'facebook'" class="txt-fb"></app-feather-icons>facebook
+                    </a>
+                  </div>
+                </div>
+                <p class="mt-4 mb-0">Already have an account?<a class="ms-2" [routerLink]="['/auth/login']"> Sign in</a></p>
+              </form>
+            </div>
+
+
+            <div class="login-main" *ngIf="authResponse.mfaEnabled">
+
+              <h2>Set Up Two-Factor Authentication</h2>
+              <div class="qr-code">
+                <img [src]="authResponse.secretImageUri" alt="QR Code">
+              </div>
+              <div class="form-group">
+                <label for="validationCode">Enter 6 digits Validation Code Generated by the app</label>
+                <input
+                class="form-control"
+                  type="text"
+                  id="validationCode"
+                  name="validationCode"
+                  required
+                  [(ngModel)]="otpCode"
+                >
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary d-block w-100"
+                (click)="verifyTfa()"
+                [class.button-disabled]="otpCode.length < 6"
+              >Verify code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,97 @@
+<app-breadcrumb [title]="'Blog Details'" [items]="['Apps', 'Blog']" [active_item]="'Blog Details'"></app-breadcrumb>
+<div class="barre-recherche-blog"><input class="form-control" type="text" name="search" placeholder="Search.."><i class="search-icon" data-feather="search"></i>
+</div>
+<div class="container-fluid">
+
+  <div class="row">
+
+
+
+
+    <!-- ****************************************************************************************** -->
+    <div class="col-xl-6 set-col-12 box-col-12">
+      <div class="card">
+        <h3>Quote of the day</h3>
+        <div class="col-sm-8">
+      <h5 class="blog-details">{{ quote }}</h5>
+      </div>
+      </div>
+      <div class="card" *ngFor="let publication of publications">
+        <div class="blog-box blog-list row" (click)="navigateToSingle(publication.id)">
+          <div class="col-sm-8">
+            <div class="blog-details">
+              <div class="blog-date digits">
+                <div> {{ publication.createdAt }}
+                  <div class="blog-sujet"> {{ publication.sujet }}</div>
+                </div>
+                <h5><i class="icofont icofont-user"></i>{{ publication.user.firstname}} {{ publication.user.lastname}}</h5>
+                <h6>{{ publication.content }}</h6>
+              </div>
+
+              <ul class="blog-social">
+                <i class="icofont icofont-thumbs-up"></i>{{ publication.likeCount }} Likes |&nbsp;
+                <i class="icofont icofont-ui-chat"></i>{{ publication.comments?.length || 0 }} Comments
+              </ul>
+              <div class="mine" >
+              <button class="btn btn-primary" (click)="savePublication($event, publication)"> <i class="far fa-clock"></i> Read for later</button>
+              </div >
+                <div class="blog-bottom-content">
+                <hr />
+                <p class="mt-0">{{ publication.content}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 set-col-12 box-col-12">
+      <div class="card">
+        <div class="blog-box blog-shadow">
+
+          <img class="img-fluid" src="assets/images/blog/Work.jpg" alt="" />
+          <div class="blog-details">
+            <p class="digits">16 April 2024</p>
+            <h4>Explore +230 posts dedicated to innovation, offering a wealth of insights and cutting-edge research to fuel your creative endeavors. </h4>
+            <ul class="blog-social">
+              <li></li>
+              <li class="digits"></li>
+              <li class="digits"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="blog-box blog-shadow">
+
+          <ks-carousel class="img-fluid" [id]="101" [images]="imagesRect"> </ks-carousel>
+          <div class="blog-details">
+            <p class="digits">31 March 2024</p>
+            <h4>+150 Posts and +192 Comments to learn more about professional solutions and guidance on paperwork process.</h4>
+            <ul class="blog-social">
+              <li></li>
+              <li class="digits"></li>
+              <li class="digits"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="blog-box blog-shadow">
+          <img class="img-fluid" src="assets/images/blog/Deal.jpg" alt="" />
+          <div class="blog-details">
+            <p class="digits">12 May 2024</p>
+            <h4>Access the expertise of + 268 professionals who are ready to help and guide you through detailed posts. </h4>
+            <ul class="blog-social">
+              <li></li>
+              <li class="digits"></li>
+              <li class="digits"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

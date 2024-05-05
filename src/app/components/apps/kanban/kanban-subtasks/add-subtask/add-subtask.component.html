@@ -1,0 +1,29 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="taskDescription">Task Description:</label>
+          <textarea type="text" class="form-control" id="taskDescription" name="taskDescription" [(ngModel)]="subtaskDescription"></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="task">Select Task:</label>
+          <select class="form-control" id="task" name="task" [(ngModel)]="selectedTaskId">
+            <option value="">Select Task</option>
+            <option *ngFor="let task of tasks" [value]="task.id">{{ task.title }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Register</button>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "https://api.dicebear.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  }
+}

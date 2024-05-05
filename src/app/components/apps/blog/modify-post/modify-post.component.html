@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Post Edit</h5>
+        </div>
+        <div class="card-body add-post">
+          <form class="row needs-validation" (ngSubmit)="onSubmit(postForm)" #postForm="ngForm" novalidate>
+            <div class="col-sm-12">
+              <!-- Subject Combo Box -->
+              <div class="mb-3">
+                <label for="subjectSelect">Subject:</label>
+                <select class="form-select" id="subjectSelect" [(ngModel)]="postModel.sujet" name="sujet" required>
+                  <option selected disabled value="">Choose a subject...</option>
+                  <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+                </select>
+                <div class="invalid-feedback">Please select a subject.</div>
+              </div>
+              <!-- Content Text Area -->
+              <div class="mb-3">
+                <label for="contentTextArea">Content:</label>
+                <textarea class="form-control" id="contentTextArea" [(ngModel)]="postModel.content" name="content" rows="5" placeholder="Write your content here..." required></textarea>
+                <div class="invalid-feedback">Please enter the content.</div>
+              </div>
+            </div>
+            <div class="btn-showcase text-end">
+              <button class="btn btn-primary mt-3" type="submit">Modify</button>
+              <button class="btn btn-light mt-3" type="button" (click)="postForm.reset()">Discard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
