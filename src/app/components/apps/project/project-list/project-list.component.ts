@@ -46,6 +46,9 @@ export class ProjectListComponent implements OnInit {
   manageFiles(projectId: string): void {
     this.router.navigate(['/project/file-manager', projectId]);
   }
+  myProject(projectId: string): void {
+    this.router.navigate(['/project/my-project', projectId]);
+  }
   deleteProject(project: Project): void {
     if (confirm('Are you sure you want to delete this project?')) {
       this.projectService.deleteProject(project.id).subscribe({

@@ -21,6 +21,7 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./file-manager.component.scss'],
 })
 
+
 export class FileManagerComponent implements OnInit {
   @ViewChild('addFolder') AddFolder: AddFolderComponent;
   private routeSub: Subscription;

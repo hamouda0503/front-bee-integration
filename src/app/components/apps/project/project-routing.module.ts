@@ -34,6 +34,10 @@ const routes: Routes = [
       { 
         path: 'my-project',
         component: MyProjectComponent
+      },
+      { 
+        path: 'my-project/:projectid',
+        component: MyProjectComponent
       }
     ]
   }
