@@ -27,4 +27,6 @@ export class User {
         this.token = data.token; // Optional
       }
     }
+
+    
   }

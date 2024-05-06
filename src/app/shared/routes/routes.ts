@@ -18,8 +18,8 @@ export const content: Routes = [
     loadChildren: () => import("../../components/apps/chat/chat.module").then((m) => m.ChatModule),
   },
   {
-    path: "user",
-    loadChildren: () => import("../../components/apps/users/users.module").then((m) => m.UsersModule),
+    path: "team",
+    loadChildren: () => import("../../components/apps/team/users.module").then((m) => m.UsersModule),
   },
   {
     path: "tasks",

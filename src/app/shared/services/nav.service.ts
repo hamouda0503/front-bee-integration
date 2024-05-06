@@ -115,14 +115,15 @@ export class NavService implements OnDestroy {
     // },
     { path: "/tasks", title: "Tasks", icon: "task", type: "link", bookmark: true },
     {
-      title: "Users",
+      path: "/team",
+      title: "Team",
       icon: "user",
       type: "sub",
       active: false,
       children: [
-        { path: "/user/team-details", title: "All Users", type: "link" },
-        { path: "/user/profile", title: "User Profile", type: "link" },
-        { path: "/user/edit-profile", title: "Edit Profile", type: "link" },
+        { path: "/team/team-details", title: "Team", type: "link" },
+        { path: "/team/profile", title: "Team Profile", type: "link" },
+        { path: "/team/edit-profile", title: "Add Members", type: "link" },
       ],
     },
     {

@@ -46,6 +46,14 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 
 /*chaima*/
 import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
+
+/*louay*/
+import { EditRoleComponent } from './components/apps/team/edit-role/edit-role.component';
+import { TeamDetailsComponent } from './components/apps/team/team-details/team-details.component';
+import { RemoveMemberComponent } from './components/apps/team/remove-member/remove-member.component';
+import { CreateTeamComponent } from './components/apps/team/create-team/create-team.component';
+import { UpdateTeamComponent } from './components/apps/team/update-team/update-team.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +61,12 @@ import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
     RegisterComponent,
     ForgotPasswordComponent,
     UnlockUserComponent,
-    BeeBotComponent
+    BeeBotComponent,
+    EditRoleComponent,
+    TeamDetailsComponent,
+    RemoveMemberComponent,
+    CreateTeamComponent,
+    UpdateTeamComponent,
 
   ],
   imports: [
