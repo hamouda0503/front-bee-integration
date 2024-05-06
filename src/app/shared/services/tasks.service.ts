@@ -27,7 +27,7 @@ export class TasksService {
   constructor(private http: HttpClient ,private storage : StorageService ) { }
 
 
-  addTask(task: Task, firstName: string, lastName: string): Observable<Task> {
+  addTask(task: Task, firstName: string, lastName: string,idProject:string): Observable<Task> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`,
@@ -37,7 +37,7 @@ export class TasksService {
 
 
     // Include firstName and lastName in the URL
-    return this.http.post<Task>(`${this.apiUrl}/add/${firstName}/${lastName}`, task, httpOptions);
+    return this.http.post<Task>(`${this.apiUrl}/add/${firstName}/${lastName}/${idProject}`, task, httpOptions);
   }
 // Méthode pour récupérer les données d'évaluation des tâches depuis le backend
   getTaskEvaluationData(): Observable<number[]> {
@@ -631,6 +631,16 @@ export class TasksService {
 
     // Include firstName and lastName in the URL
     return this.http.post<Board>(`${this.apiUrl}/addBoard/${firstName}/${lastName}`, board, httpOptions);
+  }
+
+  getTasksByProject(projectId: string): Observable<Task[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+
+    return this.http.get<Task[]>(`${this.apiUrl}/getTasksByProject/${projectId}`, httpOptions);
   }
 
 

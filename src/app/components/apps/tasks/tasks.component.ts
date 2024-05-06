@@ -52,7 +52,7 @@ export class TasksComponent implements OnInit {
 
   // Méthode pour récupérer les tâches depuis le service
   getTasks(): void {
-    this.tasksService.getAllTasks().subscribe({
+    this.tasksService.getTasksByProject('6638d37b34ee296c62c00643').subscribe({
       next: (tasks) => {
         this.tasks = tasks; // Mettez à jour la liste des tâches avec celles récupérées depuis le service
       },

@@ -177,7 +177,7 @@ export class AddTaskComponent implements OnInit, OnDestroy {
       });
     } else {
       // Si en mode ajout, appeler la méthode addTask pour ajouter une nouvelle tâche
-      this.taskService.addTask(this.task, firstName, lastname).subscribe({
+      this.taskService.addTask(this.task, firstName, lastname,'6638d37b34ee296c62c00643').subscribe({
         next: (addedTask) => {
           // Récupérer l'e-mail de l'utilisateur assigné depuis le résultat de l'ajout de la tâche
           const assignedUserEmail = addedTask.assignedUser.email;
