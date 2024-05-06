@@ -4,6 +4,7 @@ import { SharedModule } from "../../../shared/shared.module";
 import { ProjectRoutingModule } from './project-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AddFolderComponent } from './modal/add-folder/add-folder.component';
+import { AddTransactionComponent } from './modal/add-transaction/add-transaction.component';
 import { CreateTagComponent } from './modal/create-tag/create-tag.component';
 
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -27,8 +28,8 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
     NgApexchartsModule,
     TablerIconsModule.pick(TablerIcons)
   ],
-  declarations: [CalenderComponent,AppDashboardComponent, 
-    MyProjectComponent, ProjectListComponent, CreateProjectComponent, 
+  declarations: [AddTransactionComponent,CalenderComponent,AppDashboardComponent,
+    MyProjectComponent, ProjectListComponent, CreateProjectComponent,
     UpdateProjectComponent,FileManagerComponent, AddFolderComponent, CreateTagComponent],
     exports: [TablerIconsModule]
 

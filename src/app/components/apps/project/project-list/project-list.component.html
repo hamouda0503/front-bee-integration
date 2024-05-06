@@ -66,7 +66,7 @@
                 </div> -->
                 <div *ngFor="let project of projects" class="col-xl-4 col-lg-6">
                   <div class="project-box"><span [ngClass]="getBadgeClass(project.status)">{{ project.status }}</span>
-                    <h6>{{ project.name }}</h6>
+                    <h6>{{ project.name }} <button (click)="myProject(project.id)" >My Project</button></h6>
                     <div class="media"><img class="img-20 me-1 rounded-circle" [src]="project.ownerID.imageUrl" alt="" data-original-title="" title="">
                       <div class="media-body">
                         <p>{{ project.ownerID.firstname }} {{ project.ownerID.lastname }}</p>
