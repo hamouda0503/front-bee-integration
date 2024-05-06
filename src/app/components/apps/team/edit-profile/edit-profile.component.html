@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="edit-profile">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Add Member</h4>
+            <div class="card-options">
+              <a class="card-options-collapse" href="javascript:void(0)" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+              <a class="card-options-remove" href="javascript:void(0)" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+            </div>
+          </div>
+          <div class="table-responsive edit-table">
+            <table class="table card-table table-vcenter text-nowrap">
+              <thead>
+                <tr>
+                  <th>Image</th> <!-- New column for user image -->
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of pagedUsers">
+                  <td><img [src]="user.imageUrl" alt="User Image" class="user-image"></td> <!-- User image -->
+                  <td>{{ user.firstname }}</td>
+                  <td>{{ user.lastname }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.role }}</td>
+                  <td class="text-end">
+                    <a class="icon" href="javascript:void(0)"></a>
+                    <a class="btn btn-primary btn-sm" (click)="addMember(user.email)">
+                      <i class="fa fa-user-plus"></i> Invite
+                    </a>
+                    <a class="icon" href="javascript:void(0)"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

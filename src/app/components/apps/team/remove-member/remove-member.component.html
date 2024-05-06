@@ -1,0 +1,11 @@
+<ng-template #removemember let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Remove Member</h5>
+    <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body" style="text-align: center;">
+    <p>Do you want to delete this member {{currentMemberName}}?</p>
+    <button class="btn btn-danger me-1" id="Delete" (click)="deleteMember()" type="submit" style="background-color: red; color: white;">Delete</button>
+    <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Cancel</button>
+  </div>
+</ng-template>
