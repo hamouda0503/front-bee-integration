@@ -1,0 +1,196 @@
+/* Style pour le cadre contenant le tableau */
+.card-table {
+  border-radius: 20px; /* Coins arrondis pour la carte */
+  overflow: hidden; /* Masquer le contenu débordant pour respecter les coins arrondis */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Ombre portée */
+}
+
+/* Style pour le tableau */
+.custom-table {
+  width: 100%; /* La table prend toute la largeur de son conteneur */
+  border-collapse: separate; /* Séparer les bordures de la table pour les coins arrondis */
+  border-spacing: 0; /* Aucun espacement entre les cellules */
+}
+/* Style pour le cadre contenant le tableau */
+.card-table {
+  border-radius: 20px; /* Coins arrondis pour la carte */
+  overflow: hidden; /* Masquer le contenu débordant pour respecter les coins arrondis */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Ombre portée */
+  padding: 20px; /* Espacement interne pour la carte */
+}
+
+/* Style pour le tableau */
+.custom-table {
+  width: 100%; /* La table prend toute la largeur de son conteneur */
+  border-collapse: separate; /* Séparer les bordures de la table pour les coins arrondis */
+  border-spacing: 0; /* Aucun espacement entre les cellules */
+}
+
+/* Style pour les cellules du tableau */
+.custom-table th,
+.custom-table td {
+  padding: 10px; /* Espacement réduit */
+  text-align: left;
+  border: none; /* Supprimer les bordures par défaut */
+}
+
+/* Style pour les lignes du tableau */
+.custom-table tbody tr {
+  background-color: #f7f7f7; /* Couleur de fond pour les lignes */
+  border-radius: 10px; /* Coins arrondis pour les lignes */
+  margin-bottom: 5px; /* Espacement entre les lignes */
+}
+
+/* Style pour les liens "Play" */
+.play-link {
+  color: darkgoldenrod; /* Couleur des liens */
+  font-weight: bold; /* Texte en gras */
+  transition: color 0.2s ease-in-out; /* Animation pour le changement de couleur */
+}
+
+.play-link:hover {
+  color: #f39c12; /* Nouvelle couleur au survol */
+}
+.table {
+  width: 100%; // La table prend toute la largeur de la carte
+  margin-bottom: 0; // Supprimer la marge par défaut en bas de la table
+
+  thead th, tbody td {
+    padding: 15px; // Espacement à l'intérieur des cellules
+    text-align: left; // Alignement du texte à gauche
+  }
+
+  thead {
+    th {
+      background-color: #f7f7f7; // Couleur de fond pour l'en-tête du tableau
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: #f2f2f2; // Couleur de fond pour les lignes impaires
+      }
+      &:hover {
+        background-color: #e8e8e8; // Couleur de fond au survol d'une ligne
+      }
+    }
+  }
+}
+
+.card-body h6 {
+  font-family: 'Poppins', sans-serif; /* Specify Poppins font */
+  font-weight: 600; /* Apply bold weight */
+  font-size: 18px; /* Increase font size */
+}
+.card-body h3 {
+  font-family: 'Poppins', sans-serif; /* Specify Poppins font */
+  font-weight: 600; /* Apply bold weight */
+  font-size: 18px; /* Increase font size */
+}
+.table {
+table-layout: fixed;
+border-top-left-radius: 10px;
+
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 0;
+}
+/* Style pour le titre */
+.card-table h2 {
+  margin-top: 20px; /* Espacement supérieur pour le titre */
+  margin-bottom: 20px; /* Espacement inférieur pour le titre */
+  font-size: 1.5em; /* Taille de police pour le titre */
+  text-align: center; /* Centrer le titre */
+}
+
+
+/* Style pour les cellules du tableau */
+.custom-table th,
+.custom-table td {
+  padding: 10px; /* Espacement réduit */
+  text-align: left;
+  border: none; /* Supprimer les bordures par défaut */
+}
+
+/* Style pour les lignes du tableau */
+.custom-table tbody tr {
+  background-color: #f7f7f7; /* Couleur de fond pour les lignes */
+  border-radius: 10px; /* Coins arrondis pour les lignes */
+  margin-bottom: 5px; /* Espacement entre les lignes */
+}
+.card-table {
+  margin-top: 90px; /* Ajoute une marge supérieure pour espacer la carte du haut */
+}
+
+
+/* Style pour les liens "Play" */
+.play-link {
+  color: darkgoldenrod; /* Couleur des liens */
+  font-weight: bold; /* Texte en gras */
+  transition: color 0.2s ease-in-out; /* Animation pour le changement de couleur */
+}
+.card-table h2 {
+  margin-top: 20px;
+  margin-left: 20px ; /* Ajoute une marge supérieure pour espacer le titre du haut de la carte */
+}
+
+.play-link:hover {
+  color: #f39c12; /* Nouvelle couleur au survol */
+}
+h3 {
+  font-weight: bold; /* Rendre le texte un peu gras */
+  text-shadow: 2px 2px 4px #fff, 2px 2px 10px #b8a6f3; /* Ajouter un effet de texte cosmique */
+}
+
+.music-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card.music-card {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 100;
+  height: 250px; 
+  cursor: pointer; /* Add cursor hover effect */
+}
+
+.card.music-card:hover {
+  transform: translateY(-3px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.image-cell,
+.content-cell {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.image-cell {
+  padding: 15px; /* Adjust padding as needed */
+}
+
+.content-cell {
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.card-body {
+  text-align: left; /* Align text to the left */
+}
+
+.btn-custom {
+  background-color: #5071cd; /* Remplacez par la couleur de votre choix */
+  color: #ffffff; /* Remplacez par la couleur de texte de votre choix */
+  border-radius: 10px; /* Remplacez par le rayon de bordure souhaité */
+}
+.btn-custom2 {
+  background-color: #8ed496; /* Remplacez par la couleur de votre choix */
+  color: #ffffff; /* Remplacez par la couleur de texte de votre choix */
+  border-radius: 10px; /* Remplacez par le rayon de bordure souhaité */
+}

@@ -1,0 +1,93 @@
+<div class="col-sm-12">
+  <div class="card-table">
+    <div class="col-sm-12 col-xl-6">
+      <h2>Hello {{user?.firstname}}! Your recommendations today 🐾 🌞 🌿</h2>
+    </div>
+    <div>
+      <div>
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+          <div class="table-responsive">
+            <table class="table table-bordered custom-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Song Title</th>
+                  <th>Artist</th>
+                  <th>Listen</th>
+                  <th>Rate Us</th>
+
+                </tr>
+              </thead>
+              <tbody *ngFor="let recommendation of recommendations  | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                <tr>
+                  <td>
+                  <img src="{{recommendation.imageUrl}}" style="width: 100px; height: 100px; margin-right: 20px;">
+                </td>
+                  <td>
+                    <span *ngIf="i === 0">𝄞⨾𓍢ִ໋🎧ྀི</span>
+                    <span *ngIf="i === 1">🎵</span>
+                    <span *ngIf="i === 2">🎤</span>
+                    <span *ngIf="i === 3">🎼</span>
+                    <span *ngIf="i === 4">🎶</span>
+                    {{ recommendation.track_name }}
+                  </td>
+                  <td class="w-50">{{ recommendation.artist_name }}</td>
+                  <td>
+                    <a [attr.data-spotify-id]="recommendation.id" (click)="playSelectedSong(recommendation)" style="cursor: pointer;"  class="btn btn-sm btn-primary justify-content-center">Play</a>
+                  </td>
+                  <td>
+                    <div class="episode-rating">
+                    <button  class="btn btn-sm.btn-custom justify-content-center" (click)="likeEpisode(recommendation)">Like</button>
+
+                    <button class="btn btn-sm.btn-custom2 justify-content-center" (click)="dislikeEpisode(recommendation)">Dislike</button>
+                  </div>
+                </td>
+                </tr>
+              </tbody>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </table>
+
+          </div>
+        </div>
+      </div>
+<mat-expansion-panel *ngIf="variablePanel">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h6 class="mb-0">You might also like:</h6>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="music-grid">
+    <div class="music-card" *ngFor="let track of rated">
+      <div class=" card card.music-card " >
+        <div class="d-flex h-100">
+          <div class="image-cell">
+            <img
+              [src]="track.imageUrl"
+              alt="{{ track.trackName }}"
+              style="width: 100px; height: 100px;"
+            />
+          </div>
+
+          <div class="px-3 pt-2 pb-2">
+            <h3>{{ track.trackName }}</h3>
+            <h3>{{ track.artistName }}</h3>
+
+            <a
+              [attr.data-spotify-id]="track.musicUri"
+              (click)="playSelectedSong2(track)"
+              class="btn btn-sm btn-primary justify-content-center"
+            >
+              Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-expansion-panel>
+
+
+<div class="col-sm-12 text-center mt-4">
+  <div class="frame" id="embed-iframe"></div>
+</div>

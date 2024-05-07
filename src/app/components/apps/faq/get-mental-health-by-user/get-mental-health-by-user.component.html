@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xl-4 col-lg-6" *ngFor="let record of mentalHealthRecords">
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body">
+            <span>Préférence : {{ record.preference }}</span>
+            <p>Date :{{ record.date | date }}</p>
+            <p>Mood :{{ moodToString(record.mood) }} </p>
+
+
+          </div>
+        </div>
+        <div class="details">
+          <div class="row">
+            <div class="col-6"><span>Energy Level</span></div>
+            <div class="col-6 font-primary">
+              <div style="height: 5px;">
+                <div class="progress-bar bg-primary" role="progressbar"
+                     [style.width]="record.energyLevel + '%'"
+                     aria-valuenow="energyLevel" aria-valuemin="0" aria-valuemax="100">
+                  {{ record.energyLevel }}%
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6"><span>Stress Level</span></div>
+            <div class="col-6 font-primary">
+              <div style="height: 5px;">
+                <div class="progress-bar bg-secondary" role="progressbar"
+                     [style.width]="record.stressLevel + '%'"
+                     aria-valuenow ="stressLevel" aria-valuemin="0" aria-valuemax="100">
+                  {{ record.stressLevel }}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

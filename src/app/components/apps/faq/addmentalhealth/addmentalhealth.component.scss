@@ -1,0 +1,479 @@
+/* Stepper horizontal */
+.mat-stepper-horizontal {
+  margin-top: 50px;
+  padding-top: 50px;
+}
+
+/* Style des champs de formulaire */
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+/* Style des puces du sélecteur d'humeur */
+.mdc-evolution-chip-set__chips {
+  padding: 20px 30px 50px 80px;
+  min-width: 0;
+}
+
+
+
+/* Style des boutons séparés */
+.mat-button-toggle-group.separated {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style des boutons dans la même ligne */
+.example-button-row button {
+  border-radius: 10%;
+  margin: 0 1px;
+}
+
+/* Style des options de puces */
+.mat-chip-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+/* Style des conteneurs de groupe de boutons */
+.button-group {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+}
+/* Alignement des boutons à droite */
+.mat-step-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+/* Style pour l'option sélectionnée */
+.mat-chip-option.selected {
+  background-color: darkgoldenrod; /* Couleur de fond pour l'option sélectionnée */
+  color: white; /* Couleur du texte pour l'option sélectionnée */
+}
+
+/* Ajustement de la taille des boutons */
+.button.mat-raised-button {
+  min-width: 210px; /* Largeur minimale des boutons */
+  height: 60px; /* Hauteur des boutons */
+  font-size: 18px; /* Taille de la police */
+}
+.button :active{
+  background-color: #b8a6f3; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 10px;
+}
+
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+
+/* Effet hover sur les boutons */
+.mat-button {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.mat-button:hover {
+  background-color: #ddd; /* Couleur de fond au survol */
+  color: #333; /* Couleur du texte au survol */
+}
+
+/* Style des options */
+.mat-chip-option {
+  margin: 5px; /* Marge entre chaque option */
+}
+
+
+.mat-chip-option:hover {
+  transform: scale(1.05);
+  background-color: rgb(232, 154, 81);
+}
+
+.mat-chip-option:hover mat-step-label {
+  color: white;
+}
+
+.mat-step-label {
+  transition: color 0.2s ease-in-out;
+}
+
+.mat-step:first-child .mat-step-label {
+  text-align: center;
+  font-weight: bold;
+}
+
+.mat-step:first-child .mat-chip-option {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+}
+
+.mat-step:first-child .mat-chip-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Conteneur du stepper horizontal */
+.mat-horizontal-stepper-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Contenu de l'étape */
+.mat-step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Actions de l'étape */
+.mat-step-actions {
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.mat-step-actions button.mat-button-wrapper:last-child {
+  margin-right: 10px;
+}
+
+.mat-step-actions.justify-content-end {
+  justify-content: flex-end;
+}
+
+.next-button {
+  margin-left: 10px;
+}
+
+/* Style des options de puces centrées */
+.mat-chip-option-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+}
+
+.mat-chip-option-centered:hover {
+  transform: scale(1.05);
+  background-color: darkgoldenrod;
+}
+
+.mat-chip-option-centered:hover mat-step-label {
+  color: white;
+}
+
+/* Style des étiquettes des étapes */
+.matStepLabel {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Centrage et ajustement de la taille de la carte */
+.card {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* Centrage et ajustement de la taille du stepper */
+.custom-stepper {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Style des boutons mat */
+.mat-button-wrapper {
+  display: inline-block;
+  width: calc(33.33% - 10px); /* Calcul pour placer 3 boutons par ligne */
+  margin: 5px;
+}
+
+/* Animation au survol de l'emoji */
+.mat-chip-option img {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.mat-chip-option:hover img {
+  transform: scale(1.1);
+  filter: brightness(1);
+}
+/* Style des boutons mat */
+.mat-button-wrapper {
+  display: inline-block;
+  width: calc(33.33% - 10px); /* Calcul pour placer 3 boutons par ligne */
+  margin: 5px;
+}
+
+
+
+/* Style des étiquettes de chaque option */
+.mat-step-label {
+  transition: color 0.3s ease-in-out; /* Animation de transition pour la couleur */
+}
+
+/* Changement de couleur de l'étiquette au survol */
+.mat-chip-option:hover .mat-step-label {
+  color: white;
+}
+
+
+
+.button-container button {
+  min-width: 210px; /* Largeur minimale des boutons */
+  height: 60px; /* Hauteur des boutons */
+  font-size: 16px; /* Taille de la police */
+  margin: 30px; /* Espacement entre les boutons */
+  transition: all 0.3s ease; /* Animation pour le hover */
+  align-items: center;
+  border-radius: 15px;
+  
+  
+}
+
+.button-container button:hover {
+  background-color: #b8a6f3; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 10px;
+
+}
+.button-container button:active {
+  background-color: #b8a6f3; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 10px;
+
+}
+
+
+
+
+/* Conteneur pour centrer les boutons */
+.button-container {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mat-expansion-panel {
+  border-radius: 10px; /* Coins arrondis */
+  margin-bottom: 10px; /* Marge en bas */
+}
+.mat-expansion-panel span {
+  font-weight: bold; /* Rendre le texte un peu gras */
+}
+.mat-slider {
+  width: 100%; /* Largeur maximale pour occuper toute la largeur du conteneur */
+}
+
+
+
+/* Style des spans à l'intérieur du panneau */
+.mat-expansion-panel span {
+  font-weight: bold; /* Rendre le texte en gras */
+  font-style: italic; /* Ajouter un style italic */
+  color: #555; /* Couleur du texte */
+}
+
+/* Style des sliders */
+.mat-slider {
+  width: 100%; /* Largeur maximale pour occuper toute la largeur du conteneur */
+}
+
+/* Espacement entre les éléments */
+.mat-expansion-panel,
+.mat-slider {
+  margin-top: 10px; /* Espacement entre les éléments */
+}
+.sliders{
+  flex-direction: column;
+}
+
+.slider-label {
+  font-weight: bold; /* Texte en gras */
+}
+
+.mat-slider {
+  width: 200%; 
+}
+.mat-slider-wrapper {
+  height: 20px; /* Hauteur du slider */
+}
+
+.mat-slider-track-wrapper {
+  height: 8px; /* Hauteur de la piste du slider */
+}
+
+.mat-slider-track-fill {
+  height: 100%; /* Hauteur du remplissage de la piste du slider */
+}
+
+.mat-slider-thumb {
+  width: 20px; /* Largeur du bouton du slider */
+  height: 20px; /* Hauteur du bouton du slider */
+  margin-top: -6px; /* Ajustement vertical pour centrer le bouton */
+}
+.slider-container-wrapper {
+  display: flex;
+  justify-content:space-between ; /* Pour espacer également les divs */
+  align-items: center; /* Pour aligner verticalement les conteneurs */
+  width: 100%; /* Pour s'assurer que le conteneur occupe toute la largeur */
+}
+.slider-container span {
+  font-size: 15px; /* Taille de la police */
+  font-weight: bold; /* Gras */
+  font-style: italic;
+  color: #190755; /* Italique */
+  /* Tu peux également ajouter d'autres styles personnalisés ici */
+}
+.slider-container div {
+  margin-right: 10px; /* Espacement de 20 pixels entre les éléments */
+}
+/* Style pour les mat-chip-option */
+.mat-chip-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px; /* Largeur des options */
+  height: 50px; /* Hauteur des options */
+  margin: 5px; /* Marge entre les options */
+  border-radius: 8px; /* Bord arrondi */
+  color: #333; /* Couleur du texte */
+  font-weight: bold; /* Texte en gras */
+}
+
+
+
+
+mat-panel-title {
+  font-weight: bold; /* Texte en gras */
+  font-style: italic; /* Ajouter un style italic */
+  color: #0e0355; /* Couleur du texte */
+  font-size: 16px; /* Taille de la police */
+  margin-top: 10px ;
+}
+/* Style pour le mat-chip-listbox */
+.mat-chip-listbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px ;
+}
+
+ .mat-chip-optionn {
+  flex-basis: calc(25% - 10px); /* Calcul pour placer quatre options par ligne */
+  margin-bottom: 10px; /* Espacement entre les lignes */
+  background-color: #f0f0f0; /* Couleur de fond */
+  color: #333; /* Couleur du texte */
+  font-weight: bold; /* Texte en gras */
+  text-align: center; /* Centrage du texte */
+  width: 60px; 
+  height: 40px; 
+  align-items: center;
+  align-self: center;
+  border-radius: 8px;
+  margin-right: 10px; 
+  margin-top: 10px; 
+  margin-bottom: 10 px;
+
+  font-weight: bold; 
+  text-align: center;
+}
+
+
+.mat-chip-optionn.mat-selected {
+  background-color: #5f021b; /* Couleur de fond lorsqu'elle est sélectionnée */
+  color: white; /* Couleur du texte lorsqu'elle est sélectionnée */
+}
+.listbox-container {
+  margin-top: 20px; /* Ajoute de l'espace en haut de la liste déroulante */
+}
+.language {
+  display: flex;
+  flex-direction: column;
+}
+
+.language .mat-expansion-panel-header,
+.language .mat-expansion-panel-content {
+  display: flex;
+  align-items: center;
+}
+
+.language .mat-expansion-panel-header {
+  margin-bottom: 10px; /* Espacement entre le titre et les boutons radio */
+}
+.language {
+  display: flex;
+  flex-direction: column;
+}
+
+.language .mat-expansion-panel-header,
+.language .mat-expansion-panel-content {
+  display: flex;
+  align-items: center;
+}
+
+.language .mat-expansion-panel-header {
+  margin-bottom: 10px; /* Espacement entre le titre et les boutons radio */
+}
+.mat-step-label {
+  margin-top: 40px; /* Ajoute de l'espace en haut du titre */
+  margin-bottom: 20px; /* Ajoute de l'espace en bas du titre */
+  font-weight: bold; /* Texte en gras */
+  font-style: italic; /* Ajoute un style italique */
+  color: #333; /* Couleur du texte */
+  font-size: 16px; /* Taille de la police */
+}
+.mat-step-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
+  text-align: center; /* Centrage du texte */
+}
+mat-step {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.mat-slider-track-fill,
+.mat-slider-wrapper,
+.mat-slider-track-wrapper,
+.mat-slider-track-background {
+  height: 40px; /* Réduire la hauteur */
+  width: 100px; /* Réduire la largeur */
+  border-radius: 5px; /* Ajuster le rayon de la bordure */
+}
+
+.validation-message {
+  display: inline-block;
+  animation: vibrantColor 2s infinite;
+}
+
+

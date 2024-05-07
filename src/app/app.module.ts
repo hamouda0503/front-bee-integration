@@ -7,18 +7,18 @@ import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-// // for HttpClient import:
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-// // for Router import:
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+// // // for HttpClient import:
+// import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+// // // for Router import:
+// import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // // for Core import:
-import { LoadingBarModule } from '@ngx-loading-bar/core';
+// import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 import { CookieService } from 'ngx-cookie-service';
-
+import {MatChipsModule} from '@angular/material/chips';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { RegisterComponent } from './auth/register/register.component';
 import { AdminGuard } from './shared/guard/admin.guard';
@@ -44,8 +44,28 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
 
+import { CommonModule } from '@angular/common';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule } from '@angular/material/button';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {MatSliderModule} from '@angular/material/slider';
+// import { ToastrModule } from 'ngx-toastr';
+
+
 /*chaima*/
 import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +77,25 @@ import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
 
   ],
   imports: [
+    MatRadioModule,
+    CommonModule,
+    NgSelectModule,
+    CdkStepperModule,
+    CarouselModule,
+    MatExpansionModule,
+    NgbAccordionModule,
+    NgbModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    MatStepperModule,
+    MatIconModule,
+    MatCardModule,
+    MatChipsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSliderModule,
+    MatSlideToggleModule ,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -83,12 +122,11 @@ import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
 
 
 // //     // for HttpClient use:
-    LoadingBarHttpClientModule,
-// //     // for Router use:
-     LoadingBarRouterModule,
+//     LoadingBarHttpClientModule,
+// // //     // for Router use:
+//      LoadingBarRouterModule
 // //     // for Core use:
-    LoadingBarModule,
-
+    // LoadingBarModule,
   ],
   exports: [TablerIconsModule],
   providers: [ CookieService, AdminGuard , httpInterceptorProviders,
