@@ -34,8 +34,6 @@ export class TasksService {
         'Content-Type': 'application/json' // Make sure to set Content-Type header
       })
     };
-
-
     // Include firstName and lastName in the URL
     return this.http.post<Task>(`${this.apiUrl}/add/${firstName}/${lastName}/${idProject}`, task, httpOptions);
   }
@@ -253,6 +251,7 @@ export class TasksService {
     return this.http.get<Task>(`${this.apiUrl}/GetTaskById/${id}`, httpOptions);
   }
 
+
   getSubTaskById(id: string): Observable<Subtask> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -273,19 +272,38 @@ export class TasksService {
     return this.http.get<Subtask[]>(`${this.apiUrl}/retrieveAllSubTasksByBoard/${idBoard}`, httpOptions);
   }
 
-  addSubTask(subtask: Subtask, idTask: string, idBoard: string): Observable<Subtask> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.token}`,
-        'Content-Type': 'application/json' // Make sure to set Content-Type header
-      })
-    };
+  // addSubTask(subtask: Subtask, idTask: string, idBoard: string,formData: FormData): Observable<Subtask> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Authorization': `Bearer ${this.token}`,
+  //       'Content-Type': 'application/json' // Make sure to set Content-Type header
+  //     })
+  //   };
+  //
+  //
+  //   // Include firstName and lastName in the URL
+  //   return this.http.post<Subtask>(`${this.apiUrl}/addSubTask/${idTask}/${idBoard}`, subtask, httpOptions);
+  //
+  // }
+  addSubTask(subtask: Subtask, idTask: string, idBoard: string, image?: File): Observable<Subtask> {
+    const formData = new FormData();
+    formData.append('subtask', JSON.stringify(subtask));
+    formData.append('image', image);
+    formData.append('description',subtask.description);
 
+    const url = `${this.apiUrl}/addSubTask/${idTask}/${idBoard}`;
 
-    // Include firstName and lastName in the URL
-    return this.http.post<Subtask>(`${this.apiUrl}/addSubTask/${idTask}/${idBoard}`, subtask, httpOptions);
+    // Création des en-têtes avec le jeton d'autorisation
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
 
+    // Envoi de la demande avec les en-têtes
+    return this.http.post<Subtask>(url, formData, { headers });
   }
+
+
+
 
 
   getAllTasks(): Observable<Task[]> {
