@@ -7,6 +7,7 @@ export class Subtask {
   description: string;
   status: string;
   creationDate: string;
+  coverImage:string;
   //assignedUser?: User;
   task?: Task;
   board?: Board;
@@ -16,6 +17,7 @@ export class Subtask {
     description: string = "",
     status: string = "",
     creationDate: string = "",
+    coverImage:string="",
     //assignedUser?: User,
     task?: Task,
     board?: Board

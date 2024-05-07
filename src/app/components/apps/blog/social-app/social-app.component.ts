@@ -30,7 +30,7 @@ export class SocialAppComponent implements OnInit {
   public isProfile9 = false;
   public openTab: string = 'Timeline'
     public active = 1;
-  currentUser: User | null = null; // This should be set to the actual current user's ID
+  currentUser: any | null = null; // This should be set to the actual current user's ID
   publications: any[] = [];
   mostLikedPublication: Publication;
   constructor( private publicationService: PublicationService,
@@ -59,8 +59,10 @@ export class SocialAppComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       const userId = params['id'];
-      this.loadUser(userId);
+      // this.loadUser(userId);
       this.loadUserPublications(userId);
+
+      console.log(this.currentUser);
 
 
 
@@ -76,7 +78,7 @@ export class SocialAppComponent implements OnInit {
 
         this.currentUser = userData; // Assuming the response is the user data
 
-        //this.loadUserPublications();
+        console.log(this.currentUser);
 
       },
       (error) => {
@@ -89,8 +91,10 @@ export class SocialAppComponent implements OnInit {
     this.publicationService.getPublicationsByUserId(userId).subscribe(
       (data) => {
 
+
         this.publications = data;
         this.mostLikedPublication = this.getMostLikedPublication();
+        this.currentUser =  this.mostLikedPublication.user;
         console.log(this.mostLikedPublication);
       },
       (error) => {

@@ -7,6 +7,7 @@ import { Comment } from '../../../../shared/model/comment.model';
 import {StorageService} from "../../../../shared/services/storage.service";
 import {User} from "../../../../shared/model/user.model"; // Ensure you have a Comment model
 import { ChangeDetectorRef } from '@angular/core';
+
 declare var FB: any;
 @Component({
   selector: 'app-single',
@@ -15,7 +16,7 @@ declare var FB: any;
 })
 export class SingleComponent implements OnInit {
   publication: Publication | null = null;
-  currentUser: User | null = null;
+  currentUser: any | null = null;
   newCommentContent: string = '';
   comments: Comment[] = [];
 
@@ -35,6 +36,7 @@ export class SingleComponent implements OnInit {
       this.loadComments(publicationId);
       this.loadFacebookSDK();
       this.currentUser = this.storage.getUser();
+      console.log(this.currentUser);
     });
   }
   speak(text: string) {
@@ -81,7 +83,7 @@ export class SingleComponent implements OnInit {
       const newComment = {
         content: this.newCommentContent
       };
-    
+
 
       this.commentService.addComment(newComment, this.publication.id, this.storage.getUser().id).subscribe(
         comment => {
@@ -135,7 +137,7 @@ export class SingleComponent implements OnInit {
   }
 
   updateComment(comment: Comment, index: number): void {
-  
+
 
     if (comment.editableContent.trim()) {
       // Call the service to update the comment

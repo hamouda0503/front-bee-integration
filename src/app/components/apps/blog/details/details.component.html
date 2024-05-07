@@ -29,17 +29,13 @@
               </div>
 
               <ul class="blog-social">
-                <i class="icofont icofont-thumbs-up"></i>{{ publication.likeCount }} Likes |&nbsp;
+                <i class="icofont icofont-thumbs-up"></i>{{ publication.likes?.length || 0 }} Likes |&nbsp;
                 <i class="icofont icofont-ui-chat"></i>{{ publication.comments?.length || 0 }} Comments
               </ul>
               <div class="mine" >
               <button class="btn btn-primary" (click)="savePublication($event, publication)"> <i class="far fa-clock"></i> Read for later</button>
               </div >
-                <div class="blog-bottom-content">
-                <hr />
-                <p class="mt-0">{{ publication.content}}</p>
 
-              </div>
             </div>
           </div>
         </div>

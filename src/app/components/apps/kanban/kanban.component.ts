@@ -103,6 +103,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AddTaskComponent} from "../tasks/modal/add-task/add-task.component";
 import {Board} from "../../../shared/model/Board";
 import {TasksService} from "../../../shared/services/tasks.service";
+import { StorageService } from "../../../shared/services/storage.service";
 
 
 @Component({
@@ -122,7 +123,8 @@ export class KanbanComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private  storage: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -131,9 +133,10 @@ export class KanbanComponent implements OnInit {
       this.userId = params['userId'];
       this.paramUser= params['userId'];
       // Obtenez l'ID de l'utilisateur connecté à partir du service AuthenticationService
-      this.tasksService.getCurrentUser().subscribe(
+     /* this.tasksService.getCurrentUser().subscribe(
         (user) => {
-          this.currentUser = user.id; // Suppose que vous avez une propriété 'id' dans votre objet User
+         // this.currentUser = user.id; // Suppose que vous avez une propriété 'id' dans votre objet User
+          this.currentUser=this.storage.getUser().id;
           // Si l'ID de l'utilisateur spécifié dans l'URL est le même que l'utilisateur connecté
           // ou si aucun utilisateur n'est spécifié dans l'URL, affichez les "boards" de l'utilisateur connecté
           if (!this.userId || this.userId === this.currentUser) {
@@ -146,8 +149,14 @@ export class KanbanComponent implements OnInit {
           console.error('Error fetching current user:', error);
           this.toastr.error('Failed to fetch current user.', 'Error');
         }
-      );
+      );*/
     });
+    this.currentUser=this.storage.getUser().id;
+    if (!this.userId || this.userId === this.currentUser) {
+      this.userId = this.currentUser;
+    }
+    // Chargez les "boards" en fonction de l'ID de l'utilisateur
+    this.getKanbanList(this.userId);
   }
 
   routeToBoard(id: string, name: string) {

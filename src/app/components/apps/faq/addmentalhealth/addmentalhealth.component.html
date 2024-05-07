@@ -1,0 +1,176 @@
+<script type="module" src="./node_module/emoji-slider/bin/emoji-slider.js"></script>
+<div class="card">
+<mat-stepper linear class="custom-stepper">
+    
+  <mat-step  [editable]="isEditable">
+
+    <div class="mat-step-content">
+    <ng-template matStepLabel>
+      <h3 >How are you feeling today ? 😊</h3>
+    </ng-template>
+    <mat-chip-listbox aria-label="Mood selection" >
+      <mat-chip-option class="mat-chip-option" *ngFor="let mood of moods" (click)="selectMood(mood)"  [ngClass]="{'selected': mood === selectedMood} ">
+        <img *ngIf="getMoodEmoji(mood)" [src]="getMoodEmoji(mood)" alt="Icône" style="width: 24px; height: 24px;">
+        {{ moodToString(mood) }}  
+                
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+  </div>
+    <div class="mat-step-actions justify-content-end">
+      <button mat-button matStepperNext class="next-button" >Next</button>
+    </div>
+ 
+  </mat-step>
+  <mat-step  [editable]="isEditable">
+   
+        <ng-template matStepLabel> PlayList or Discussion 🎵🎙️</ng-template>
+               <div class="button-container">
+                  <button mat-raised-button color="accent"
+                          (click)="selectPreference('MUSIC')"
+                          [class.active]="{ 'active': selectedPreference === 'MUSIC' }">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABl0lEQVR4nO2ZvUoDQRCAF62sLOxiZsSgvoC1FhofwCKl4M0ceQVLW9/An/gEvoIYtbeOFtqIkJmLBkRBLCSyCUIwQkiC7m7cD6a542C+253ZOc6YSCQSGWsU+U6RDjPk0kNua8aEhiK3vkKQPgTpSpD3BJPifb40ZUIS6AngN0U+VaSdBqbLLbM7YYISwJ54FOQTwbQsmBRMgAKt7jA+EAVcM3YrIJgUOkVqi5WawQl032uZ0qRtn7aNttsp8HtQAt9pFsrTMpdsKvK+IN0aH/ByWwxCFHBNXAHXxBX4TQR4Q4EqAnyjyK82BOhagY/sB4u3K5Dl0iVBvuw3ywjyhXcCWZ5W+80w3s43WfvND5+8cwEFro6SvFMBsQU7YvJOBRT4OGgB6bTKgAWQXv69gAA/h72FgGrOBBSoMvoWogNnAoJJcVSBOqZrxiUKdDZs8nYuMq6pYzqvSI0hts6T5nnB+EAG6Uo7oQGSt88Yn8hmtxcV6Lx/1+GqN2/+JwRp3f4+su3RHnTtww6oZq85L9hIJBIxf8En+94Xckyyzr4AAAAASUVORK5CYII=" alt="Music" class="icon">
+                    Musique
+                  </button>
+
+                  <button mat-raised-button color="primary"
+                          (click)="selectPreference('PODCAST')"
+                          [class.active]="{ 'active': selectedPreference === 'PODCAST' }">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACd0lEQVR4nO2Yz2sTQRTHV4r24K+zevOo1N1UT1JnmkOhF82MYW+px6LW9urR/0CoCBLQmUAhu6weRGYWSg8G/NEIVYpI6yz4DyhYpaV4W3mbpIdqm2Y3ZLowX3iQZGbfvM+898LyLMvIyCiz5sNomPtqlvtRk/nRFvej+H8Ga8xTy8xT94LgyzHrMKgWqHPci1b3CnpvGPXpaX39rP6bTxH8jnnqo9ZM8LqaSx18x+pfZ7QBMC/6kBWAeWpZGwD3os3MGfCiTW0AlZlGvJ91guy2zzIAKZW5fPyWWbqUe4CK6YGG3ibOfQnxvAJgKmOwfvUAbvszAAdV58b6VUJYVwZyD1AxPdDQ28T9eJ1mvvqtsweamQE89V4bAEwXsmcgujtwAETELzhw9kHzFEwXMtz+iju9dBp8ISo3BgaAqfgMh46Vw0swGkkDAcEvLKydwSXhJABErg4QQFbbhz6C7zAagekC1PO+jZ2sqXdQNtXqytHEFxGPWxkQTwYGcI2+Gm0f+qdIxOW0fnBZXgEfia9yWOhvlN0Ob98cpvInKoXXe31+nIgS1H3ig8h5a9CanAyHERUvOv8giIo3mMjbqCRHJiYWj+/eD7/BGibhHUTE253niHh+wQ10TefiI4iKOUTlj05ABzYivmMqZsGHpVtXb7w8iai8hakMMJHfMJHb/wYst5M12HNTTGH39QnrMGs3gJU3YQOgWSYDupWbDLhuMGQXaxcLmE85iD90MFu0EVsvjNdiB7cMPtuYrcEa7IG98IzrBkNagh4Ze3beRrVpB/PAQWzDwTxOZYht2Ygv2YjdHy3WUr9T9azUAXcxywAYGVm96i92u/Geky8h4QAAAABJRU5ErkJggg==" alt="Podcast" class="icon">
+                    Podcast
+                  </button>
+                </div>
+
+
+            <mat-expansion-panel *ngIf="selectedPreference === 'MUSIC'">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                At what level do you want your music to be:
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+          
+              <div class="slider-container-wrapper">
+                <div class="slider-container">
+                  <span>Low Energy</span>
+                  <mat-slider min="0" max="100" showTickMarks discrete>
+                    <input matSliderThumb [(ngModel)]="valueA" #slider>
+                    </mat-slider>
+                  <span>High Energy</span>
+                </div>
+                <span style="font-size: 22px;">♫⋆｡˚♬ ﾟ.𝄞⨾𓍢ִ໋ ♪ ₊🎧ྀི</span>
+                <div class="slider-container">
+                <span>Sad</span>
+                <mat-slider min="0" max="100" showTickMarks discrete >
+                  <input matSliderThumb [(ngModel)]="valueV" #slider>
+                    </mat-slider>
+                <span>Happy</span>
+              </div>
+            </div>
+         
+      
+           
+            </mat-expansion-panel>
+          
+
+            <mat-expansion-panel *ngIf="selectedPreference === 'PODCAST'">
+             
+
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  On which topic would you like to hear today ?
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="listbox-container">
+              <mat-chip-listbox aria-label="Select category" [(ngModel)]="intrest"
+              required
+              [disabled]="selectedPreference !== 'PODCAST'">
+                <mat-chip-option class="mat-chip-optionn" *ngFor="let intrest of intrests; let i = index" (click)="selectIntrest(intrest)">
+                  <span *ngIf="i === 0">💼</span> <!-- Business -->
+                  <span *ngIf="i === 1">🎬</span> <!-- Entertainment -->
+                  <span *ngIf="i === 2">🏥</span> <!-- Health -->
+                  <span *ngIf="i === 3">📚</span> <!-- Humanities -->
+                  <span *ngIf="i === 4">⚽️</span> <!-- Sports -->
+                  <span *ngIf="i === 5">💻</span> <!-- IT -->
+                  <span *ngIf="i === 6">🌴</span> <!-- Lifestyle -->
+                  <span *ngIf="i === 7">🏙️</span> <!-- Society -->
+                  <span *ngIf="i === 8">📱</span> <!-- Technology -->
+                  <span *ngIf="i === 9">🔬</span> <!-- Science -->
+                  <span *ngIf="i === 10">💑</span> <!-- Relationships -->
+                  {{ intrest }}
+                </mat-chip-option>
+              </mat-chip-listbox>
+          
+            </div>
+            <div class="language">
+              <mat-expansion-panel-header>  
+                  <mat-panel-title> 
+                      Which language would you like to hear ?
+                  </mat-panel-title>
+              </mat-expansion-panel-header>
+              <br />
+              <mat-expansion-panel-content> 
+                <mat-radio-group aria-label="Select language">
+                  <mat-radio-button (click)="onRadioClick($event)" value="en">English</mat-radio-button>
+                <mat-radio-button (click)="onRadioClick($event)" value="fr">French</mat-radio-button>
+                <mat-radio-button (click)="onRadioClick($event)" value="ar">Arab</mat-radio-button>
+              </mat-radio-group>
+           
+              
+              </mat-expansion-panel-content>
+            </div>
+          
+            </mat-expansion-panel>
+
+        <div class="mat-step-actions justify-content-end">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="next-button">Next</button>
+      </div>
+   
+  </mat-step>
+  <mat-step [editable]="isEditable">
+    
+
+    <div class="mat-step-content">
+      <ng-template matStepLabel > Energy at its peak ? 💥
+      </ng-template>
+    
+        <h2> Your energy level today ?</h2> 
+        
+      <div class="mat-step-label ">{{ getEnergyMessage(value1)}}</div>
+      <br />
+
+     
+      <mat-slider  class="example-margin mat-slider-thumb" min="10"  max="100"  showTickMarks discrete  >
+        <input matSliderThumb [(ngModel)]="value1" (input)="getEnergyMessage(value1) " #slider>
+            </mat-slider>   
+          </div> 
+ 
+            <div class="mat-step-actions justify-content-end">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext class="next-button">Next</button>
+            </div>
+         
+    
+  </mat-step>
+  <mat-step [editable]="isEditable" >
+    <div class="mat-step-content">
+    <ng-template matStepLabel>Zen level ? 🌿</ng-template>      
+      <h2> Your stress level today ?</h2> 
+    <div class="mat-step-label ">{{ getStressMessage(value2) }}</div>
+    <mat-slider  class="example-margin mat-slider-thumb"
+       min="10" max="100"  showTickMarks discrete  >
+        <input matSliderThumb [(ngModel)]="value2"   (input)="getStressMessage(value2)" #slider>
+    </mat-slider>
+  </div>
+    <div class="mat-step-actions justify-content-end"> 
+
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="saveMentalHealth()" >Save</button>
+    </div>
+      <ngb-alert *ngIf="successMessage" [type]="'success'" [dismissible]="false">
+        {{ successMessage }}
+      </ngb-alert>
+   
+  </mat-step>
+</mat-stepper>
+</div>
