@@ -92,7 +92,9 @@ export class NavService implements OnDestroy {
         { path: "/simple-page/second-page", title: "Second Page", type: "link" },
       ],
     },
+
     { path: "/single-page", icon: "search", title: "Single Page",  active: false, type: "link", bookmark: true },
+
     // {
     //   title: "Authentication",
     //   type: "sub",
@@ -113,6 +115,7 @@ export class NavService implements OnDestroy {
     //     { path: "/authentication/reset-password", title: "Reset Password", type: "link" },
     //   ],
     // },
+
     { path: "/tasks", title: "Tasks", icon: "task", type: "link", bookmark: true },
     {
       title: "Users",
@@ -162,6 +165,7 @@ export class NavService implements OnDestroy {
     { path: "/todo", title: "Todo", icon: "to-do", type: "link" },
     { path: "/calender", title: "Calender", icon: "calender", type: "link", bookmark: true },
     { path: "kanban", title: "Kanban", icon: "layout", type: "link" },
+
     { path: "tasks/dashboard", title: "Dashboard", icon: "home", type: "link" },
     {
       title: "Authentication",
@@ -183,18 +187,7 @@ export class NavService implements OnDestroy {
         { path: "/authentication/reset-password", title: "Reset Password", type: "link" },
       ],
     },
-    {
-      title: "Dashboards",
-      icon: "home",
-      type: "sub",
-      badgeType: "light-primary",
-      badgeValue: "5",
-      active: true,
-      children: [
-        { path: "/dashboard/default", title: "Default", type: "link" },
 
-      ],
-    },
   ];
 
   // Array

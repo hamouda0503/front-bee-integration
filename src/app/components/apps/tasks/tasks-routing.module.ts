@@ -15,13 +15,16 @@ const routes: Routes = [
         path: '',
         component: TasksComponent
       },
-
+      {
+        path: ':projectid',
+        component: TasksComponent
+      },
       {
         path : 'boards/:userId',
         component: KanbanComponent
       },
       {
-        path: 'boards/:userId/:id/:name',
+        path: 'boards/:projectId/:userId/:id/:name',
         component: KanbanSubtasksComponent
       },
       {

@@ -4,7 +4,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import {KanbanComponent} from "../kanban.component";
 import {Board} from "../../../../shared/model/Board";
+import {Project} from "../../../../shared/model/project.model";
 import {TasksService} from "../../../../shared/services/tasks.service";
+import {ProjectService} from "../../../../shared/services/project.service";
 
 @Component({
   selector: 'app-kanban-board',
@@ -15,7 +17,9 @@ export class KanbanBoardComponent implements OnInit {
 
   usersWithFullName: string[] = []; // Liste des noms complets des utilisateurs
   assignedTo: string;
+  assignedToProject: string;
   public board: Board = new Board();
+  projects: Project[] = [];
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
 
@@ -23,25 +27,37 @@ export class KanbanBoardComponent implements OnInit {
     //private kanbanComponent: KanbanComponent,
     public activeModal: NgbActiveModal,
               private taskService: TasksService,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+    private projectService: ProjectService
   ) {
   }
 
   ngOnInit(): void {
+    this.loadAllProjects();
     // Récupérer la liste des noms complets des utilisateurs lors de l'initialisation du composant
     this.taskService.getUsersWithFullName().subscribe(users => {
       this.usersWithFullName = users;
     });
   }
 
-
+  loadAllProjects(): void {
+    this.projectService.getAllProjects().subscribe({
+      next: (projects) => {
+        this.projects = projects;
+        console.log(this.projects);
+      },
+      error: (err) => {
+        console.error('Failed to fetch projects', err);
+      },
+    });
+  }
 
   onSubmit() {
     // Logique à exécuter lorsque le formulaire est soumis
     const [firstName, lastName] = this.assignedTo.split(' ');
 
 
-    this.taskService.addBoard(this.board, firstName, lastName).subscribe({
+    this.taskService.addBoard(this.board, firstName, lastName,this.assignedToProject).subscribe({
       next: (addedBoard) => {
         // Afficher un toast pour indiquer que le tableau a été créé avec succès
         this.toastr.success('Board was successfully created', 'Success');
