@@ -1,9 +1,7 @@
 export class User {
     id?: string;
-  firstname: string;
-  lastname: string;
-
-
+    firstname: string;
+    lastname: string;
     imageUrl?: string;
     phone?: string;
     email?: string;
