@@ -1,0 +1,39 @@
+
+<div class ="text"><h1 >Pave the way in the world of entrepreneurship!</h1></div>
+<owl-carousel-o [options]="customOptions2">
+  <ng-template carouselSlide *ngFor="let ep of eps">
+    <div class="item">
+      <img [src]="ep.image_url" alt="{{ ep.title }}" class="track-image">
+      <div class="track-info">
+        <div class="track-name">{{ ep.title }}</div>
+        <a (click)="showMoreInfo(ep)" style="cursor: pointer;" class="play-link">More</a>
+
+        <a [attr.data-spotify-id]="ep.id" (click)="playSelectedep(ep)" style="cursor: pointer;" class="play-link">Play</a>
+      </div>
+    </div>
+  </ng-template>
+</owl-carousel-o>
+<div class="col-sm-12 text-center mt-4">
+  <div class="frame" id="embed-iframe"></div>
+</div>
+
+
+
+
+<div class ="text"><h1 >Here is some music for you !</h1></div>
+<owl-carousel-o [options]="customOptions">
+  <ng-template carouselSlide *ngFor="let alea of aleas">
+    <div class="item">
+      <img [src]="alea.imageUrl" alt="{{ alea.trackName }}" class="track-image">
+      <div class="track-info">
+        <div class="track-name">{{ alea.trackName }}</div>
+        <div class="artist-name">{{ alea.artistName }}</div>
+        <a [attr.data-spotify-id]="alea.musicUri" (click)="playSelectedSong(alea)" style="cursor: pointer;" class="play-link">Play</a>
+
+      </div>
+    </div>
+  </ng-template>
+</owl-carousel-o>
+<div class="col-sm-12 text-center mt-4">
+  <div class="frame" id="embed-iframe"></div>
+</div>

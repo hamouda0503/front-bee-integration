@@ -6,6 +6,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
 import { MyProjectComponent } from './my-project/my-project.component';
+import {TasksComponent} from "../tasks/tasks.component";
 
 const routes: Routes = [
   {
@@ -19,25 +20,29 @@ const routes: Routes = [
         path: 'create',
         component: CreateProjectComponent
       },
-      { 
+      {
         path: 'update/:id',
         component: UpdateProjectComponent
       },
-      { 
+      {
         path: 'file-manager/:projectid',
         component: FileManagerComponent
       },
-      { 
+      {
         path: 'file-manager/:projectid/:folderId',
         component: FileManagerComponent
       },
-      { 
+      {
         path: 'my-project',
         component: MyProjectComponent
       },
-      { 
+      {
         path: 'my-project/:projectid',
         component: MyProjectComponent
+      },
+      {
+        path: 'tasks/:projectid',
+        component: TasksComponent
       }
     ]
   }

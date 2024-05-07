@@ -1,0 +1,85 @@
+
+
+
+<header>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
+
+</header>
+<body>
+
+<div class="col-sm-12">
+
+
+
+    <div class="card-table">
+      <div class="col-sm-12 col-xl-6">
+        <h2>Hello {{user.firstname}} ! Your recomendations today 🐾 🌞 🌿</h2>
+      </div>
+
+      <div class="col-sm-12 col-lg-12 col-xl-12">
+        <div class="table-responsive">
+          <table class="table table-bordered checkbox-td-width">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Details</th>
+                <th>Rate Us</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let podcast of podcasts  | paginate: { itemsPerPage: 3, currentPage: p }">
+                <td>
+                  <img src="{{podcast.image_url}}" style="width: 100px; height: 100px; margin-right: 20px;">
+                </td>
+                <td (click)="selectPodcast(podcast)">
+                  <a style="cursor: pointer;" class="play-link">{{ podcast.title }} </a>
+                </td>
+                <td>
+                  <a (click)="showMoreInfo(podcast)" style="cursor: pointer;">More</a>
+                </td>
+                <td> <div class="episode-rating">
+                  <button mat-raised-button color="accent" (click)="likeEpisode()"> 😊 Like</button>
+                  <button mat-raised-button color="primary" (click)="dislikeEpisode()"> 😕 Dislike</button>
+                </div></td>
+
+              </tr>
+
+                  <td>
+                    <div *ngIf="selectedPodcast">
+                        <div *ngFor="let episode of selectedPodcast.Episodes">
+
+                          <button class="episode" [attr.data-spotify-id]="episode.id" (click)="playEpisode(episode)">
+                            {{ episode.title }}
+                          </button>
+                        </div>
+                      </div>
+
+                  </td>
+
+
+
+                    <iframe id="embed-iframe" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+
+
+                </tbody>
+
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+</body>

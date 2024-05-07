@@ -1,0 +1,28 @@
+<div style="display: flex; justify-content: space-around;">
+    <div style="width: 45%;">
+      <canvas baseChart
+              [datasets]="[{ data: stressChartData, label: 'Stress Level' }]"
+              [labels]="['Stress Level']"
+              chartType="line"
+              [options]="{ responsive: true }">
+      </canvas>
+    </div>
+    <div style="width: 45%;">
+      <canvas baseChart
+              [datasets]="[{ data: energyChartData, label: 'Energy Level' }]"
+              [labels]="['Energy Level']"
+              chartType="line"
+              [options]="{ responsive: true }">
+      </canvas>
+    </div>
+  </div>
+  <div style="display: block">
+    <canvas baseChart
+            [data]="moodData"
+            [type]="'pie'"
+            [options]="{ responsive: true }">
+    </canvas>
+  </div>
+  
+  
+  

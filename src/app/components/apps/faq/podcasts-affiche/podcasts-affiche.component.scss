@@ -1,0 +1,142 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Ajustez selon vos besoins */
+  gap: 1rem;
+}
+
+
+.play-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color:darkgoldenrod;
+  }
+}
+
+
+// pagination.scss
+
+// Styles pour les liens de pagination
+.pagination-link {
+  color:darkgoldenrod ;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+
+}
+.col-sm-12.col-xl-6 {
+  display: flex; // Active Flexbox
+  justify-content: center; // Centre horizontalement
+  align-items: center; // Centre verticalement
+  padding: 0 20px; // Ajoute un espacement de 20px de chaque côté
+  padding-top: 20px; // Ajoute un espace en haut
+  padding-bottom: 20px; // Ajoute un espace en bas
+
+}
+
+h2 {
+  margin: 0; // Supprime la marge par défaut du titre
+}
+
+.card-table {
+  margin: auto; // Centrer la carte sur la page
+  max-width: 1200px; // Largeur maximale de la carte
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); // Ombre portée
+  border-radius: 15px; // Coins arrondis
+  overflow: hidden; // Masquer le contenu débordant pour respecter les coins arrondis
+
+  .table {
+    width: 100%; // La table prend toute la largeur de la carte
+    margin-bottom: 0; // Supprimer la marge par défaut en bas de la table
+
+    thead th, tbody td {
+      padding: 15px; // Espacement à l'intérieur des cellules
+      text-align: left; // Alignement du texte à gauche
+    }
+
+    thead {
+      th {
+        background-color: #f7f7f7; // Couleur de fond pour l'en-tête du tableau
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: #f2f2f2; // Couleur de fond pour les lignes impaires
+        }
+        &:hover {
+          background-color: #e8e8e8; // Couleur de fond au survol d'une ligne
+        }
+      }
+    }
+  }
+}
+
+.table {
+  table-layout: fixed;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0;
+}
+.mat-column-title {
+  flex: 0 0 20% !important;
+}
+
+// Styles pour la pagination active
+.pagination-item.active {
+  background-color:darkgoldenrod ;
+  color: #fff;
+}
+
+.episode:hover {
+  background: darkgoldenrod;
+}
+
+
+.episodes-container {
+  display: flex;
+  flex-direction: column; /* Afficher les boutons d'épisodes verticalement */
+}
+
+.episode {
+  background: #191414;
+  color: #fff;
+  margin-bottom: 8px; /* Marge entre les boutons d'épisodes */
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+
+
+.iframe-container {
+  flex-grow: 1; /* Laisse le frame prendre tout l'espace disponible */
+}
+
+#embed-iframe {
+  width: 100%; /* Largeur complète dans un conteneur responsive */
+  height: 380px; /* Hauteur fixe pour l'iframe */
+}
+
+@media screen and (max-width: 860px) {
+  .content {
+    grid-template-columns: 1fr; /* Empile les éléments verticalement sur les petits écrans */
+  }
+}
+.episode-rating button {
+  margin-right: 10px; /* Add space to the right of each button */
+}

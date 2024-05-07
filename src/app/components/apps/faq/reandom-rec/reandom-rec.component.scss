@@ -1,0 +1,86 @@
+/* Style général de la page */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style des titres */
+.text h1 {
+  font-size:30px;
+  color: #333;
+  text-align: left;
+  font-style:italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Style des cartes */
+.item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+}
+
+/* Style des images */
+.track-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Style des informations de la piste */
+.track-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.track-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.artist-name {
+  font-size: 1em;
+  color: #666;
+}
+
+/* Style des liens */
+a {
+  text-decoration: none;
+  color: #bba52c;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #bba52c;
+}
+
+/* Style du lien de lecture */
+.play-link {
+  display: inline-block;
+  background-color: #bba52c;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+
+}
+
+.play-link:hover {
+  background-color: #bba52c;
+}
+

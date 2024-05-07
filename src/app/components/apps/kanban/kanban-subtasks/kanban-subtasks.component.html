@@ -149,6 +149,9 @@
                   <!-- Libellé et Description de la sous-tâche -->
                   <div class="label">Description of Subtask:</div>
                   <div class="subtask-description">{{ subTask.description }}</div>
+                  <div class="avatar" style="display: flex; justify-content: center; align-items: center;">
+                    <img alt="" src="{{subTask.coverImage}}" style="max-width: 250px; max-height: 250px; margin-right: 20px; border: 2px solid #ccc; border-radius: 5px;" />
+                  </div>
                 </div>
               </div>
               <!-- Boutons Delete et Update en bas à droite -->
@@ -181,13 +184,16 @@
                  <div> <h6 class="task-title">{{ subTask.task.title }}</h6></div>
                   <div class="label">Description of Subtask:</div>
                   <div class="subtask-description">{{ subTask.description }}</div>
+                  <div class="avatar" style="display: flex; justify-content: center; align-items: center;">
+                    <img alt="" src="{{subTask.coverImage}}" style="max-width: 250px; max-height: 250px; margin-right: 20px; border: 2px solid #ccc; border-radius: 5px;" />
+                  </div>
                 </div>
               </div>
               <div class="card-footer d-flex justify-content-end">
                 <button class="btn btn-danger btn-sm mr-2" (click)="deleteSubTask(subTask.id)">
                   <i class="fa fa-trash"></i> Delete
                 </button>
-                <button class="btn btn-primary btn-sm" (click)="updateSubTask(subTask.id)">
+                <button class="btn btn-primary btn-sm" (click)="updateSubtask(boardId,subTask.id)">
                   <i class="fa fa-pencil"></i> Update
                 </button>
               </div>
@@ -213,13 +219,16 @@
 
                   <div class="label">Description of Subtask:</div>
                   <div class="subtask-description">{{ subTask.description }}</div>
+                  <div class="avatar" style="display: flex; justify-content: center; align-items: center;">
+                    <img alt="" src="{{subTask.coverImage}}" style="max-width: 250px; max-height: 250px; margin-right: 20px; border: 2px solid #ccc; border-radius: 5px;" />
+                  </div>
                 </div>
               </div>
               <div class="card-footer d-flex justify-content-end">
                 <button class="btn btn-danger btn-sm mr-2" (click)="deleteSubTask(subTask.id)">
                   <i class="fa fa-trash"></i> Delete
                 </button>
-                <button class="btn btn-primary btn-sm" (click)="updateSubTask(subTask.id)">
+                <button class="btn btn-primary btn-sm" (click)="updateSubtask(boardId,subTask.id)">
                   <i class="fa fa-pencil"></i> Update
                 </button>
               </div>
