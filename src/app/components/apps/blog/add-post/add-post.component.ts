@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import {HttpClient, HttpParams} from '@angular/common/http'; // Import HttpClient
 import { PublicationService } from '../../../../shared/services/blog/publication.service'; // Adjust the path as necessary
 import { StorageService } from 'src/app/shared/services/storage.service';
+import {User} from "../../../../shared/model/user.model";
+import {UserService} from "../../../../shared/services/user.service";
 enum BlogSubject {
   DocumentsAdministratifs = "Paperwork",
   Innovation = "Innovation",
@@ -25,20 +27,23 @@ interface Suggestion {
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent implements OnInit {
+  myuser: User;
   public subjects = Object.values(BlogSubject);
   public ClassicEditor = ClassicEditor;
   public postModel = {
     content: '',
-    sujet: ''
+    sujet: '',
+    user: {}
   };
   suggestions : string []=[]; // Array to hold suggestions
   suggestion =''; //
-  constructor(private publicationService: PublicationService
+  constructor(private publicationService: PublicationService,private userservice: UserService
 ,private storage: StorageService, private http: HttpClient) {
 
   }
 
   ngOnInit(): void {
+   
   }
 
 
@@ -83,22 +88,22 @@ export class AddPostComponent implements OnInit {
       console.error('Form is not valid', form);
       return;
     }
+    const newPost = {
+      content: form.value.content,
+      sujet: form.value.sujet,
+    };
 
-    // Assuming this.storage.getUser() returns the user data or null if not logged in
-    const user = this.storage.getUser();
-    if (user) {
-      // Set the user data to the postModel user property
-      // Ensure your postModel has a property to hold user data, e.g., 'user'
-     // this.postModel.user = user;
-      console.log(this.postModel);
+    if (this.storage.getUser()) {
+
+      console.log(newPost);
     } else {
       console.error('No user data found in storage');
       // Handle the error appropriately, e.g., redirect to login or show an error message
       return;
     }
 
-    console.log('Sending publication with user info', this.postModel);
-    this.publicationService.addPublication(this.postModel).subscribe({
+    console.log('Sending publication with user info',newPost);
+    this.publicationService.addPublication(newPost,this.storage.getUser().id).subscribe({
       next: (response) => {
         console.log('Publication added', response);
         form.reset();

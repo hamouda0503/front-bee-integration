@@ -140,11 +140,7 @@ export class NavService implements OnDestroy {
       badgeValue: "New",
       active: false,
       children: [
-        { path: "/project/my-project", title: "My Project", type: "link" },
         { path: "/project/list", title: "Project List", type: "link" },
-        { path: "/project/create", title: "Create New", type: "link" },
-        { path: "/project/file-manager", title: "FileManager", type: "link" },
-
       ],
     },
     {

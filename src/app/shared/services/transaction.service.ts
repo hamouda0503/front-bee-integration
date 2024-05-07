@@ -23,6 +23,16 @@ import { Revenue } from '../model/revenue.model';
         const headers = this.userService.getHeaders();  
         return this.http.post<Revenue>(this.revenueUrl+ "/" + projectId , revenue, { headers });
       }
+      getExpensesByProjectId(projectId: string): Observable<Expense[]> {
+        const headers = this.userService.getHeaders();
+        const url = `${this.expenseUrl}/expensesbyproject/${projectId}`;
+        return this.http.get<Expense[]>(url, { headers });
+      }
+      getRevenuesByProjectId(projectId: string): Observable<Revenue[]> {
+        const headers = this.userService.getHeaders();
+        const url = `${this.revenueUrl}/revenuesbyproject/${projectId}`;
+        return this.http.get<Revenue[]>(url, { headers });
+      }
   
   }
   

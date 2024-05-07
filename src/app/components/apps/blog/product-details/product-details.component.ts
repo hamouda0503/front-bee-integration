@@ -82,7 +82,7 @@ export class ProductDetailsComponent implements OnInit {
 
     console.log('Sending publication with user info', publication);
 
-    this.publicationService.addPublication(publication).subscribe({
+    /*this.publicationService.addPublication(publication).subscribe({
       next: (response) => {
         console.log('Publication added', response);
         console.log('Going in the blogevent');
@@ -92,7 +92,7 @@ export class ProductDetailsComponent implements OnInit {
       error: (error) => {
         console.error('Error adding publication', error);
       }
-    });
+    });*/
   }
 
   private updateBlogEventWithPublication(publication: Publication) {
