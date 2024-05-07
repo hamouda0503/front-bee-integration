@@ -11,10 +11,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: '',
-        component: TasksComponent
-      },
+
       {
         path: ':projectid',
         component: TasksComponent

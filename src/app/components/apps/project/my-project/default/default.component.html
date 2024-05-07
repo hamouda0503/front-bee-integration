@@ -1,71 +1,60 @@
 <div class="container-fluid">
     <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Dashboard</h4>
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <ng-container>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a>
-                            </li>
-                            <li class="breadcrumb-item active">Dashboard
-                            </li>
-                        </ng-container>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- end page title -->
 
     <div class="row">
         <div class="col-xl-4">
-            
+
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Monthly Earning</h4>
+                    <h4 class="card-title mb-4">Profits:</h4>
                     <div class="row">
-                       
-                        <div class="col-sm-6">
-                            <p>This month</p>
-                            <h4 class="Price"> $34,25</h4>
-                            <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i>
-                                </span> From
-                                previous period</p>
 
-                            <div class="mt-4">
-                                <a href="" class="btn btn-primary btn-sm">View More <i class="mdi mdi-arrow-right ms-1"></i></a>
-                            </div>
+                        <div class="col-sm-6">
+                            <p>This Year:</p>
+                            <h4 class="Price"> $34,250</h4>
                         </div>
                         <div class="col-sm-6">
                             <apx-chart dir="ltr" class="apex-charts" [series]="monthlyEarningChart.series" [chart]="monthlyEarningChart.chart" [legend]="monthlyEarningChart.legend" [colors]="monthlyEarningChart.colors" [labels]="monthlyEarningChart.labels" [stroke]="monthlyEarningChart.stroke" [plotOptions]="monthlyEarningChart.plotOptions">
                             </apx-chart>
-                            
                         </div>
                     </div>
-                    <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
+                    <h4 class="card-title mb-4">Funding Raised:</h4>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <p>Total Investments:</p>
+                            <h4 class="Price"> $34,250</h4>
+                           
+                        </div>
+                        <div class="col-sm-6">
+                            <apx-chart dir="ltr" class="apex-charts" [series]="monthlyEarningChart.series" [chart]="monthlyEarningChart.chart" [legend]="monthlyEarningChart.legend" [colors]="monthlyEarningChart.colors" [labels]="monthlyEarningChart.labels" [stroke]="monthlyEarningChart.stroke" [plotOptions]="monthlyEarningChart.plotOptions">
+                            </apx-chart>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
         <div class="col-xl-8">
-          
+
             <!-- end row -->
 
             <div class="card">
                 <div class="card-body">
                     <div class="d-sm-flex flex-wrap">
-                        <h4 class="card-title mb-4">Email Sent {{ projectID }}</h4>
+                        <h4 class="card-title mb-4">Mounthly Transactions:</h4>
                         <div class="ms-auto">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript: void(0);" [ngClass]="{'active': isActive === 'week'}" (click)="weeklyreport()">Week</a>
+                                    <a class="nav-link" href="javascript: void(0);" (click)="monthlyreport()" [ngClass]="{'active': isActive === 'month'}">Expenses</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript: void(0);" (click)="monthlyreport()" [ngClass]="{'active': isActive === 'month'}">Month</a>
+                                    <a class="nav-link" href="javascript: void(0);" (click)="yearlyreport()" [ngClass]="{'active': isActive === 'year'}">Revenues</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript: void(0);" (click)="yearlyreport()" [ngClass]="{'active': isActive === 'year'}">Year</a>
+                                    <a class="nav-link" href="javascript: void(0);" (click)="weeklyreport()" [ngClass]="{'active': isActive === 'week'}">All Transactions</a>
                                 </li>
                             </ul>
                         </div>
@@ -79,63 +68,6 @@
     <!-- end row -->
 
     <div class="row">
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Social Source</h4>
-                    <div class="text-center">
-                        <div class="avatar-sm mx-auto mb-4">
-                            <span class="avatar-title rounded-circle bg-primary-subtle font-size-24">
-                                <i class="mdi mdi-facebook text-primary"></i>
-                            </span>
-                        </div>
-                        <p class="font-16 text-muted mb-2"></p>
-                        <h5><a href="javascript: void(0);" class="text-dark">Facebook - <span class="text-muted font-16">125
-                                    sales</span> </a></h5>
-                        <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero
-                            venenatis
-                            faucibus tincidunt.</p>
-                        <a href="javascript: void(0);" class="text-primary font-16">Learn more <i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-4">
-                            <div class="social-source text-center mt-3">
-                                <div class="avatar-xs mx-auto mb-3">
-                                    <span class="avatar-title rounded-circle bg-primary font-size-16">
-                                        <i class="mdi mdi-facebook text-white"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-15">Facebook</h5>
-                                <p class="text-muted mb-0">125 sales</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="social-source text-center mt-3">
-                                <div class="avatar-xs mx-auto mb-3">
-                                    <span class="avatar-title rounded-circle bg-info font-size-16">
-                                        <i class="mdi mdi-twitter text-white"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-15">Twitter</h5>
-                                <p class="text-muted mb-0">112 sales</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="social-source text-center mt-3">
-                                <div class="avatar-xs mx-auto mb-3">
-                                    <span class="avatar-title rounded-circle bg-pink font-size-16">
-                                        <i class="mdi mdi-instagram text-white"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-15">Instagram</h5>
-                                <p class="text-muted mb-0">104 sales</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
@@ -280,7 +212,58 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Latest Transaction</h4>
-                    
+                    <div class="table-responsive mb-0">
+                        <table class="table table-centered table-nowrap">
+                          <thead class="table-light">
+                            <tr>
+                              <th style="width: 20px;">
+                                <div class="form-check font-size-16 align-middle">
+                                  <input class="form-check-input" type="checkbox" id="transactionCheck01">
+                                  <label class="form-check-label" for="transactionCheck01"></label>
+                                </div>
+                              </th>
+                              <th class="align-middle">Order ID</th>
+                              <th class="align-middle">Billing Name</th>
+                              <th class="align-middle">Date</th>
+                              <th class="align-middle">Total</th>
+                              <th class="align-middle">Payment Status</th>
+                              <th class="align-middle">Payment Method</th>
+                              <th class="align-middle">View Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let data of transactions">
+                              <td>
+                                <div class="form-check font-size-16">
+                                  <input class="form-check-input" type="checkbox" id="transactionCheck{{data.index}}">
+                                  <label class="form-check-label" for="transactionCheck{{data.index}}"></label>
+                                </div>
+                              </td>
+                              <td>
+                                <a href="javascript: void(0);" class="text-body fw-bold">{{data.id}}</a>
+                              </td>
+                              <td>{{data.name}}</td>
+                              <td>{{data.date}}</td>
+                              <td>{{data.total}}</td>
+                              <td>
+                                <span class="badge badge-pill badge-soft-success font-size-11" [ngClass]=" { 'badge-soft-danger': data.status === 'Chargeback',
+                                              'badge-soft-warning':data.status === 'Refund' }">{{data.status}}</span>
+                              </td>
+                              <td>
+                                <i class="fab {{data.payment[0]}} me-1"></i>
+                                {{data.payment[1]}}
+                              </td>
+                              <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="content.show()">View
+                                  Details</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      
+                        
+                      </div>
                     <!-- end table -->
                 </div>
             </div>

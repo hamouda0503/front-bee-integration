@@ -35,7 +35,7 @@ const emailSentBarChart: ChartType = {
     xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     },
-    colors: ['#556ee6', '#f1b44c', '#34c38f'],
+    colors: ['#556ee6', '#f1b44c', '#34c38f','#795548','#e74c3c','#9b59b6'],
     legend: {
         position: 'bottom',
     },

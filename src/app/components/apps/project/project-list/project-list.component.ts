@@ -65,7 +65,8 @@ export class ProjectListComponent implements OnInit {
     this.router.navigate(['/project/file-manager', projectId]);
   }
   goToTasks(projectId: string): void {
-    this.router.navigate(['/tasks', projectId]);
+
+    this.router.navigate(['tasks', projectId]);
   }
   myProject(projectId: string): void {
     this.router.navigate(['/project/my-project', projectId]);

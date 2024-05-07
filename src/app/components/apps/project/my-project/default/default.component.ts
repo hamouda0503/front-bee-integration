@@ -56,7 +56,9 @@ export class DefaultComponent implements OnInit {
     /**
      * Fetches the data
      */
-    this.fetchData();
+   
+    this.weeklyreport();
+     this.fetchData();
   }
 
   ngAfterViewInit() {
@@ -72,7 +74,7 @@ export class DefaultComponent implements OnInit {
     this.emailSentBarChart = emailSentBarChart;
     this.monthlyEarningChart = monthlyEarningChart;
 
-    this.isActive = 'year';
+    this.isActive = 'week';
     this.configService.getConfig().subscribe(data => {
       this.transactions = data.transactions;
       this.statData = data.statData;
@@ -98,6 +100,10 @@ export class DefaultComponent implements OnInit {
   
     return groupedData;
   }
+  
+  
+ 
+ 
   weeklyreport() {
     this.isActive = 'week';
 
@@ -105,7 +111,9 @@ export class DefaultComponent implements OnInit {
       this.transactionService.getRevenuesByProjectId(this.projectID).subscribe((revenues: Revenue[]) => {
         const monthlyExpenses = this.groupByMonth(expenses); // Group expenses by month
         const monthlyRevenues = this.groupByMonth(revenues); // Group revenues by month
-    
+        console.log("Expenses list After grouping:"+ monthlyExpenses);
+        console.log("Revenues list After grouping:"+monthlyRevenues);
+
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     
         this.emailSentBarChart.series = [
@@ -120,41 +128,272 @@ export class DefaultComponent implements OnInit {
         ];
       });
     });
-    
-    
+}
+
+yearlyreport() {
+  this.isActive = 'year';
+    this.transactionService.getRevenuesByProjectId(this.projectID).subscribe((revenues: Revenue[]) => {
+      const salesRevenues = this.groupByMonthByCatRevenue1(revenues); 
+      const subscriptionRevenues = this.groupByMonthByCatRevenue2(revenues); 
+      const advertisingRevenues = this.groupByMonthByCatRevenue3(revenues); 
+      const licensingRevenues = this.groupByMonthByCatRevenue4(revenues); 
+      const otherRevenues = this.groupByMonthByCatRevenue5(revenues); 
+
+
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   
+      this.emailSentBarChart.series = [
+        {
+          name: 'Sales',
+          data: months.map(month => salesRevenues[month] ? salesRevenues[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Subscriptions',
+          data: months.map(month => subscriptionRevenues[month] ? subscriptionRevenues[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Advertising',
+          data: months.map(month => advertisingRevenues[month] ? advertisingRevenues[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Licencing',
+          data: months.map(month => licensingRevenues[month] ? licensingRevenues[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Other',
+          data: months.map(month => otherRevenues[month] ? otherRevenues[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        }
+      ];
+    });
+ 
+}
+monthlyreport() {
+  this.isActive = 'month';
+    this.transactionService.getExpensesByProjectId(this.projectID).subscribe((expenses: Expense[]) => {
+      const marketingExpenses = this.groupByMonthByCatExpense1(expenses); 
+      const softwareExpenses = this.groupByMonthByCatExpense2(expenses); 
+      const suppliesExpenses = this.groupByMonthByCatExpense3(expenses); 
+      const transportExpenses = this.groupByMonthByCatExpense4(expenses); 
+      const servicesExpenses = this.groupByMonthByCatExpense5(expenses); 
+      const otherExpenses = this.groupByMonthByCatExpense6(expenses); 
+
+
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  
+      this.emailSentBarChart.series = [
+        {
+          name: 'Marketing',
+          data: months.map(month => marketingExpenses[month] ? marketingExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Software',
+          data: months.map(month => softwareExpenses[month] ? softwareExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Supplies',
+          data: months.map(month => suppliesExpenses[month] ? suppliesExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Transport',
+          data: months.map(month => transportExpenses[month] ? transportExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Services',
+          data: months.map(month => servicesExpenses[month] ? servicesExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        },
+        {
+          name: 'Other',
+          data: months.map(month => otherExpenses[month] ? otherExpenses[month].reduce((sum, revenue) => sum + revenue.amount, 0) : 0)
+        }
+      ];
+    });
+ 
+}
+
+groupByMonthByCatExpense1(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "marketing"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatExpense2(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "software"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatExpense3(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "supplies"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatExpense4(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "transport"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatExpense5(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "services"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatExpense6(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "other"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatRevenue1(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "sales"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatRevenue2(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "subscriptions"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatRevenue3(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "advertising"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatRevenue4(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "licensing"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
+}
+groupByMonthByCatRevenue5(data: any[]): { [month: string]: any[] } {
+  const groupedData = {};
+
+  for (const item of data) {
+    const date = new Date(item.date);
+    const month = date.toLocaleString('en-US', { month: 'long' });
+
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    if(item.category == "other"){
+    groupedData[month].push(item);
+    }
+  }
+  return groupedData;
 }
 
 
-  monthlyreport() {
-    this.isActive = 'month';
-    this.emailSentBarChart.series =
-      [{
-        name: 'Series A',
-        data: [44, 55, 41, 67, 22, 43, 36, 52, 24, 18, 36, 48]
-      }, {
-        name: 'Series B',
-        data: [13, 23, 20, 8, 13, 27, 18, 22, 10, 16, 24, 22]
-      }, {
-        name: 'Series C',
-        data: [11, 17, 15, 15, 21, 14, 11, 18, 17, 12, 20, 18]
-      }];
-  }
 
-  yearlyreport() {
-    this.isActive = 'year';
-    this.emailSentBarChart.series =
-      [{
-        name: 'Series A',
-        data: [13, 23, 20, 8, 13, 27, 18, 22, 10, 16, 24, 22]
-      }, {
-        name: 'Series B',
-        data: [11, 17, 15, 15, 21, 14, 11, 18, 17, 12, 20, 18]
-      }, {
-        name: 'Series C',
-        data: [44, 55, 41, 67, 22, 43, 36, 52, 24, 18, 36, 48]
-      }];
-  }
+
+
+
+
+
 
 
   /**
