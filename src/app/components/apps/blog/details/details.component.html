@@ -29,7 +29,7 @@
               </div>
 
               <ul class="blog-social">
-                <i class="icofont icofont-thumbs-up"></i>{{ publication.likeCount }} Likes |&nbsp;
+                <i class="icofont icofont-thumbs-up"></i>{{ publication.likes?.length || 0 }} Likes |&nbsp;
                 <i class="icofont icofont-ui-chat"></i>{{ publication.comments?.length || 0 }} Comments
               </ul>
               <div class="mine" >
