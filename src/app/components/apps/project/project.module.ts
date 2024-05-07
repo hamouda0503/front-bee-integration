@@ -15,6 +15,8 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
 import { FileManagerComponent } from './file-manager/file-manager.component';
 import { MyProjectComponent } from './my-project/my-project.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { DefaultComponent } from './my-project/default/default.component';
+
 //import { MaterialModule } from '../../../material.module';
 import { CalenderComponent } from './my-project/calender/calender.component';
 
@@ -29,7 +31,7 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
     NgApexchartsModule,
     TablerIconsModule.pick(TablerIcons)
   ],
-  declarations: [AddTransactionComponent,CalenderComponent,
+  declarations: [AddTransactionComponent,CalenderComponent,DefaultComponent,
     MyProjectComponent, ProjectListComponent, CreateProjectComponent,
     UpdateProjectComponent,FileManagerComponent, AddInvestmentComponent,AddFolderComponent, CreateTagComponent],
     exports: [TablerIconsModule]
