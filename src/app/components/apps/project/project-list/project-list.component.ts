@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../../../shared/services/project.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { Project } from 'src/app/shared/model/project.model';
+import { AddInvestmentComponent } from '../modal/add-investment/add-investment.component';
+import { InvestmentService } from '../../../../shared/services/investment.service';
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.scss']
+  styleUrls: ['./project-list.component.scss'],
 })
 export class ProjectListComponent implements OnInit {
+  @ViewChild('addInvestment') AddInvestment: AddInvestmentComponent;
+  public projectID: string;
   public active = 1;
   projects: Project[] = [];
   currentUserId: string;
   currentUserRole: string;
 
-  constructor(private projectService: ProjectService, 
+  constructor(
+    private projectService: ProjectService,
     private storageService: StorageService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private investmentservice: InvestmentService
+  ) {}
 
   ngOnInit() {
     this.loadAllProjects();
@@ -26,7 +32,19 @@ export class ProjectListComponent implements OnInit {
     this.currentUserRole = this.storageService.getUser().role;
     console.log(this.projects);
     console.log(this.storageService.getUser());
-
+  }
+  checkInvestment(projectId: string): any {
+    this.investmentservice
+      .checkInvestment(this.storageService.getUser().id, projectId)
+      .subscribe({
+        next: (bool) => {
+          console.log("Check Investor: PID"+projectId+" | "+bool);
+          return bool;
+        },
+        error: (err) => {
+          console.error('Failed to fetch projects', err);
+        },
+      });
   }
 
   loadAllProjects(): void {
@@ -37,7 +55,7 @@ export class ProjectListComponent implements OnInit {
       },
       error: (err) => {
         console.error('Failed to fetch projects', err);
-      }
+      },
     });
   }
   updateProject(projectId: string): void {
@@ -53,15 +71,14 @@ export class ProjectListComponent implements OnInit {
     if (confirm('Are you sure you want to delete this project?')) {
       this.projectService.deleteProject(project.id).subscribe({
         next: () => {
-          this.projects = this.projects.filter(p => p.id !== project.id);
+          this.projects = this.projects.filter((p) => p.id !== project.id);
           console.log('Project deleted successfully');
         },
-        error: (err) => console.error('Error deleting project', err)
+        error: (err) => console.error('Error deleting project', err),
       });
     }
   }
 
-  
   getBadgeClass(status: string): string {
     switch (status) {
       case 'PENDING':
@@ -98,5 +115,4 @@ export class ProjectListComponent implements OnInit {
         return 'progress-bar-animated bg-primary progress-bar-striped'; // Default class if status is unrecognized
     }
   }
-
 }

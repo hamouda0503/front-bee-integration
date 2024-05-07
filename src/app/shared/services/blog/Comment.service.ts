@@ -31,15 +31,15 @@ export class CommentService {
   }
 
   // Add a new comment to a publication
-  addComment(comment: Comment,publicationId: string): Observable<Comment> {
-    const url = `${this.baseUrl}/publications/${publicationId}`;
+  addComment(comment: Object,publicationId: string,userId: string): Observable<Comment> {
+    const url = `${this.baseUrl}/publications/${publicationId}/${userId}`;
     const headers = this.createHeaders();
     return this.http.post<Comment>(url, comment, { headers });
   }
 
   // Update an existing comment
-  updateComment(comment: Comment): Observable<Comment> {
-    const url = `${this.baseUrl}/${comment.id}`;
+  updateComment(commentId: string, comment: Object): Observable<Comment> {
+    const url = `${this.baseUrl}/${commentId}`;
     const headers = this.createHeaders();
     return this.http.put<Comment>(url, comment, { headers });
   }

@@ -31,9 +31,9 @@ export class PublicationService {
     return this.http.get<Publication>(url, { headers: this.createHeaders() });
   }
 
-  addPublication(publication: Publication): Observable<Publication> {
+  addPublication(publication: Object, id: string): Observable<Publication> {
     const body = JSON.stringify(publication);
-    return this.http.post<Publication>(this.baseUrl, body, { headers: this.createHeaders() });
+    return this.http.post<Publication>(this.baseUrl+"/"+id, body, { headers: this.createHeaders() });
   }
 
   deletePublication(id: string): Observable<any> {
@@ -41,8 +41,8 @@ export class PublicationService {
     return this.http.delete(url, { headers: this.createHeaders() });
   }
 
-  updatePublication(publication: Publication): Observable<Publication> {
-    const url = `${this.baseUrl}/${publication.id}`;
+  updatePublication(id:string,publication: Object): Observable<Publication> {
+    const url = `${this.baseUrl}/${id}`;
     return this.http.put<Publication>(url, publication, { headers: this.createHeaders() });
   }
 

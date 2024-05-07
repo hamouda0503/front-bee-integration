@@ -78,13 +78,12 @@ export class SingleComponent implements OnInit {
   }
   addComment(): void {
     if (this.publication && this.newCommentContent.trim()) {
-      const newComment: Comment = {
-        content: this.newCommentContent,
-        user:this.storage.getUser()
-
+      const newComment = {
+        content: this.newCommentContent
       };
+    
 
-      this.commentService.addComment(newComment, this.publication.id).subscribe(
+      this.commentService.addComment(newComment, this.publication.id, this.storage.getUser().id).subscribe(
         comment => {
 
           if (!this.publication.comments) {
@@ -136,10 +135,15 @@ export class SingleComponent implements OnInit {
   }
 
   updateComment(comment: Comment, index: number): void {
+  
+
     if (comment.editableContent.trim()) {
       // Call the service to update the comment
       const updatedComment: Comment = { ...comment, content: comment.editableContent };
-      this.commentService.updateComment(updatedComment).subscribe(
+      const newComment = {
+        content:  comment.editableContent,
+      };
+      this.commentService.updateComment(comment.id,newComment).subscribe(
         updated => {
           // Replace the comment in the local array with the updated one from the server
           this.comments[index] = updated;

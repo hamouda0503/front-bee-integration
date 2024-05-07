@@ -64,4 +64,11 @@ export class StorageService {
     }
     // return new User(); // Empty user object
   }
+  public getUser2(): User {
+    const userInfo = localStorage.getItem(USER_INFO_KEY);
+    if (userInfo) {
+      return JSON.parse(userInfo);
+    }
+    // return new User(); // Empty user object
+  }
 }

@@ -64,15 +64,15 @@
                     </div>
                   </div>
                 </div> -->
-                <div *ngFor="let project of projects" class="col-xl-4 col-lg-6">
+                <div *ngFor="let project of projects"  class="col-xl-4 col-lg-6">
                   <div class="project-box"><span [ngClass]="getBadgeClass(project.status)">{{ project.status }}</span>
-                    <h6>{{ project.name }} <button (click)="myProject(project.id)" >My Project</button></h6>
+                    <h6 >{{ project.name }} </h6>
                     <div class="media"><img class="img-20 me-1 rounded-circle" [src]="project.ownerID.imageUrl" alt="" data-original-title="" title="">
                       <div class="media-body">
                         <p>{{ project.ownerID.firstname }} {{ project.ownerID.lastname }}</p>
                       </div>
                     </div>
-                    <p>{{ project.description }}</p>
+                    <p>{{ project.description | slice:0:30 }} ...</p>
                     <div class="row details">
                       <div class="col-6"><span>Start Date:  </span></div>
                       <div [ngClass]="getFontClass(project.status)">{{ project.startDate | date}} </div>
@@ -102,11 +102,12 @@
                       
                       <div class="project-actions mt-2">
                         <div class="d-flex justify-content-end" >
-                          <button *ngIf="currentUserRole === 'ROLE_INVESTOR'" class="btn btn-sm btn-success me-2" (click)="investInProject(project.id)">Invest</button>
-                          <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-success me-2" (click)="manageFiles(project.id)">Mange Files</button>
+                          <button *ngIf="currentUserRole === 'INVESTOR'"  class="btn btn-sm btn-success me-2" (click)="AddInvestment.openModal()">Invest</button>
+                          <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-success me-2" (click)="myProject(project.id)">Dashboard</button>
                         <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-primary me-2" (click)="updateProject(project.id)">Edit</button>
                         <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-danger" (click)="deleteProject(project)">Delete</button>
                         </div>
+                        <app-add-investment #AddInvestment [projectID]="project.id" ></app-add-investment>
                     </div>
                     
                     </div>
@@ -120,4 +121,5 @@
     </div>
   </div>
 </div>
+
 <!-- Container-fluid Ends-->

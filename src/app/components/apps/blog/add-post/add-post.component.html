@@ -21,6 +21,7 @@
               <div class="mb-3">
                 <div class="form-group">
   <textarea class="form-control" [(ngModel)]="postModel.content"
+  name="content"
             (input)="fetchSuggestions(postModel.content)"
             (keydown)="handleKeydown($event)" placeholder="Write your content here..." rows="5"
             required></textarea>

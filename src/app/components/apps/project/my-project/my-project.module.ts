@@ -4,15 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MyProjectRoutingModule } from './my-project-routing.module';
 import { MyProjectComponent } from './my-project.component';
 import { SharedModule } from "../../../../shared/shared.module";
-import { AppDashboardComponent } from './dashboard/dashboard.component'
 //import { MaterialModule } from '../../../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
 @NgModule({
   declarations: [
-    MyProjectComponent,
-    AppDashboardComponent
+    MyProjectComponent
   ],
   imports: [
     CommonModule,

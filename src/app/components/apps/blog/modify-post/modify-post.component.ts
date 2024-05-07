@@ -21,6 +21,7 @@ enum BlogSubject {
 export class ModifyPostComponent implements OnInit {
   public subjects = Object.values(BlogSubject);
   public ClassicEditor = ClassicEditor;
+  public postId:string;
 
   public postModel:Publication = {
     content: '',
@@ -37,10 +38,12 @@ export class ModifyPostComponent implements OnInit {
   ngOnInit(): void {
     // Retrieve the publication ID from the route and fetch the publication
     const id = this.route.snapshot.params['id'];
+    this.postId=id;
     if (id) {
       this.publicationService.getPublicationById(id).subscribe(
         (publication: Publication) => {
           this.postModel = publication; // Prepopulate the form with the publication data
+
         },
         (error) => {
           console.error('Error fetching publication:', error);
@@ -50,8 +53,12 @@ export class ModifyPostComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
+    const newPost = {
+      content: this.postModel.content,
+      sujet: this.postModel.sujet,
+    };
     if (form.valid) {
-      this.publicationService.updatePublication(this.postModel).subscribe({
+      this.publicationService.updatePublication(this.postId, newPost).subscribe({
         next: (response) => {
           console.log('Publication updated',this.postModel );
           this.router.navigate(['/blog/details']); // Navigate to the details page after update

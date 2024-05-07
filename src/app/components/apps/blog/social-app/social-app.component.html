@@ -8,7 +8,7 @@
         <div class="card hovercard text-center">
           <div class="cardheader socialheader"></div>
           <div class="user-image">
-            <div class="avatar"><img alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" /></div>
+            <!--<div class="avatar"><img alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" /></div>-->
             <div class="icon-wrapper">
               <i class="icofont icofont-pencil-alt-5"></i>
             </div>
@@ -87,7 +87,7 @@
                 <div class="card-body">
                   <div class="new-users-social">
                     <div class="media">
-                      <img class="img-50 rounded-circle m-r-15" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" alt="" />
+                      <!--<img class="img-50 rounded-circle m-r-15" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" alt="" />-->
                       <div class="media-body">
                         <h6 class="mb-0 f-w-700">{{ publication?.user?.firstname }} {{ publication?.user?.lastname }}</h6>
                         <p>{{ publication?.createdAt | date: 'medium' }}</p>
@@ -109,7 +109,7 @@
                     <div class="social-chat" *ngFor="let comment of publication.comments">
                       <div class="your-msg">
                         <div class="media">
-                          <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ comment.user.firstname + '.png'" />
+                         <!-- <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ comment.user.firstname + '.png'" />-->
                           <div class="media-body">
                               <span class="f-w-600"
                               >{{ comment.user.firstname }} {{ comment.user.lastname }} <span>{{ comment.user.createdAt }}  <i class="fa fa-reply font-primary"></i></span
@@ -124,7 +124,7 @@
                     <div class="comments-box">
                       <div class="media">
                         <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" />
-                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" />
+                           <!-- <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" />
                         <div class="media-body">
                           <div class="input-group text-box">
                             <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post Your commnets" />

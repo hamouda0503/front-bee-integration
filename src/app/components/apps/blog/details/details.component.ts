@@ -35,23 +35,26 @@ export class DetailsComponent implements OnInit {
 
 
   fetchRandomQuote() {
-    this.http.get<any>('https://api.quotable.io/random')
-      .subscribe(
-        data => {
-          this.quote = data.content + ' - ' + data.author;
+    this.http.get<any>('https://api.quotable.io/random', { withCredentials: false }).subscribe(
+      {
+        next: (quote) => {
+          this.quote = quote.content + ' - ' + quote.author;
         },
-        error => {
-          console.error('An error occurred:', error);
-        }
-      );
-  }
+        error: (err) => console.error('Error fetching storage', err)
+      });
+      }
+     
+  
   loadPublications(): void {
     // Cette méthode supposerait que votre service a une méthode 'getAllPublications' qui renvoie un Observable des publications
     this.publicationService.getAllPublications().subscribe(
       (data) => {
         // 'data' est ce que le backend renvoie, qui devrait être un tableau de publications
         this.publications = data;
+        console.log("testttt +",this.publications);
+
       },
+
       (error) => {
         // Ici vous pourriez gérer les erreurs, comme afficher un message à l'utilisateur
         console.error('Error fetching publications:', error);

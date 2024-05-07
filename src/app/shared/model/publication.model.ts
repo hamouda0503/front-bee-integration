@@ -2,7 +2,7 @@ import { Comment } from './comment.model';
 import { User } from './user.model';
 export interface Publication {
   id?: string; // Optional because it may not be present when creating a new Publication
-  content: string;
+  content?: string;
   sujet?: string;
   createdAt?: Date;
   AmIevent?:number;
