@@ -7,12 +7,18 @@ import { SharedModule } from "../../../../shared/shared.module";
 //import { MaterialModule } from '../../../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { DefaultComponent } from './default/default.component';
+
+
 
 @NgModule({
   declarations: [
-    MyProjectComponent
+    MyProjectComponent,
+    DefaultComponent
   ],
   imports: [
+    NgApexchartsModule,
     CommonModule,
     MyProjectRoutingModule,
     SharedModule,
