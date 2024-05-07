@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild,Input } from '@angular/core';
 import { emailSentBarChart, monthlyEarningChart } from './data';
 import { ChartType } from './dashboard.model';
 import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
@@ -25,7 +25,8 @@ export class DefaultComponent implements OnInit {
   };
 
   isActive: string;
-
+  
+  @Input('projectID') projectID: string;
   @ViewChild('content') content;
   @ViewChild('center', { static: false }) center?: ModalDirective;
   constructor(private modalService: BsModalService, private configService: ConfigService, private eventService: EventService) {
