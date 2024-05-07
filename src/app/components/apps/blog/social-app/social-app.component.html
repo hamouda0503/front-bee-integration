@@ -8,7 +8,8 @@
         <div class="card hovercard text-center">
           <div class="cardheader socialheader"></div>
           <div class="user-image">
-            <!--<div class="avatar"><img alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" /></div>-->
+<!--            <div class="avatar"><img alt="" [src]="'assets/images/user/'+ currentUser.firstname + '.png'" /></div>-->
+            <div class="avatar"><img alt="" [src]=" currentUser.imageUrl " /></div>
             <div class="icon-wrapper">
               <i class="icofont icofont-pencil-alt-5"></i>
             </div>
@@ -31,7 +32,7 @@
               <li class="nav-item">
                 <div class="user-designation"></div>
                 <div class="title"><a target="_blank" href="">{{currentUser?.firstname}} {{currentUser?.lastname}}</a></div>
-                <div class="desc mt-2">general manager</div>
+                <div class="desc mt-2">{{currentUser.role}}</div>
               </li>
 
             </ul>
@@ -63,7 +64,7 @@
                       <p>{{ mostLikedPublication.content }}</p>
 
                     <h5>
-                      <span> <i class="fa fa-heart font-danger"></i>228</span>
+                      <span> <i class="fa fa-heart font-danger"></i>{{ mostLikedPublication.likes?.length || 0 }}</span>
                     </h5>
                   </div>
                   <div class="text-center">Most Liked Post</div>
