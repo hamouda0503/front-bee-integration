@@ -20,7 +20,7 @@
         </div>
         <div class="form-group mb-3">
           <label for="assigned-to">Project Name</label>
-          <select class="form-control" id="assigned-to-project" name="assignedTo" required [(ngModel)]="assignedToProject">
+          <select class="form-control" id="assigned-to-project" name="assignedToProject" required [(ngModel)]="assignedToProject">
             <option value="Choose Your Name">Choose Your Name</option>
             <option *ngFor="let pr of projects" [value]="pr.id">{{ pr.name }}</option>
           </select>

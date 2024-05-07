@@ -24,7 +24,7 @@ const routes: Routes = [
         component: KanbanComponent
       },
       {
-        path: 'boards/:userId/:id/:name',
+        path: 'boards/:projectId/:userId/:id/:name',
         component: KanbanSubtasksComponent
       },
       {

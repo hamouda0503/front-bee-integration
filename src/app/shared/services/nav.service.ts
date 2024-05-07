@@ -93,7 +93,26 @@ export class NavService implements OnDestroy {
       ],
     },
     { path: "/single-page", icon: "search", title: "Single Page",  active: false, type: "link", bookmark: true },
-    
+    // {
+    //   title: "Authentication",
+    //   type: "sub",
+    //   active: false,
+    //   children: [
+    //     { path: "/authentication/login/simple", title: "Login Simple", type: "link" },
+    //     { path: "/authentication/login/image-one", title: "Login Image 1", type: "link" },
+    //     { path: "/authentication/login/image-two", title: "Login Image 2", type: "link" },
+    //     { path: "/authentication/login/validation", title: "Login Validation", type: "link" },
+    //     { path: "/authentication/login/tooltip", title: "Login Tooltip", type: "link" },
+    //     { path: "/authentication/login/sweetalert", title: "Login Sweetalert", type: "link" },
+    //     { path: "/authentication/register/simple", title: "Register Simple", type: "link" },
+    //     { path: "/authentication/register/image-one", title: "Register Image 1", type: "link" },
+    //     { path: "/authentication/register/image-two", title: "Register Image 2", type: "link" },
+    //     { path: "/authentication/register/register-wizard", title: "Register wizard", type: "link" },
+    //     { path: "/authentication/unlock-user", title: "Unlock User", type: "link" },
+    //     { path: "/authentication/forgot-password", title: "Forgot Password", type: "link" },
+    //     { path: "/authentication/reset-password", title: "Reset Password", type: "link" },
+    //   ],
+    // },
     { path: "/tasks", title: "Tasks", icon: "task", type: "link", bookmark: true },
     {
       title: "Users",
@@ -172,18 +191,7 @@ export class NavService implements OnDestroy {
         { path: "/authentication/reset-password", title: "Reset Password", type: "link" },
       ],
     },
-    {
-      title: "Dashboards",
-      icon: "home",
-      type: "sub",
-      badgeType: "light-primary",
-      badgeValue: "5",
-      active: true,
-      children: [
-        { path: "/dashboard/default", title: "Default", type: "link" },
 
-      ],
-    },
   ];
 
   // Array

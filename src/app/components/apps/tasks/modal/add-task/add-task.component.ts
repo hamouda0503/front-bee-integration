@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
+import {Component, OnInit, OnDestroy, TemplateRef, PLATFORM_ID, Inject, ViewChild, Input} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -20,7 +20,7 @@ export class AddTaskComponent implements OnInit, OnDestroy {
   formattedDueDate:String;
   public tagsAsString: string = '';
   @ViewChild("addTask", { static: false }) AddTask: TemplateRef<any>;
-
+  @Input('projectID') projectID: string;
   public closeResult: string;
   public modalOpen: boolean = false;
   public task: Task = new Task(); // Initialisez une nouvelle instance de Task
@@ -177,7 +177,7 @@ export class AddTaskComponent implements OnInit, OnDestroy {
       });
     } else {
       // Si en mode ajout, appeler la méthode addTask pour ajouter une nouvelle tâche
-      this.taskService.addTask(this.task, firstName, lastname,'6638d37b34ee296c62c00643').subscribe({
+      this.taskService.addTask(this.task, firstName, lastname,this.projectID).subscribe({
         next: (addedTask) => {
           // Récupérer l'e-mail de l'utilisateur assigné depuis le résultat de l'ajout de la tâche
           const assignedUserEmail = addedTask.assignedUser.email;
