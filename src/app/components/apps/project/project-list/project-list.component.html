@@ -64,7 +64,7 @@
                     </div>
                   </div>
                 </div> -->
-                <div *ngFor="let project of projects"  class="col-xl-4 col-lg-6">
+                <div *ngFor="let project of projects" (click)="myProject(project.id)" class="col-xl-4 col-lg-6">
                   <div class="project-box"><span [ngClass]="getBadgeClass(project.status)">{{ project.status }}</span>
                     <h6 >{{ project.name }} </h6>
                     <div class="media"><img class="img-20 me-1 rounded-circle" [src]="project.ownerID.imageUrl" alt="" data-original-title="" title="">
@@ -99,17 +99,17 @@
                       <div class="progress" style="height: 5px">
                         <div [ngClass]="getBarClass(project.status)" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      
+
                       <div class="project-actions mt-2">
                         <div class="d-flex justify-content-end" >
                           <button *ngIf="currentUserRole === 'INVESTOR'"  class="btn btn-sm btn-success me-2" (click)="AddInvestment.openModal()">Invest</button>
-                          <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-success me-2" (click)="myProject(project.id)">Dashboard</button>
+                          <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-success me-2" (click)="goToTasks(project.id)">Tasks</button>
                         <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-primary me-2" (click)="updateProject(project.id)">Edit</button>
                         <button *ngIf="currentUserId === project.ownerID.id" class="btn btn-sm btn-danger" (click)="deleteProject(project)">Delete</button>
                         </div>
                         <app-add-investment #AddInvestment [projectID]="project.id" ></app-add-investment>
                     </div>
-                    
+
                     </div>
                   </div>
                 </div>

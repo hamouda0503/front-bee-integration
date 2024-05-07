@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TasksService} from "../../../shared/services/tasks.service";
 import {Task} from "../../../shared/model/Task";
 
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -19,12 +20,13 @@ import {Task} from "../../../shared/model/Task";
 })
 export class TasksComponent implements OnInit {
   private modalRef: NgbModalRef;
+
   @ViewChild("addTask") AddTask: AddTaskComponent;
   @ViewChild("createTag") CreateTag: CreateTagComponent;
   tasks: Task[] = []; // Pour stocker les tâches récupérées
   tags: string[] = [];
   task: Task; // Déclarez la variable task
-
+projectId: string;
   platformId: Object; // Déclarez la variable platformId
   modalOpen: boolean = false;
   closeResult: string;
@@ -44,7 +46,9 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this.getTasks(); // Appelez la méthode getTasks lors de l'initialisation du composant
     this.getUniqueTags();
-
+    this.route.params.subscribe(params => {
+      this.projectId = params['projectid'];
+    });
   }
 
 
@@ -52,7 +56,7 @@ export class TasksComponent implements OnInit {
 
   // Méthode pour récupérer les tâches depuis le service
   getTasks(): void {
-    this.tasksService.getTasksByProject('6638d37b34ee296c62c00643').subscribe({
+    this.tasksService.getTasksByProject(this.projectId).subscribe({
       next: (tasks) => {
         this.tasks = tasks; // Mettez à jour la liste des tâches avec celles récupérées depuis le service
       },
