@@ -23,6 +23,16 @@ import { Revenue } from '../model/revenue.model';
         const headers = this.userService.getHeaders();  
         return this.http.post<Revenue>(this.revenueUrl+ "/" + projectId , revenue, { headers });
       }
+
+      deleteExpense(expenseId: string): Observable<any> {
+        const headers = this.userService.getHeaders();  
+        return this.http.delete(this.expenseUrl+ "/" + expenseId , { headers });
+      }
+      deleteRevenue(revenueId: string): Observable<any> {
+          const headers = this.userService.getHeaders();  
+          return this.http.delete(this.revenueUrl+ "/" + revenueId, { headers });
+        }
+        
       getExpensesByProjectId(projectId: string): Observable<Expense[]> {
         const headers = this.userService.getHeaders();
         const url = `${this.expenseUrl}/expensesbyproject/${projectId}`;
@@ -32,6 +42,11 @@ import { Revenue } from '../model/revenue.model';
         const headers = this.userService.getHeaders();
         const url = `${this.revenueUrl}/revenuesbyproject/${projectId}`;
         return this.http.get<Revenue[]>(url, { headers });
+      }
+      getProfitByProjectId(projectId: string): Observable<number> {
+        const headers = this.userService.getHeaders();
+        const url = `${this.revenueUrl}/profitbyproject/${projectId}`;
+        return this.http.get<number>(url, { headers });
       }
   
   }

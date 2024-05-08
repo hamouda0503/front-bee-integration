@@ -1,0 +1,20 @@
+<ng-template #editrole let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit Role</h5>
+    <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form class="form-bookmark needs-validation" id="bookmark-form" novalidate="">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="role-select">Select Role</label>
+          <select class="form-control" id="role-select" [(ngModel)]="selectedRole">
+            <option *ngFor="let role of memberRoles" [value]="role">{{role}}</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-secondary me-1" id="Save" (click)="saveRole()" type="submit">Save</button>
+      <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Cancel</button>
+    </form>
+  </div>
+</ng-template>

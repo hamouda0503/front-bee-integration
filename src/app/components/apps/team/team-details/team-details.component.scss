@@ -1,0 +1,53 @@
+
+
+.card.social-profile {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 18rem; /* Adjust the width of the card */
+  background-image: none; /* Remove the overlay */
+  margin: 10px; /* Add some margin to create space between the cards */
+}
+
+.card.social-profile:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.social-img-wrap {
+  position: relative;
+  width: 100px; /* Adjust the width of the image */
+  height: 100px; /* Adjust the height of the image */
+  margin: 0 auto; /* Center the image */
+}
+
+.social-img {
+  width: 100%;
+  height: 100%;
+}
+
+.social-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+.card-footer button {
+  margin-right: 8px; /* Adjust as needed */
+}
+button.badge-light-primary:hover {
+  background-color: #212121;
+}
+.team-creation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 20px;
+}

@@ -61,10 +61,18 @@ import {MatRadioModule} from '@angular/material/radio';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {MatSliderModule} from '@angular/material/slider';
 // import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 /*chaima*/
 import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
+/*arsi*/
+import { EditRoleComponent } from './components/apps/team/edit-role/edit-role.component';
+import { TeamDetailsComponent } from './components/apps/team/team-details/team-details.component';
+import { RemoveMemberComponent } from './components/apps/team/remove-member/remove-member.component';
+import { CreateTeamComponent } from './components/apps/team/create-team/create-team.component';
+import { UpdateTeamComponent } from './components/apps/team/update-team/update-team.component';
+import { ShowJoinURLComponent } from './components/apps/chat/show-join-url/show-join-url.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +81,13 @@ import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
     RegisterComponent,
     ForgotPasswordComponent,
     UnlockUserComponent,
-    BeeBotComponent
+    BeeBotComponent,
+    EditRoleComponent,
+    TeamDetailsComponent,
+    RemoveMemberComponent,
+    CreateTeamComponent,
+    UpdateTeamComponent,
+    ShowJoinURLComponent,
 
   ],
   imports: [
@@ -82,6 +96,7 @@ import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
     NgSelectModule,
     CdkStepperModule,
     CarouselModule,
+    MatDialogModule,
     MatExpansionModule,
     NgbAccordionModule,
     NgbModule,

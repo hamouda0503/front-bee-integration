@@ -1,0 +1,84 @@
+<app-breadcrumb [title]="'Profile'" [items]="['Apps', 'User']" [active_item]="'Profile'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="user-profile">
+    <div class="row">
+      <!-- user profile first-style start-->
+      <div class="col-sm-12">
+        <div class="card hovercard text-center">
+          <div class="cardheader" [style.background-image]="'url(' + team?.coverImage + ')'"></div>
+          <div class="user-image">
+            <div class="avatar"><img alt="" src="{{team?.teamImage}}" /></div>
+            <div class="icon-wrapper">
+              <i (click)="openUpdateTeamModal(team)" class="icofont icofont-pencil-alt-5"></i>
+            </div>
+          </div>
+          <div class="info">
+            <div class="row">
+              <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="ttl-info text-start">
+                      <h6><i class="fa fa-envelope"></i> Team Owner Email</h6>
+                      <span>{{team?.teamOwnerEmail}}</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="ttl-info text-start">
+                      <h6><i class="fa fa-calendar"></i> Date Created</h6>
+                      <span>{{team?.dateCreated | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
+                <div class="user-designation">
+                  <div class="title"><a target="_blank" href="/user/profile">{{team?.name}}</a></div>
+                  <div class="desc mt-2">TEAM</div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="ttl-info text-start">
+                      <h6><i class="fa fa-align-left"></i> Description</h6>
+                      <span>{{team?.description}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="social-media">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://myaccount.google.com/"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://dashboard.rss.com/auth/sign-in/"><i class="fa fa-rss"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="follow">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="follow-num">{{team?.members?.length}}</div>
+                  <span>Team Members</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
