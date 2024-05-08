@@ -18,6 +18,10 @@ export const content: Routes = [
     loadChildren: () => import("../../components/apps/chat/chat.module").then((m) => m.ChatModule),
   },
   {
+    path: "team",
+    loadChildren: () => import("../../components/apps/team/users.module").then((m) => m.UsersModule),
+  },
+  {
     path: "beechat",
     loadChildren: () => import("../../components/apps/chabot/chabot.module").then((m) => m.ChabotModule),
   },

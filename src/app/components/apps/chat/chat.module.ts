@@ -7,9 +7,13 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ChatRoutingModule } from './chat-routing.module';
 
 import { ChatComponent } from './chat/chat.component';
+import { ChatboxAddModalComponent } from './chatbox-add-modal/chatbox-add-modal.component';
+import { RerouteafterjoinComponent } from './rerouteafterjoin/rerouteafterjoin.component';
+
+
 
 @NgModule({
-  declarations: [ChatComponent],
+  declarations: [ChatComponent, ChatboxAddModalComponent, RerouteafterjoinComponent],
   imports: [
     CommonModule,
     FormsModule,

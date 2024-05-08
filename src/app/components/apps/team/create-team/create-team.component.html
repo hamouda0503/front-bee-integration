@@ -1,0 +1,51 @@
+<ng-template #createTeam let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+    <button class="btn-close" type="button" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="teamForm" class="form-bookmark needs-validation" id="bookmark-form" novalidate="">
+      <div class="mb-3">
+        <label for="teamName">Team Name</label>
+        <input type="text" class="form-control" id="teamName" formControlName="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="teamDescription">Team Description</label>
+        <textarea class="form-control" id="teamDescription" formControlName="description" rows="3" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label>Upload Team Image</label>
+        <label class="btn btn-default p-0">
+          <input type="file" (change)="selectFile1($event)" />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Upload Team Cover Image</label>
+        <label class="btn btn-default p-0">
+          <input type="file" (change)="selectFile2($event)" />
+        </label>
+      </div>
+      <button class="btn btn-secondary me-1" id="Save" (click)="createTeamm ()" type="submit">Save</button>
+      <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Cancel</button>
+    </form>
+  </div>
+</ng-template>
+<style>
+  .ngx-dropzone {
+  border: dashed 2px #ff0000;
+  border-radius: 5px;
+  background: #550000;
+  max-height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.ngx-dropzone-preview {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+}
+
+</style>

@@ -1,95 +1,69 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ChatDB } from '../../shared/data/chat/chat';
-import { chat, ChatUsers } from '../model/chat.model';
-
-var today = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+import { Observable } from 'rxjs';
+import { Conversation } from '../model/chatbox/conversation.model';
+import { ConversationType } from '../model/chatbox/conversation-type.enum';
+import { UserService } from './user.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  baseUrl = 'http://localhost:8080/api/conversations';
+  authToken: string = this.storageservice.getAccessToken();
+  headers:HttpHeaders = this.userservice.getHeaders();
 
-  public observer: Subscriber<{}>;
-  public chat: any[] = []
-  public users: any[] = []
+  constructor(private http: HttpClient, private userservice: UserService, private storageservice: StorageService) { }
 
-  constructor() {
-    this.chat = ChatDB.chat
-    this.users = ChatDB.chatUser
-  }
-
-  // Get User Data
-  public getUsers(): Observable<ChatUsers[]> {
-    const users = new Observable(observer => {
-      observer.next(this.users);
-      observer.complete();
+  createConversation(conversationData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/create`, conversationData, {
+      headers: { 'enctype': 'multipart/form-data', "Authorization": `Bearer ${this.authToken}` }
     });
-    return <Observable<ChatUsers[]>>users;
   }
 
-  // Get cuurent user
-  public getCurrentUser() {
-    return this.getUsers().pipe(map(users => {
-      return users.find((item) => {
-        return item.authenticate === 0;
-      });
-    }));
+  joinConversation(conversationId: string): Observable<Conversation> {
+    return this.http.get<Conversation>(`${this.baseUrl}/join/${conversationId}`, { headers : this.headers });
   }
 
-  // chat to user
-  public chatToUser(id: number) {
-    return this.getUsers().pipe(map(users => {
-      return users.find((item) => {
-        return item.id === id;
-      });
-    }));
+  leaveConversation(conversationId: string): Observable<Conversation> {
+    return this.http.post<Conversation>(`${this.baseUrl}/leave/${conversationId}`,  { headers : this.headers });
   }
 
-  // Get users chat
-  public getUserChat(): Observable<chat[]> {
-    const chat = new Observable(observer => {
-      observer.next(this.chat);
-      observer.complete();
-    });
-    return <Observable<chat[]>>chat;
+  addUser(conversationId: string, userId: number): Observable<Conversation> {
+    return this.http.post<Conversation>(`${this.baseUrl}/add/${conversationId}/${userId}`,  { headers : this.headers });
   }
 
-  // Get chat History
-  public getChatHistory(id: number) {
-    return this.getUserChat().pipe(map(users => {
-      return users.find((item) => {
-        return item.id === id;
-      });
-    }));
+  kickUser(conversationId: string, userId: number): Observable<Conversation> {
+    return this.http.post<Conversation>(`${this.baseUrl}/kick/${conversationId}/${userId}`,  { headers : this.headers });
   }
 
-  // Send Message to user
-  public sendMessage(chat) {
-    this.chat.filter(chats => {
-      if (chats.id == chat.receiver) {
-        chats.message.push({ sender: chat.sender, time: today.toLowerCase(), text: chat.message })
-        setTimeout(function () {
-          document.querySelector(".chat-history").scrollBy({ top: 200, behavior: 'smooth' });
-        }, 310)
-        this.responseMessage(chat)
-      }
-    })
+  promoteUser(conversationId: string, userId: number): Observable<Conversation> {
+    return this.http.post<Conversation>(`${this.baseUrl}/promote/${conversationId}/${userId}` ,  { headers : this.headers });
   }
 
-  public responseMessage(chat) {
+  demoteUser(conversationId: string, userId: number): Observable<Conversation> {
+    return this.http.post<Conversation>(`${this.baseUrl}/demote/${conversationId}/${userId}`, { headers : this.headers });
+  }
 
-    this.chat.filter(chats => {
-      if (chats.id == chat.receiver) {
-        setTimeout(() => {
-          chats.message.push({ sender: chat.receiver, time: today.toLowerCase(), text: 'Hey This is ' + chat.receiver_name + ', Sorry I busy right now, I will text you later' })
-        }, 2000);
-        setTimeout(function () {
-          document.querySelector(".chat-history").scrollBy({ top: 200, behavior: 'smooth' });
-        }, 2310)
-      }
-    })
+  getConversation(conversationId: string): Observable<Conversation> {
+    return this.http.get<Conversation>(`${this.baseUrl}/${conversationId}`, { headers : this.headers });
+  }
+
+  updateConversation(conversationId: string, conversation: Conversation): Observable<Conversation> {
+    return this.http.put<Conversation>(`${this.baseUrl}/update/${conversationId}`, conversation ,  { headers : this.headers });
+  }
+
+  deleteConversation(conversationId: string): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/delete/${conversationId}` ,  { headers : this.headers });
+  }
+
+  getAllConversations(): Observable<Conversation[]> {
+    return this.http.get<Conversation[]>(`${this.baseUrl}/all` ,  { headers : this.headers });
+  }
+
+  searchConversations(search: string): Observable<Conversation[]> {
+    return this.http.post<Conversation[]>(`${this.baseUrl}/search`, search ,  { headers : this.headers });
   }
 
 }
