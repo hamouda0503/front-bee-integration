@@ -86,7 +86,7 @@ const monthlyEarningChart: ChartType = {
     stroke: {
         dashArray: 4,
     },
-    series: [50.5],
+    series: [100],
     labels: ['Profits'],
 };
 const monthlyEarningChart2: ChartType = {
@@ -131,7 +131,7 @@ const monthlyEarningChart2: ChartType = {
     stroke: {
         dashArray: 4,
     },
-    series: [69],
+    series: [100],
     labels: ['Funding'],
 };
 

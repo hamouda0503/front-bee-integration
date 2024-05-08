@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TeamService } from '../../../../shared/services/team.service';
 import { Member } from '../../../../shared/model/member.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { MemberService } from '../../../../shared/services/member.service';
 import { EditRoleComponent } from "../../../../components/apps/team/edit-role/edit-role.component";
 import { CreateTeamComponent } from "../../../../components/apps/team/create-team/create-team.component";
@@ -30,6 +30,7 @@ export class TeamDetailsComponent implements OnInit, AfterViewInit {
   userId: string;
   team:Team;
   member:Member;
+  projectId: string;
   isManager: boolean = false;
   private roleUpdatedSubscription: Subscription; // Add this line
 
@@ -40,8 +41,13 @@ export class TeamDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild(EditRoleComponent) EditRole: EditRoleComponent;
   @ViewChild(UpdateTeamComponent) update: UpdateTeamComponent;
 
-  constructor(private teamService: TeamService, private router: Router, private memberService: MemberService, private storageservice: StorageService, private modalService: ModalService) { } // Inject the ModalService
+  constructor(    private route: ActivatedRoute,
+    private teamService: TeamService, private router: Router, private memberService: MemberService, private storageservice: StorageService, private modalService: ModalService) { } // Inject the ModalService
   ngOnInit(): void {
+     this.route.params.subscribe(params => {
+      this.projectId = params['projectId'];
+
+    });
     const currentUser = this.storageservice.getUser();
     this.userId = currentUser.id;
 

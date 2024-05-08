@@ -35,14 +35,15 @@ export class DetailsComponent implements OnInit {
 
 
   fetchRandomQuote() {
-    this.http.get<any>('https://api.quotable.io/random', { withCredentials: false }).subscribe(
+    this.http.get<any>('https://api.quotable.io/random', { withCredentials: true }).subscribe(
       {
         next: (quote) => {
           this.quote = quote.content + ' - ' + quote.author;
         },
         error: (err) => console.error('Error fetching storage', err)
       });
-      }
+  }
+  
      
   
   loadPublications(): void {
