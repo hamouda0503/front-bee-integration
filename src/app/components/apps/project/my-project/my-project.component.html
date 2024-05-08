@@ -23,5 +23,5 @@
     </div>
   </div>
 </div>
-<app-add-transaction #AddTransaction [projectID]="projectId" ></app-add-transaction>
+<app-add-transaction #AddTransaction [projectID]="projectId" (transactionAdded)="updateDash()" ></app-add-transaction>
 

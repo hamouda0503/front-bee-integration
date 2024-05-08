@@ -19,6 +19,7 @@ export class MyProjectComponent implements OnInit  {
   private routeSub: Subscription;
   project: Project = new Project();
   projectStorage: Storage;
+  reinitializeAppDefault: boolean = true;
 
 
   constructor(
@@ -35,6 +36,12 @@ export class MyProjectComponent implements OnInit  {
 
     });
     console.log("My Project Id: "+ this.projectId);
+  }
+  updateDash()
+  {
+   this.reinitializeAppDefault= false;
+   this.reinitializeAppDefault= true;
+
   }
   manageFiles(): void {
     this.router.navigate(['/project/file-manager', this.projectId]);
