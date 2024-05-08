@@ -112,10 +112,12 @@ import { StorageService } from "../../../shared/services/storage.service";
   styleUrls: ['./kanban.component.scss']
 })
 export class KanbanComponent implements OnInit {
+
   kanbanList: Board[];
   userId:string;
   paramUser:string;
   currentUser:string;
+  projectId: string;
   @ViewChild("kanbanBoardComponent") kanbanBoardComponent: KanbanBoardComponent;
 
   constructor(
@@ -132,7 +134,7 @@ export class KanbanComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userId = params['userId'];
       this.paramUser= params['userId'];
-      // Obtenez l'ID de l'utilisateur connecté à partir du service AuthenticationService
+      this.projectId=params['projectId']     // Obtenez l'ID de l'utilisateur connecté à partir du service AuthenticationService
      /* this.tasksService.getCurrentUser().subscribe(
         (user) => {
          // this.currentUser = user.id; // Suppose que vous avez une propriété 'id' dans votre objet User
@@ -156,7 +158,7 @@ export class KanbanComponent implements OnInit {
       this.userId = this.currentUser;
     }
     // Chargez les "boards" en fonction de l'ID de l'utilisateur
-    this.getKanbanList(this.userId);
+    this.getKanbanList(this.userId,this.projectId);
   }
 
   routeToBoard(id: string, name: string) {
@@ -165,7 +167,7 @@ export class KanbanComponent implements OnInit {
       this.router.navigate(['kanban/kanbans', id, name]);
     } else {
       // Sinon, naviguer vers la deuxième route
-      this.router.navigate(['tasks/boards', this.paramUser, id, name]);
+      this.router.navigate(['tasks/boards/',this.projectId, this.paramUser, id, name]);
     }
 
 
@@ -182,8 +184,8 @@ export class KanbanComponent implements OnInit {
   //     }
   //   );
   // }
-  getKanbanList(userId: string): void {
-    this.tasksService.getBoardsByUserId(userId).subscribe(
+  getKanbanList(userId: string,projectId:string): void {
+    this.tasksService.getBoardsByUserId(userId,projectId).subscribe(
       (boards: Board[]) => {
         this.kanbanList = boards;
       },
@@ -192,7 +194,7 @@ export class KanbanComponent implements OnInit {
         this.toastr.error('Failed to fetch kanban list.', 'Error');
       }
     );
-  }
+    console.log("projet:"+this.projectId)  }
 
 
   openDialogForNewKanban(): void {

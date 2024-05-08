@@ -9,32 +9,32 @@ import {CalenderComponent} from "../calender/calender.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     children: [
-
+      // {
+      //   path: '',
+      //   component: TasksComponent
+      // },
       {
-        path: ':projectid',
+        path: ":projectid",
         component: TasksComponent
       },
       {
-        path : 'boards/:userId',
+        path : ":projectId/boards/:userId",
         component: KanbanComponent
       },
       {
-        path: 'boards/:userId/:id/:name',
+        path: "boards/:projectId/:userId/:id/:name",
         component: KanbanSubtasksComponent
       },
       {
-        path: 'dashboard',
+        path: "dashboard",
         component: TaskChartComponent
       },
       {
-        path: 'calender',
+        path: "calender",
         component: CalenderComponent
       }
-
-
-
     ]
   }
 ];

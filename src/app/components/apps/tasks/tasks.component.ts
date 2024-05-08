@@ -10,7 +10,10 @@ import { saveAs } from 'file-saver';
 import {ConfirmationModalComponent} from "./confirmation-modal/confirmation-modal.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TasksService} from "../../../shared/services/tasks.service";
+import {StorageService} from "../../../shared/services/storage.service";
 import {Task} from "../../../shared/model/Task";
+import {User} from "../../../shared/model/user.model";
+import {task} from "../../../shared/data/todo/todo";
 
 
 @Component({
@@ -20,20 +23,22 @@ import {Task} from "../../../shared/model/Task";
 })
 export class TasksComponent implements OnInit {
   private modalRef: NgbModalRef;
-
+  currentUser: User;
   @ViewChild("addTask") AddTask: AddTaskComponent;
   @ViewChild("createTag") CreateTag: CreateTagComponent;
   tasks: Task[] = []; // Pour stocker les tâches récupérées
   tags: string[] = [];
   task: Task; // Déclarez la variable task
-projectId: string;
+  projectId: string;
   platformId: Object; // Déclarez la variable platformId
   modalOpen: boolean = false;
   closeResult: string;
 
 
+
   constructor(
     private tasksService: TasksService,
+    private storageService: StorageService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
@@ -44,10 +49,14 @@ projectId: string;
   }
 
   ngOnInit() {
-    this.getTasks(); // Appelez la méthode getTasks lors de l'initialisation du composant
-    this.getUniqueTags();
     this.route.params.subscribe(params => {
       this.projectId = params['projectid'];
+      this.currentUser = this.storageService.getUser();
+      this.getTasks(); // Appelez la méthode getTasks lors de l'initialisation du composant
+      this.getUniqueTags();
+
+      console.log('hhhh'+this.projectId);
+      this.getTasks();
     });
   }
 
@@ -68,10 +77,10 @@ projectId: string;
 
   routeToDashboard() {
 
-      // Si userId est null, naviguer vers la première route
-      this.router.navigate(['/tasks/dashboard']);
+    // Si userId est null, naviguer vers la première route
+    this.router.navigate(['/tasks/dashboard']);
 
-    }
+  }
   routeToCalendar(){
     this.router.navigate(['/calender']);
 
@@ -119,8 +128,13 @@ projectId: string;
   }
 
   // Dans TasksComponent
+  fonction(userId: string){
+    this.router.navigate(['tasks/', this.projectId, 'boards',userId]);
+  };
+
+
   generatePDF(): void {
-    this.tasksService.downloadPDF();
+    this.tasksService.downloadPDF(this.currentUser.firstname+" "+this.currentUser.lastname);
   }
 
   filterTasksByTag(tag: string): void {
@@ -149,7 +163,6 @@ projectId: string;
     const modalRef = this.modalService.open(RatingPopupComponent, { size: 'sm' }); // Ouvre la popup de notation
     modalRef.componentInstance.task = task; // Passe la tâche à la popup
   }
-
 
 
 

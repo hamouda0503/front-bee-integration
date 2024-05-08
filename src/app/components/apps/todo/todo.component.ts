@@ -8,6 +8,7 @@ import {TasksService} from "../../../shared/services/tasks.service";
 
 import {Task} from "../../../shared/model/Task";
 import {User} from "../../../shared/model/User";
+import {StorageService} from "../../../shared/services/storage.service";
 
 @Component({
   selector: "app-todo",
@@ -31,19 +32,21 @@ export class TodoComponent implements OnInit {
     private tasksService: TasksService,
     private toastr: ToastrService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
+    this.currentUser = this.storageService.getUser();
     this.getTasks(); // Appelle la méthode getTasks() au chargement du composant,
-    this.getCurrentUser();
+
 
   }
 
 
 
   getTasks(): void {
-    this.tasksService.getUserTasks().subscribe({
+    this.tasksService.getUserTasks(this.currentUser.id).subscribe({
       next: (tasks) => {
         console.log(tasks); // Affiche les données récupérées dans la console pour vérification
         this.todos = tasks; // Met à jour la liste des tâches avec celles récupérées depuis le service
@@ -88,7 +91,7 @@ export class TodoComponent implements OnInit {
     });
 
     // Appeler le service pour mettre à jour toutes les tâches de l'utilisateur
-    this.tasksService.updateAllUserTasksAsDone().subscribe(
+    this.tasksService.updateAllUserTasksAsDone(this.currentUser.id).subscribe(
       (updatedTasks) => {
         console.log('Tâches mises à jour avec succès:', updatedTasks);
         // Mettre à jour la variable completed
@@ -110,7 +113,7 @@ export class TodoComponent implements OnInit {
     return this.todos.every(task => task.status === 'Done');
   }
   filterTasksByStatus(status: string): void {
-    this.tasksService.getTasksByStatus(status).subscribe(
+    this.tasksService.getTasksByStatus(status,this.currentUser.id).subscribe(
       tasks => {
         this.todos = tasks;
         // Mettre à jour les compteurs de tâches terminées et en attente

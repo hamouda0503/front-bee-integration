@@ -92,7 +92,7 @@ export class TasksService {
 
 
 
-  downloadPDF(): void {
+  downloadPDF(username:String): void {
     const httpOptions = {
       responseType: 'blob' as 'json', // Indiquez que la réponse est de type blob (pour le téléchargement de fichier)
       headers: new HttpHeaders({
@@ -100,7 +100,7 @@ export class TasksService {
       })
     };
 
-    this.http.get(`${this.apiUrl}/generate-pdf`, httpOptions)
+    this.http.get(`${this.apiUrl}/generate-pdf/${username}`, httpOptions)
       .subscribe((response: Blob) => {
         saveAs(response, 'tasks.pdf');
       });
@@ -163,16 +163,7 @@ export class TasksService {
     return this.http.put(url, null, httpOptions); // Inclure la tâche dans la requête
   }
 
-  updateSubTask(idSubTask: string, description: string, idTask: string): Observable<any> {
-    const url = `${this.apiUrl}/updateSubTask/${idSubTask}/${description}/${idTask}`;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.token}`
-      })
-    };
 
-    return this.http.put(url, null, httpOptions);
-  }
 
 
 
@@ -221,8 +212,8 @@ export class TasksService {
         creationDate: task.creationDate,
         estimatedDuration: task.estimatedDuration,
         assignedUser: {
-          firstName: task.assignedUser.firstName,
-          lastName: task.assignedUser.lastName
+          firstname: task.assignedUser.firstname,
+          lastname: task.assignedUser.lastname
         }
       }
     };
@@ -300,6 +291,21 @@ export class TasksService {
 
     // Envoi de la demande avec les en-têtes
     return this.http.post<Subtask>(url, formData, { headers });
+  }
+
+  updateSubTask(idSubTask: string, description: string, idTask: string,image?: File): Observable<any> {
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('description',description);
+    const url = `${this.apiUrl}/updateSubTask/${idSubTask}/${description}/${idTask}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    };
+
+    return this.http.put(url, formData, httpOptions);
   }
 
 
@@ -395,14 +401,14 @@ export class TasksService {
       );
   }
 
-  getUserTasks(): Observable<Task[]> {
+  getUserTasks(idUser:String): Observable<Task[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     };
 
-    return this.http.get<Task[]>(`${this.apiUrl}/user-tasks`, httpOptions).pipe(
+    return this.http.get<Task[]>(`${this.apiUrl}/user-tasks/${idUser}`, httpOptions).pipe(
       catchError(error => {
         console.error('Erreur lors de la récupération des tâches de l\'utilisateur :', error);
         return throwError('Erreur lors de la récupération des tâches de l\'utilisateur.');
@@ -428,14 +434,14 @@ export class TasksService {
     );
   }
 
-  updateAllUserTasksAsDone(): Observable<Task[]> {
+  updateAllUserTasksAsDone(idUser:String): Observable<Task[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     };
 
-    return this.http.put<Task[]>(`${this.apiUrl}/updateTasksForLoggedInUser`, {}, httpOptions)
+    return this.http.put<Task[]>(`${this.apiUrl}/updateTasksForLoggedInUser/${idUser}`, {}, httpOptions)
       .pipe(
         catchError(error => {
           console.error('Erreur lors de la mise à jour des tâches de l\'utilisateur :', error);
@@ -446,7 +452,7 @@ export class TasksService {
 
 
 
-  getTasksByStatus(status: string): Observable<Task[]> {
+  getTasksByStatus(status: string,idUser:String): Observable<Task[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`,
@@ -454,7 +460,7 @@ export class TasksService {
       })
     };
 
-    const url = `${this.apiUrl}/status/${status}`;
+    const url = `${this.apiUrl}/status/${status}/${idUser}`;
 
     return this.http.get<Task[]>(url, httpOptions).pipe(
       catchError(error => {
@@ -570,8 +576,8 @@ export class TasksService {
 
 
         assignedUser: {
-          firstName: task.assignedUser.firstName,
-          lastName: task.assignedUser.lastName
+          firstname: task.assignedUser.firstname,
+          lastname: task.assignedUser.lastname
         },
 
       },
@@ -608,8 +614,8 @@ export class TasksService {
 
 
           assignedUser: {
-            firstName: task.assignedUser.firstName,
-            lastName: task.assignedUser.lastName
+            firstname: task.assignedUser.firstname,
+            lastname: task.assignedUser.lastname
           },
 
         },
@@ -628,18 +634,18 @@ export class TasksService {
   }
 
 
-  getBoardsByUserId(userId: string): Observable<Board[]> {
+  getBoardsByUserId(userId: string,projectId: string): Observable<Board[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     };
 
-    return this.http.get<Board[]>(`${this.apiUrl}/getAllBoardsByUser/${userId}`, httpOptions);
+    return this.http.get<Board[]>(`${this.apiUrl}/getAllBoardsByUser/${userId}/${projectId}`, httpOptions);
   }
 
 
-  addBoard(board:Board, firstName: string, lastName: string): Observable<Board> {
+  addBoard(board:Board, firstName: string, lastName: string,idProject:string): Observable<Board> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`,
@@ -648,7 +654,7 @@ export class TasksService {
     };
 
     // Include firstName and lastName in the URL
-    return this.http.post<Board>(`${this.apiUrl}/addBoard/${firstName}/${lastName}`, board, httpOptions);
+    return this.http.post<Board>(`${this.apiUrl}/addBoard/${firstName}/${lastName}/${idProject}`, board, httpOptions);
   }
 
   getTasksByProject(projectId: string): Observable<Task[]> {

@@ -70,8 +70,8 @@
           </div>
 
           <div class="px-3 pt-2 pb-2">
-            <h3>{{ track.trackName }}</h3>
-            <h3>{{ track.artistName }}</h3>
+            <p>{{ track.trackName }}</p>
+            <p>{{ track.artistName }}</p>
 
             <a
               [attr.data-spotify-id]="track.musicUri"
@@ -91,3 +91,4 @@
 <div class="col-sm-12 text-center mt-4">
   <div class="frame" id="embed-iframe"></div>
 </div>
+

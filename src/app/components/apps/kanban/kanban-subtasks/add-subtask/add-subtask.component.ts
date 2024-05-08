@@ -74,7 +74,7 @@ export class AddSubtaskComponent implements OnInit {
       );
     } else if (this.mode === 'update' && this.subtaskToUpdate) {
       // Assuming you have an updateSubTask method in your TasksService
-      this.taskService.updateSubTask(this.subtaskToUpdate.id, this.subtaskDescription, this.selectedTaskId).subscribe(
+      this.taskService.updateSubTask(this.subtaskToUpdate.id, this.subtaskDescription, this.selectedTaskId,this.currentFile).subscribe(
         (updatedSubtask) => {
           this.toastr.success('Subtask updated successfully.');
           this.activeModal.close();

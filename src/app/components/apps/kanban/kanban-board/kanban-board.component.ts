@@ -57,7 +57,7 @@ export class KanbanBoardComponent implements OnInit {
     const [firstName, lastName] = this.assignedTo.split(' ');
 
 
-    this.taskService.addBoard(this.board, firstName, lastName).subscribe({
+    this.taskService.addBoard(this.board, firstName, lastName,this.assignedToProject).subscribe({
       next: (addedBoard) => {
         // Afficher un toast pour indiquer que le tableau a été créé avec succès
         this.toastr.success('Board was successfully created', 'Success');

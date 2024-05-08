@@ -93,7 +93,7 @@ export class NavService implements OnDestroy {
       ],
     },
     { path: "/single-page", icon: "search", title: "Single Page",  active: false, type: "link", bookmark: true },
-    
+
     { path: "/tasks", title: "Tasks", icon: "task", type: "link", bookmark: true },
     {
       title: "Users",
@@ -109,6 +109,13 @@ export class NavService implements OnDestroy {
     {
       path: "/chat",
       title: "Chat",
+      icon: "chat",
+      type: "link",
+      bookmark: true,
+    },
+    {
+      path: "/beechat",
+      title: "bee bee",
       icon: "chat",
       type: "link",
       bookmark: true,
