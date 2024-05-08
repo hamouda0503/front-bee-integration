@@ -133,7 +133,8 @@
                                 </td>
                                 <td>
                                   <div *ngIf="task.status === 'Done'" class="rating">
-                                    <button class="btn btn-primary" [routerLink]="['boards', task.assignedUser.id]">Check</button>
+
+                                    <button class="btn btn-primary" (click)="fonction(task.assignedUser.id) ">Check</button>
                                   </div>
                                 </td>
 

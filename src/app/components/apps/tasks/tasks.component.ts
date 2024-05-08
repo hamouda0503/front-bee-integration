@@ -13,6 +13,7 @@ import {TasksService} from "../../../shared/services/tasks.service";
 import {StorageService} from "../../../shared/services/storage.service";
 import {Task} from "../../../shared/model/Task";
 import {User} from "../../../shared/model/user.model";
+import {task} from "../../../shared/data/todo/todo";
 
 
 @Component({
@@ -28,7 +29,7 @@ export class TasksComponent implements OnInit {
   tasks: Task[] = []; // Pour stocker les tâches récupérées
   tags: string[] = [];
   task: Task; // Déclarez la variable task
-projectId: string;
+  projectId: string;
   platformId: Object; // Déclarez la variable platformId
   modalOpen: boolean = false;
   closeResult: string;
@@ -50,11 +51,11 @@ projectId: string;
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.projectId = params['projectid'];
-this.currentUser = this.storageService.getUser();
-    this.getTasks(); // Appelez la méthode getTasks lors de l'initialisation du composant
-    this.getUniqueTags();
+      this.currentUser = this.storageService.getUser();
+      this.getTasks(); // Appelez la méthode getTasks lors de l'initialisation du composant
+      this.getUniqueTags();
 
-      console.log(this.projectId);
+      console.log('hhhh'+this.projectId);
       this.getTasks();
     });
   }
@@ -64,7 +65,7 @@ this.currentUser = this.storageService.getUser();
 
   // Méthode pour récupérer les tâches depuis le service
   getTasks(): void {
-    this.tasksService.getTasksByProject('6638d37b34ee296c62c00643').subscribe({
+    this.tasksService.getTasksByProject(this.projectId).subscribe({
       next: (tasks) => {
         this.tasks = tasks; // Mettez à jour la liste des tâches avec celles récupérées depuis le service
       },
@@ -76,10 +77,10 @@ this.currentUser = this.storageService.getUser();
 
   routeToDashboard() {
 
-      // Si userId est null, naviguer vers la première route
-      this.router.navigate(['/tasks/dashboard']);
+    // Si userId est null, naviguer vers la première route
+    this.router.navigate(['/tasks/dashboard']);
 
-    }
+  }
   routeToCalendar(){
     this.router.navigate(['/calender']);
 
@@ -127,6 +128,11 @@ this.currentUser = this.storageService.getUser();
   }
 
   // Dans TasksComponent
+  fonction(userId: string){
+    this.router.navigate(['tasks/', this.projectId, 'boards',userId]);
+  };
+
+
   generatePDF(): void {
     this.tasksService.downloadPDF(this.currentUser.firstname+" "+this.currentUser.lastname);
   }
@@ -157,7 +163,6 @@ this.currentUser = this.storageService.getUser();
     const modalRef = this.modalService.open(RatingPopupComponent, { size: 'sm' }); // Ouvre la popup de notation
     modalRef.componentInstance.task = task; // Passe la tâche à la popup
   }
-
 
 
 

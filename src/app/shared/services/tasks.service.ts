@@ -634,14 +634,14 @@ export class TasksService {
   }
 
 
-  getBoardsByUserId(userId: string): Observable<Board[]> {
+  getBoardsByUserId(userId: string,projectId: string): Observable<Board[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     };
 
-    return this.http.get<Board[]>(`${this.apiUrl}/getAllBoardsByUser/${userId}`, httpOptions);
+    return this.http.get<Board[]>(`${this.apiUrl}/getAllBoardsByUser/${userId}/${projectId}`, httpOptions);
   }
 
 
