@@ -15,6 +15,10 @@ const routes: Routes = [
         component: TeamDetailsComponent
       },
       {
+        path: "team-details/:projectId",
+        component: TeamDetailsComponent
+      },
+      {
         path: "update-team",
         component: UpdateTeamComponent
       },

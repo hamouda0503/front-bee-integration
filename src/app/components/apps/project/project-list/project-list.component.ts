@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../../../shared/services/project.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { TasksService } from 'src/app/shared/services/tasks.service';
+
 import { Project } from 'src/app/shared/model/project.model';
+import { Task } from 'src/app/shared/model/Task';
+
 import { AddInvestmentComponent } from '../modal/add-investment/add-investment.component';
 import { InvestmentService } from '../../../../shared/services/investment.service';
 
@@ -20,6 +24,7 @@ export class ProjectListComponent implements OnInit {
   currentUserRole: string;
 
   constructor(
+    private tasksService: TasksService,
     private projectService: ProjectService,
     private storageService: StorageService,
     private router: Router,
@@ -46,7 +51,19 @@ export class ProjectListComponent implements OnInit {
         },
       });
   }
+  tasksPerProject: { [projectId: string]: number } = {};
 
+  loadTasksPerProject(projectid: string): void {
+    this.tasksService.getTasksByProject(projectid).subscribe({
+      next: (tasks) => {
+        this.tasksPerProject[projectid] = tasks.length;
+      },
+      error: (err) => {
+        console.error('Failed to fetch projects', err);
+        this.tasksPerProject[projectid] = -1; // Set a default value or handle the error as needed
+      },
+    });
+  }
   loadAllProjects(): void {
     this.projectService.getAllProjects().subscribe({
       next: (projects) => {

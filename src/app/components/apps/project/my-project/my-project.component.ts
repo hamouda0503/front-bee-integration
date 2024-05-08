@@ -43,6 +43,13 @@ export class MyProjectComponent implements OnInit  {
    this.reinitializeAppDefault= true;
 
   }
+  goTeams(): void
+  {
+    console.log("REDIRECT TO TEAM");
+    this.router.navigate(['/team/team-details', this.projectId]);
+    console.log("REDIRECT TO TEAM22");
+
+  }
   manageFiles(): void {
     this.router.navigate(['/project/file-manager', this.projectId]);
   }

@@ -77,20 +77,12 @@
                       <div class="col-6"><span>Start Date:  </span></div>
                       <div [ngClass]="getFontClass(project.status)">{{ project.startDate | date}} </div>
                       <div class="col-6"><span>Tasks: </span></div>
-                      <div [ngClass]="getFontClass(project.status)">12 </div>
+                      <div [ngClass]="getFontClass(project.status)">   {{ tasksPerProject[project.id] !== undefined ? tasksPerProject[project.id] : 'Loading...' }}
+                      </div>
                       <div class="col-6"> <span>Completed: </span></div>
-                      <div [ngClass]="getFontClass(project.status)">5</div>
+                      <div [ngClass]="getFontClass(project.status)"> Loading... </div>
                     </div>
-                    <div class="customers">
-                      <ul>
-                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/3.jpg" alt="" data-original-title="" title=""></li>
-                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/5.jpg" alt="" data-original-title="" title=""></li>
-                        <li class="d-inline-block"><img class="img-30 rounded-circle" src="assets/images/user/1.jpg" alt="" data-original-title="" title=""></li>
-                        <li class="d-inline-block ms-2">
-                          <p class="f-12">+10 More</p>
-                        </li>
-                      </ul>
-                    </div>
+                   
                     <div class="project-status mt-4">
                       <div class="media mb-0">
                         <p>70% </p>
