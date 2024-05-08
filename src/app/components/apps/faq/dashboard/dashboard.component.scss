@@ -1,0 +1,33 @@
+.task-chart {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dashboard-title {
+  background-color: #888; /* Gray background color */
+  color: white; /* White text color */
+  padding: 10px 0; /* Add padding for spacing */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  margin-bottom: 20px; /* Add margin to separate from the content */
+}
+
+.chart-container {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}

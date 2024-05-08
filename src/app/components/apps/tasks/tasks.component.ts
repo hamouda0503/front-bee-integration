@@ -78,7 +78,7 @@ export class TasksComponent implements OnInit {
   routeToDashboard() {
 
     // Si userId est null, naviguer vers la première route
-    this.router.navigate(['/tasks/dashboard']);
+    this.router.navigate(['/dashboard']);
 
   }
   routeToCalendar(){
