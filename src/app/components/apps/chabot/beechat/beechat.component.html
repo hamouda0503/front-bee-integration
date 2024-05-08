@@ -1,0 +1,111 @@
+<!--<div class="chat-container">-->
+<!--  <div class="chat-window">-->
+<!--    <ul class="chat-messages">-->
+<!--      <li *ngFor="let message of messages">-->
+<!--        <div class="message-container" [ngClass]="{ 'user-message': message.user === 'User', 'bot-message': message.user === 'Bot' }">-->
+<!--          <span class="chat-user">{{ message.user }}</span>-->
+<!--          <span class="chat-message">{{ message.message }}</span>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--  <div class="chat-input">-->
+<!--    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">-->
+<!--      <input type="text" class="chat-input-field" formControlName="message" placeholder="Type your message...">-->
+<!--      <button type="submit" class="chat-send-button">-->
+<!--        <i class="fa fa-paper-plane" aria-hidden="true"></i>-->
+<!--      </button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<app-breadcrumb [title]="'Chat'" [items]="['Apps']" [active_item]="'Chat'"></app-breadcrumb>-->
+<!-- Container-fluid starts-->
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col call-chat-body">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="row chat-box">
+            <!-- Chat right side start-->
+            <div class="col pe-0 chat-right-aside">
+              <!-- chat start-->
+              <div class="chat">
+                <!-- chat-header start-->
+                <div class="chat-header clearfix">
+<!--                  <img class="rounded-circle" [src]="chatUser?.profile" alt="">-->
+                  <div class="about">
+                    <div class="name">Bee Bee  </div>
+
+                  </div>
+                  <ul class="list-inline float-start float-sm-end chat-menu-icons">
+
+                  </ul>
+                </div>
+                <!-- chat-header end-->
+                <div class="chat-history chat-msg-box custom-scrollbar">
+                  <ul>
+                    <li  *ngFor="let message of messages" [ngClass]="{ 'user-message': message.user === 'User', 'bot-message': message.user === 'Bot' }">
+                      <div class="message my-message mb-0" *ngIf="message.user === 'User'; else myChat">
+<!--                        <img class="rounded-circle float-start chat-user-img img-30" [src]="chatUser?.profile" alt="">-->
+                        <div class="message-data text-end">
+                          <span class="message-data-time">{{ message.user }}</span>
+                        </div> {{ message.message }}
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <ng-template #myChat>
+                        <div class="message other-message pull-right">
+<!--                          <img class="rounded-circle float-end chat-user-img img-30" [src]="profile?.profile" alt="">-->
+                          <div class="message-data">
+                            <span class="message-data-time">{{ message.user }}</span>
+                          </div> {{ message.message }}
+                        </div>
+                      </ng-template>
+                    </li>
+                    <ng-container *ngIf="!messages?.length">
+                      <div class="image-not-found">
+                        <div class="d-block start-conversion">
+                          <img src="assets/images" class="img-fluid">
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ul>
+                </div>
+                <!-- end chat-history-->
+                <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+                  <div class="chat-message clearfix">
+                    <div class="row">
+                      <div class="col-xl-12 d-flex">
+
+                        <div class="input-group text-box">
+                          <input class="form-control input-txt-bx"  formControlName="message"
+                                 id="message-to-send" type="text" name="message" placeholder="Type a message......">
+
+                          <div class="input-group-append">
+                            <button class="btn btn-primary"  type="submit">SEND</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!-- end chat-message-->
+                <!-- chat end-->
+                <!-- Chat right side ends-->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends -->

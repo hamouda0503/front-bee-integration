@@ -19,7 +19,7 @@ const Swal = require('sweetalert2')
  selector: 'app-podcasts-affiche',
  templateUrl: './podcasts-affiche.component.html',
  styleUrls: ['./podcasts-affiche.component.scss'],
-providers: [NgbPaginationConfig], 
+providers: [NgbPaginationConfig],
 })
 export class PodcastsAfficheComponent implements OnInit {
  podcasts: Podcast[];
@@ -31,7 +31,7 @@ selectedEpisode?: Episode ;
 selectedPodcast: Podcast | null = null;
 uri : string ;
 user: User;
-private embedController: any; 
+private embedController: any;
 p: number = 1;
 email='chayma.bensaad@esprit.tn';
 
@@ -68,15 +68,11 @@ dislikeTrack() {
   const maintenanceContent = `
     <div class="error-wrapper maintenance-bg">
       <div class="container">
-        <ul class="maintenance-icons">
-          <li><i class="fa fa-cog"></i></li>
-          <li><i class="fa fa-cog"></i></li>
-          <li><i class="fa fa-cog"></i></li>
-        </ul>
+
         <div class="maintenance-heading">
-          <h2 class="headline">MAINTENANCE</h2>
+          <h4>MAINTENANCE</h4>
         </div>
-        <h4 class="sub-content">Our Site is Currently under maintenance We will be back Shortly<br> 
+        <h4 class="sub-content">We are sorry to hear that <br>
           Thank You For Patience</h4>
       </div>
     </div>
@@ -85,10 +81,10 @@ dislikeTrack() {
   Swal.fire({
     html: `
       ${maintenanceContent}
-      <p>While we're under maintenance, we're also working on similar features to improve your experience!</p>
+      <p>We're also working on some features to improve your experience!</p>
     `,
     width: '600px', // Adjust width as desired
-    height: 'auto',
+    height: '200px',
     icon: 'warning', // Adjust the icon based on your preference (e.g., 'info')
     confirmButtonText: 'OK',
   });
@@ -99,14 +95,14 @@ ngOnInit(): void {
     this.mentalHealthService.getPodcasts().subscribe(podcastsData => {
       this.podcasts = podcastsData;
 
-      console.log('Podcasts:', this.podcasts); 
-  
+      console.log('Podcasts:', this.podcasts);
+
       this.mentalHealthService.getEpisodes().subscribe(episodesData => {
         this.episodes = episodesData;
-  this.cdr.detectChanges(); //      
+  this.cdr.detectChanges(); //
 
         console.log('episodes:', this.episodes);
-  
+
         for (let p of this.podcasts){
           p.Episodes = [];
           for (let episode of this.episodes) {
@@ -131,14 +127,15 @@ ngOnInit(): void {
   }
 
 
-  likeEpisode(){         
+  likeEpisode(){
     this.toaster.success("We're thrilled that you liked it  🎉We're actively working to further enhance your personal experience😊")
 }
   dislikeEpisode(){
+
 this.dislikeTrack();
   }
 
-  
+
 playEpisode(episoda: Episode): void {
 this.selectedEpisode = episoda;
           console.log('Épisode sélectionné :', this.selectedEpisode);
@@ -152,7 +149,7 @@ this.selectedEpisode = episoda;
           }
 }
 loadSpotifyIframeApi(): void {
-  if (!this.iframeApiLoaded) { 
+  if (!this.iframeApiLoaded) {
     const script = document.createElement('script');
     script.src = 'https://open.spotify.com/embed/iframe-api/v1';
     console.log("aaaaaaa")
@@ -162,7 +159,7 @@ loadSpotifyIframeApi(): void {
       console.log("bbbbbbbb")
 
       const element = document.getElementById('embed-iframe');
-           const options = { 
+           const options = {
              width: '700px',
             height: '700px',
             uri: `spotify:episode:${this.selectedEpisode.id}`,
