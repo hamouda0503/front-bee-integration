@@ -1,18 +1,18 @@
 <script type="module" src="./node_module/emoji-slider/bin/emoji-slider.js"></script>
 <div class="card">
 <mat-stepper linear class="custom-stepper">
-    
+
   <mat-step  [editable]="isEditable">
 
     <div class="mat-step-content">
     <ng-template matStepLabel>
-      <h3 >How are you feeling today ? 😊</h3>
+      How are you feeling today ? 😊
     </ng-template>
     <mat-chip-listbox aria-label="Mood selection" >
       <mat-chip-option class="mat-chip-option" *ngFor="let mood of moods" (click)="selectMood(mood)"  [ngClass]="{'selected': mood === selectedMood} ">
         <img *ngIf="getMoodEmoji(mood)" [src]="getMoodEmoji(mood)" alt="Icône" style="width: 24px; height: 24px;">
-        {{ moodToString(mood) }}  
-                
+        {{ moodToString(mood) }}
+
       </mat-chip-option>
     </mat-chip-listbox>
 
@@ -20,10 +20,10 @@
     <div class="mat-step-actions justify-content-end">
       <button mat-button matStepperNext class="next-button" >Next</button>
     </div>
- 
+
   </mat-step>
   <mat-step  [editable]="isEditable">
-   
+
         <ng-template matStepLabel> PlayList or Discussion 🎵🎙️</ng-template>
                <div class="button-container">
                   <button mat-raised-button color="accent"
@@ -48,7 +48,7 @@
                 At what level do you want your music to be:
                 </mat-panel-title>
               </mat-expansion-panel-header>
-          
+
               <div class="slider-container-wrapper">
                 <div class="slider-container">
                   <span>Low Energy</span>
@@ -66,14 +66,14 @@
                 <span>Happy</span>
               </div>
             </div>
-         
-      
-           
+
+
+
             </mat-expansion-panel>
-          
+
 
             <mat-expansion-panel *ngIf="selectedPreference === 'PODCAST'">
-             
+
 
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -99,70 +99,70 @@
                   {{ intrest }}
                 </mat-chip-option>
               </mat-chip-listbox>
-          
+
             </div>
             <div class="language">
-              <mat-expansion-panel-header>  
-                  <mat-panel-title> 
+              <mat-expansion-panel-header>
+                  <mat-panel-title>
                       Which language would you like to hear ?
                   </mat-panel-title>
               </mat-expansion-panel-header>
               <br />
-              <mat-expansion-panel-content> 
+              <mat-expansion-panel-content>
                 <mat-radio-group aria-label="Select language">
                   <mat-radio-button (click)="onRadioClick($event)" value="en">English</mat-radio-button>
                 <mat-radio-button (click)="onRadioClick($event)" value="fr">French</mat-radio-button>
                 <mat-radio-button (click)="onRadioClick($event)" value="ar">Arab</mat-radio-button>
               </mat-radio-group>
-           
-              
+
+
               </mat-expansion-panel-content>
             </div>
-          
+
             </mat-expansion-panel>
 
         <div class="mat-step-actions justify-content-end">
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext class="next-button">Next</button>
       </div>
-   
+
   </mat-step>
   <mat-step [editable]="isEditable">
-    
+
 
     <div class="mat-step-content">
       <ng-template matStepLabel > Energy at its peak ? 💥
       </ng-template>
-    
-        <h2> Your energy level today ?</h2> 
-        
+
+        <h4> Your energy level today ?</h4>
+
       <div class="mat-step-label ">{{ getEnergyMessage(value1)}}</div>
       <br />
 
-     
+
       <mat-slider  class="example-margin mat-slider-thumb" min="10"  max="100"  showTickMarks discrete  >
         <input matSliderThumb [(ngModel)]="value1" (input)="getEnergyMessage(value1) " #slider>
-            </mat-slider>   
-          </div> 
- 
+            </mat-slider>
+          </div>
+
             <div class="mat-step-actions justify-content-end">
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext class="next-button">Next</button>
             </div>
-         
-    
+
+
   </mat-step>
   <mat-step [editable]="isEditable" >
     <div class="mat-step-content">
-    <ng-template matStepLabel>Zen level ? 🌿</ng-template>      
-      <h2> Your stress level today ?</h2> 
+    <ng-template matStepLabel>Zen level ? 🌿</ng-template>
+      <h2> Your stress level today ?</h2>
     <div class="mat-step-label ">{{ getStressMessage(value2) }}</div>
     <mat-slider  class="example-margin mat-slider-thumb"
        min="10" max="100"  showTickMarks discrete  >
         <input matSliderThumb [(ngModel)]="value2"   (input)="getStressMessage(value2)" #slider>
     </mat-slider>
   </div>
-    <div class="mat-step-actions justify-content-end"> 
+    <div class="mat-step-actions justify-content-end">
 
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="saveMentalHealth()" >Save</button>
@@ -170,7 +170,7 @@
       <ngb-alert *ngIf="successMessage" [type]="'success'" [dismissible]="false">
         {{ successMessage }}
       </ngb-alert>
-   
+
   </mat-step>
 </mat-stepper>
 </div>
