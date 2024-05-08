@@ -31,6 +31,8 @@ import { SwiperModule } from "swiper/angular";
 import { SwiperComponent } from "./components/header/elements/swiper/swiper.component";
 // import { BeeBotComponent } from '../bee-bot/bee-bot.component';
 import { ToastrModule } from 'ngx-toastr';
+import {TableService} from "./services/table.service";
+import {NgbdSortableHeader} from "./directives/NgbdSortableHeader";
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
     MyAccountComponent,
     SvgIconComponent,
     SwiperComponent,
-    
+    NgbdSortableHeader
+
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, SwiperModule,
     ToastrModule.forRoot({
@@ -62,7 +65,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true, // Prevent duplicate toasts
       progressBar: true   // Optionally add a progress bar
     }),],
-  providers: [NavService, LayoutService, DecimalPipe],
-  exports: [NgbModule, FormsModule, ReactiveFormsModule, LoaderComponent, BreadcrumbComponent, FeatherIconsComponent, TapToTopComponent, SvgIconComponent, SwiperModule],
+  providers: [NavService, LayoutService, DecimalPipe,TableService],
+  exports: [NgbModule, FormsModule, ReactiveFormsModule, LoaderComponent, BreadcrumbComponent, FeatherIconsComponent, TapToTopComponent, SvgIconComponent,NgbdSortableHeader, SwiperModule],
 })
 export class SharedModule {}

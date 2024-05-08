@@ -60,5 +60,9 @@ export const content: Routes = [
   {
     path: "blogcalender",
     loadChildren: () => import("../../components/apps/Blogcalender/calender.module").then((m) => m.CalenderModule),
+  },
+  {
+    path: "admin",
+    loadChildren: () => import("../../components/admin/admin.module").then((m) => m.AdminModule),
   }
 ];

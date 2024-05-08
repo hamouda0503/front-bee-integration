@@ -1,77 +1,70 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from "../../shared/services/auth.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {StorageService} from "../../shared/services/storage.service";
-import {UpdatePasswordRequest} from "../../shared/model/upPassReq.model";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ResetPasswordRequest} from "../../shared/model/reset-password-request";
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
 })
-export class ForgotPasswordComponent {
-token :string;
-  public show: boolean = false;
+export class ForgotPasswordComponent implements OnInit {
+  token: string;
+  show: boolean = false;
   resetPasswordForm: FormGroup;
   errorMessage: string;
   successMessage: string;
 
-  constructor(public router:Router,private route: ActivatedRoute,private authService: AuthService, private fb: FormBuilder,private storageService:StorageService) {
-
-
-  }
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
-this.route.queryParams.subscribe(s => {
-  console.log(s["token"])
-  this.token=s["token"];
-});
-console.log(this.token);
-    this.resetPasswordForm = this.fb.group({
+    this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
 
-      password: ['', [Validators.required, Validators.minLength(6)]], // Minimum password length of 6
+    this.resetPasswordForm = this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator }); // Add password match validator
+    }, { validator: this.passwordMatchValidator });
   }
 
   onSubmit() {
     if (this.resetPasswordForm.valid) {
-     const  request = new UpdatePasswordRequest(
-        this.token,
-        this.resetPasswordForm.value.password,
-        this.resetPasswordForm.value.confirmPassword
-      );
+      const request: ResetPasswordRequest = {
+        newPassword: this.resetPasswordForm.value.password,
+        confirmPassword: this.resetPasswordForm.value.confirmPassword
+      };
 
-      console.log(this.token, this.resetPasswordForm.value.password, this.resetPasswordForm.value.confirmPassword);
-
-      this.authService.ResetPasword(request)
+      this.authService.resetPassword(request, this.token)
         .subscribe(
-
-          (response) => {
-            this.successMessage = response;
+          () => {
+            this.successMessage = 'Password reset successful.';
             this.errorMessage = null;
             // Handle successful password reset (e.g., redirect to login page)
           },
-          (error) => {
+          error => {
             this.handleErrors(error);
           }
         );
     } else {
-      // Handle form validation errors (optional)
       console.error('Form is invalid:', this.resetPasswordForm.errors);
     }
   }
 
   private handleErrors(error: any) {
-    this.errorMessage = 'An error occurred.'; // Default error message
+    this.errorMessage = 'An error occurred.';
     if (error.error) {
-      this.errorMessage = error.error; // Assuming the error response contains an error message in the `error` property
+      this.errorMessage = error.error;
     }
 
-    // More specific error handling based on the error message
     if (this.errorMessage.includes('Password Confirm shouldn\'t be null')) {
-      this.errorMessage = 'Please confirm your password by entering it again in the "Confirm Password" field.';
+      this.errorMessage = 'Please confirm your password by entering it again.';
     }
   }
 
@@ -79,7 +72,7 @@ console.log(this.token);
     const password = control.get('password').value;
     const confirmPassword = control.get('confirmPassword').value;
     if (password !== confirmPassword) {
-      return { 'noMatch': true }; // Custom error key for password mismatch
+      return { 'noMatch': true };
     }
     return null;
   }
@@ -87,5 +80,4 @@ console.log(this.token);
   showPassword() {
     this.show = !this.show;
   }
-
 }

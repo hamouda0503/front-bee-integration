@@ -1,0 +1,43 @@
+<!--<app-breadcrumb [title]="'Basic'" [items]="['Tables', 'Bootstrap Tables']" [active_item]="'Basic'"></app-breadcrumb>-->
+
+<br>
+<br>
+<br>
+<div class="container-fluid basic_table">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>User Management </h3>
+<!--          <span>Use a class<code>table</code> to any table, and <code>.border-bottom-*</code>class for Border bottom color</span>-->
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr class="border-bottom-primary">
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="border-bottom-secondary"  *ngFor="let user of users">
+              <td><img class="img-30 me-2" [src]="user.imageUrl" alt="profile" />{{ user.firstname}}</td>
+              <td>{{ user.lastname}}</td>
+              <td>{{ user.email}}</td>
+              <td>{{ user.phone}}</td>
+              <td *ngIf="user.enabled">enabled</td>
+              <td *ngIf="!user.enabled">disabled</td>
+              <td><button class="badge badge-light-danger" (click)="BlockUser(user.email)">Ban</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 // import {environment} from '../../../environments/environment';
 
@@ -7,6 +7,7 @@ import {environment} from "../../../environments/environment";
 import {UpdatePasswordRequest} from "../model/upPassReq.model";
 import { VerificationRequest } from '../../shared/model/verification-request';
 import { AuthenticationResponse } from '../../shared/model/authentication-response';
+import {ResetPasswordRequest} from "../model/reset-password-request";
 
 
 
@@ -61,6 +62,8 @@ export class AuthService {
     );
   }
 
+
+
   ForgotPassword(email: string): Observable<any> {
     return this.http.post(
       AUTH_API + 'forgot-password',
@@ -84,6 +87,21 @@ export class AuthService {
     );
   }
 
+  forgetPasswordRequest(email: string): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.put( AUTH_API + "reset-password-request", null, { params });
+  }
+
+  resetPassword(request: ResetPasswordRequest, token: String):Observable<any>{
+    return this.http.put(
+      AUTH_API+"reset-password?token="+token,
+      request,
+      httpOptions
+    )
+  }
+
+
+
 
   refreshToken() {
     return this.http.post(AUTH_API + 'refreshtoken', {}, httpOptions);
@@ -92,7 +110,7 @@ export class AuthService {
     return this.http.get(AUTH_API + 'activate-account?token='+token);
   }
 
- 
+
 
 
   verifyCode(verificationRequest: VerificationRequest): Observable<any>  {

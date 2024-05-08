@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
       this.roles = this.storageService.getUser().role;
     }
 
-  
+
   }
 
-  
+
 
   forgotPassword() {
     Swal.fire({
@@ -64,12 +64,12 @@ export class LoginComponent implements OnInit {
       confirmButtonColor:"#FFC107",
       confirmButtonText: 'Send Reset Link',
       cancelButtonText: 'Cancel'
-    }).then((result) => {
+    }).then((result ) => {
       if (result.isConfirmed) {
         const email = result.value;
 
         // Call your authentication service method
-        this.authService.ForgotPassword(email).subscribe(
+        this.authService.forgetPasswordRequest(email).subscribe(
           (response) => {
             // Handle successful response (optional)
             console.log('Forgot password response:', response);
@@ -91,15 +91,15 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (data) => {
           // Assuming data contains access_token, refresh_token, and user info
-  
+
           this.authResponse = data;
           console.log(this.authResponse);
-  
+
           if (!this.authResponse.mfaEnabled) {
             const accessToken = data.accessToken;
             const refreshToken = data.refreshToken;
             const userInfo = data.user; // Might need adjustment based on response structure
-  
+
             this.storageService.saveTokensAndUserInfo(accessToken, refreshToken, userInfo);
             this.isLoggedIn = true;
             // this.reloadPage();
@@ -117,29 +117,29 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-  
+
 
   verifyCode() {
     const verifyRequest: VerificationRequest = {
       email: this.loginForm.value["email"],
       code: this.otpCode
     };
-  
+
     this.authService.verifyCode(verifyRequest)
       .subscribe({
         next: (data) => {
-  
+
           console.log("content data : ", data);
           const accessToken = data.accessToken;
           const refreshToken = data.refreshToken;
           const userInfo = data.user; // Might need adjustment based on response structure
-  
+
           this.storageService.saveTokensAndUserInfo(accessToken, refreshToken, userInfo);
           // this.isLoggedIn = true;
           // this.reloadPage();
           this.toastr.success('MFA verification successful!', 'Success');
           this.router.navigate(["/single-page"]);
-          
+
         },
         error: (err) => {
           this.errorMessage = err.error.message;

@@ -50,6 +50,8 @@ export class RegisterComponent {
   isSignUpFailed = false;
   errorMessage = '';
 
+  imageUrls: string;
+
 
   loading = false;
 
@@ -62,7 +64,7 @@ export class RegisterComponent {
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
-      password: ['', Validators.required],  
+      password: ['', Validators.required],
       role: ['', Validators.required],
       mfaEnabled: [false] // Checkbox value
     });
@@ -71,15 +73,26 @@ export class RegisterComponent {
   selectFile(event: any): void {
     this.currentFile = event.target.files;
     console.log(this.currentFile[0]);
+    const file: File = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.imageUrls = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 
-  
+
 
 
   onSubmit() {
     if (this.registrationForm.valid) {
       this.loading = true;
-  
+
       const formData = new FormData();
       formData.append('firstname', this.registrationForm.value["firstname"]);
       formData.append('lastname', this.registrationForm.value["lastname"]);
@@ -89,18 +102,18 @@ export class RegisterComponent {
       formData.append('role', this.registrationForm.value["role"]);
       formData.append('mfaEnabled', this.registrationForm.value["mfaEnabled"]);
       formData.append('file', this.currentFile[0]);
-  
+
       console.log(formData);
-  
+
       this.authService.register(formData).subscribe({
         next: data => {
           console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
-  
+
           // Show Toastr success notification on successful registration
           this.toastr.success('Registration Successful!', 'Success');
-  
+
           if (data) {
             this.authResponse = data;
             console.log(this.authResponse);
@@ -116,31 +129,31 @@ export class RegisterComponent {
         error: err => {
           this.errorMessage = err.error.message;
           this.isSignUpFailed = true;
-  
+
           // Show Toastr error notification
           this.toastr.error(err.error.message, 'Error');
         }
       });
     }
   }
-  
+
 
   verifyTfa() {
     this.loading = true;
     this.message = '';
-  
+
     const verifyRequest: VerificationRequest = {
       email: this.registrationForm.value["email"],
       code: this.otpCode
     };
-  
+
     this.authService.verifyCode(verifyRequest)
       .subscribe({
         next: (response) => {
           this.message = 'Account created successfully\nYou will be redirected to the Welcome page in 3 seconds';
           this.toastr.success('Code verification successful!', 'Success');
           this.loading = false;
-  
+
           setTimeout(() => {
             // localStorage.setItem('token', response.accessToken as string);
             this.router.navigate(['auth/login']);
@@ -153,7 +166,7 @@ export class RegisterComponent {
         }
       });
   }
-  
+
 
 
   generateAvatar(seed: string) {

@@ -48,8 +48,8 @@ export class UserService {
   }
 
 
-  getAllUsers(): Observable<User[]> {
-    const url = API_URL+"users";
+  getAllUsers(): Observable<any[]> {
+    const url = API_URL+"users/all";
     return this.http.get(url, { headers: this.getHeaders() })
       .pipe(
         catchError(this.handleError)
@@ -81,7 +81,7 @@ export class UserService {
 
 
   deactivateAccount(email: string): Observable<any> {
-    const url = API_URL+"user/"+{email}+"/deactivate";
+    const url = API_URL+"auth/user/"+{email}+"/deactivate";
     return this.http.put(url, null, { headers: this.getHeaders() })
       .pipe(
         catchError(this.handleError)
